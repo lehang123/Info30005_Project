@@ -1,6 +1,14 @@
 # Info30005_Project
 
+# install misssing dependency
+go in to folder, then :
+npm install
+
+# install concurrently globally
+npm install -g concurrently
+
 # Run project
+
 cd Code
 if concurrently is installed, type:
     npm run dev 
