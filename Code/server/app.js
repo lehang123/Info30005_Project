@@ -4,11 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// db
+var connectDB = require('./dbConnection/db')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/products');
 
 var app = express();
+
+// connect to db : mongoDB ATLAS Cloud
+var connection = connectDB();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
