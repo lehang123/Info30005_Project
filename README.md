@@ -4,8 +4,6 @@
 go in to folder, then :
 npm install
 
-hello
-
 
 # install concurrently globally
 npm install -g concurrently
