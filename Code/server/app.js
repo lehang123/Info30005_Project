@@ -1,11 +1,13 @@
 var createError = require('http-errors');
 var express = require('express');
+var pug = require('pug');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // db
-var connectDB = require('./dbConnection/db')
+var mongoose = require("mongoose")
+var mongooseUrl =  "mongodb+srv://lehang:ap7NCXjKcPzLt3Ap@cluster0-xmtxf.mongodb.net/test?retryWrites=true&w=majority"
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,11 +16,11 @@ var productRouter = require('./routes/products');
 var app = express();
 
 // connect to db : mongoDB ATLAS Cloud
-var connection = connectDB();
+mongoose.connect(mongooseUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+.catch(error=>{console.log('initial connection db error: message' + error)});
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug')
 
 app.use(logger('dev'));
 app.use(express.json());
