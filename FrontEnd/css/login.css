@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Serif', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color:inherit;
+}
+
+
+body{
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    overflow: hidden;
+    letter-spacing: 0.1em;
+}
+
+header{
+    min-height:220px;
+    font-weight: bold;
+    color: white;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+header > div> a:hover{
+    border-radius: 25px;
+    box-shadow: 4px 4px #094183;
+    color:#094183;
+}
+
+section > .text-container > a:hover{
+    text-decoration: underline;
+}
+
+section > #submit:hover{
+    box-shadow: 0 0 black;
+}
+
+article{
+    position:relative;
+    left: 36.5vw;
+    width: 400px;
+    height: 350px;
+    display: grid;
+    grid-template-rows: 80% 20%;
+    grid-gap: 3em;
+    font-family: sans-serif;
+}
+
+article > section{
+    background-color: white;
+    padding: 25px;
+}
+
+.text-container{
+    margin:5px;
+}
+
+#background{
+    position: absolute;
+    top:0;
+    left:0;
+    width :100%;
+    z-index : -1;
+}
+
+#logo{
+    position: absolute;
+    top:50px;
+    left:200px;
+    width :120px;
+}
+
+#submit{
+    margin: 11px 0;
+    font-weight: bold;
+    color: white;
+    padding: 3px;
+    text-align: center;
+    background-color: #27cd14;
+    box-shadow: 4px 4px #555555;
+    transition: box-shadow 0.2s ease-in-out;
+    border-radius: 10px
+}
