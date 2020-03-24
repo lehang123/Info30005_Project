@@ -16,7 +16,7 @@ var productRouter = require('./routes/products');
 var app = express();
 
 // connect to db : mongoDB ATLAS Cloud
-mongoose.connect(mongooseUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongooseUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 .catch(error=>{console.log('initial connection db error: message' + error)});
 
 // view engine setup
