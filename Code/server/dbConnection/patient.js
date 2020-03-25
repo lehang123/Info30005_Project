@@ -2,7 +2,11 @@ var mongoose = require('mongoose');
 
 const patientSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    account_name: String,
+    account_name: {
+        type: String,
+        unique: true, // account_name has to be unique
+        required: true // boolean or function, if true adds a required validator for this property
+    },
     password: String,
     name: String,
     birthday: Date,
