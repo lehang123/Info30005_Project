@@ -1,11 +1,7 @@
 var mongoose = require('mongoose');
 
 const patientSchema = mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        unique: true,
-        required: true
-    },
+    _id: mongoose.Schema.Types.ObjectId,
     account_name: {
         type: String,
         unique: true, // account_name has to be unique

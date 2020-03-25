@@ -39,9 +39,7 @@ router.post('/signup', async function(req, res, next) {
         error_msg: err.message
       })
     });
-
-
-
+    
   }catch(err){
     res.status(500).send('something went wrong : ' + err.message)
   }

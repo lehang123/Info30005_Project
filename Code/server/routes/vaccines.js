@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 const Vaccine = require('../database/vaccine');
 const server = require('../app');
+const mongoose = require('mongoose')
 
-/* GET vaccines listing. */
+/* GET vaccines listing. (tested)*/
 router.get('/', function(req, res, next) {
   Vaccine.find()
   .select('_id name alleries prevent_disease good_for_groups recommend_star')
@@ -16,8 +17,8 @@ router.get('/', function(req, res, next) {
           name: doc.name,
           prevent_disease: doc.prevent_disease,
           alleries: doc.alleries,
-          good_for_groups: good_for_groups,
-          recommend_star: recommend_star,
+          good_for_groups: doc.good_for_groups,
+          recommend_star: doc.recommend_star,
           request: {
             type: "GET",
             url: server.url + "/vaccines/" + doc._id,
@@ -30,8 +31,86 @@ router.get('/', function(req, res, next) {
   })
   .catch(err=>{
     console.log(err);
-    res.status(500)
-  })
+    res.status(500).json({
+      error:err
+    });
+  });
 });
+
+/* GET a vaccine by id. (tested)*/
+router.get("/:vaccineId", (req, res, next)=>{
+  const id = req.params.vaccineId;
+  Vaccine.findById(id)
+    .select('_id name cost stocks alleries prevent_disease good_for_groups recommend_star available_at manufacturer')
+    .exec()
+    .then(doc => {
+      console.log('from database', doc)
+      if (doc){
+        res.status(200).json(
+          {
+            vaccine: doc,
+            request: {
+              type:'GET',
+              url: server.url + '/vaccines'
+            }
+          })
+      }else {
+        res.status(404).json({ message: "No valid entry found for provided vaccineId" })
+      }
+    })
+    .catch(err=>{
+      console.log(err.message);
+      res.status(500).json({ error: err.message });
+    })
+})
+
+/* POST a new vaccine to database. (tested)*/
+router.post("/", (req, res, next)=>{
+  const vaccine = new Vaccine({
+    _id: new mongoose.Types.ObjectId(),
+    name: req.body.name,
+    cost: req.body.cost,
+    stocks: req.body.stocks,
+    alleries: req.body.alleries,
+    prevent_disease: req.body.prevent_disease,
+    good_for_groups: req.body.good_for_groups,
+    recommend_star: req.body.recommend_star,
+    available_at: req.body.available_at,
+    manufacturer: req.body.manufacturer
+  });
+  vaccine
+  .save()
+  .then(result =>{
+      console.log(result)
+      res.status(201).json({
+        message: "Created product successfully",
+        createdVaccine: {
+          _id: result._id,
+          name: result.name,
+          cost: result.cost,
+          stocks: result.stocks,
+          alleries: result.alleries,
+          prevent_disease: result.prevent_disease,
+          good_for_groups: result.good_for_groups,
+          recommend_star: result.recommend_star,
+          available_at: result.available_at,
+          manufacturer: result.manufacturer,
+          request:{
+            type:"GET",
+            url: server.url + "/vaccines/" + result._id
+          }
+        }
+      })
+    })
+  .catch(err=>{
+    console.log(err.message);
+    res.status(500).json({
+      error: err.message
+    })
+  })
+})
+
+/*todo : update vaccine and delete vaccine. 
+reference : https://github.com/academind/node-restful-api-tutorial/blob/06-validation-and-better-responses/api/routes/products.js*/
 
 module.exports = router;

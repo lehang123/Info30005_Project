@@ -1,11 +1,7 @@
 var mongoose = require('mongoose');
 
 const vaccineSchema = mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        unique: true,
-        required: true
-    },
+    _id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
         required: true
@@ -19,7 +15,7 @@ const vaccineSchema = mongoose.Schema({
             message: props => `cost $ ${props.value} is an negative !!`
         }
     },
-    stock: {
+    stocks: {
         type: Number,
         required: true,
         validate: {validator: function(stock){
@@ -43,9 +39,9 @@ const vaccineSchema = mongoose.Schema({
         type: Number,
         required: true,
         validate: {validator: function(stars){
-                return Number.isInteger(stock) && 0<=stars && stars<=5
+                return Number.isInteger(stars) && 0<=stars && stars<=5
             },
-            message: props => `star can't be an number that excess 0 ~ 5`
+            message: props => `stars need to be an integer that doesn't excess 0 ~ 5, found : ${props.value}`
         }
     },
     available_at: {
@@ -57,3 +53,5 @@ const vaccineSchema = mongoose.Schema({
         required: true
     }
 })
+
+module.exports = mongoose.model('Vaccine', vaccineSchema)
