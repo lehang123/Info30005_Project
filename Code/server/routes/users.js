@@ -1,5 +1,5 @@
 const express = require('express');
-const Patient = require('../dbConnection/patient');
+const Patient = require('../database/patient');
 const mongoose = require('mongoose');
 const router = express.Router();
 /* bcrypt to protect users' password, 
@@ -8,11 +8,7 @@ const bcrypt = require('bcrypt')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.json([
-    {id:1, username: "Tonny"},
-    {id:2, username: "Jimmy"},
-    {id:3, username: "Fanny"}
-  ])
+ 
 });
 
 /* respone to signup post request. */
