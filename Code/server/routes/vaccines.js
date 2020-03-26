@@ -4,7 +4,7 @@ const Vaccine = require('../database/vaccine');
 const server = require('../app');
 const mongoose = require('mongoose')
 
-/* GET vaccines listing. (tested)*/
+/* GET vaccines listing. */
 router.get('/', function(req, res, next) {
   Vaccine.find()
   .select('_id name alleries prevent_disease good_for_groups recommend_star')
@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* GET a vaccine by id. (tested)*/
+/* GET a vaccine by id. */
 router.get("/:vaccineId", (req, res, next)=>{
   const id = req.params.vaccineId;
   Vaccine.findById(id)
@@ -64,7 +64,7 @@ router.get("/:vaccineId", (req, res, next)=>{
     })
 })
 
-/* POST a new vaccine to database. (tested)*/
+/* POST a new vaccine to database. */
 router.post("/", (req, res, next)=>{
   const vaccine = new Vaccine({
     _id: new mongoose.Types.ObjectId(),
@@ -78,27 +78,15 @@ router.post("/", (req, res, next)=>{
     available_at: req.body.available_at,
     manufacturer: req.body.manufacturer
   });
-  vaccine
-  .save()
+  vaccine.save()
   .then(result =>{
       console.log(result)
       res.status(201).json({
         message: "Created product successfully",
-        createdVaccine: {
-          _id: result._id,
-          name: result.name,
-          cost: result.cost,
-          stocks: result.stocks,
-          alleries: result.alleries,
-          prevent_disease: result.prevent_disease,
-          good_for_groups: result.good_for_groups,
-          recommend_star: result.recommend_star,
-          available_at: result.available_at,
-          manufacturer: result.manufacturer,
-          request:{
-            type:"GET",
-            url: server.url + "/vaccines/" + result._id
-          }
+        createdVaccine: result,
+        request:{
+          type:"GET",
+          url: server.url + "/vaccines/" + result._id
         }
       })
     })
@@ -108,6 +96,56 @@ router.post("/", (req, res, next)=>{
       error: err.message
     })
   })
+})
+
+/* PATCH to update partial resource (vaccine by id) $set operator is invloved 
+    todo: might be some more update way to do
+*/
+router.patch("/:vaccineId", (req, res, next)=>{
+  const id = req.params.vaccineId
+
+  Vaccine.update({_id: id}, {$set: req.body})
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: 'Vaccine updated',
+        upated_ops: req.body,
+        request: {
+          type: 'GET',
+          url: server.url + "/vaccines/" + id
+        }
+      })
+    })
+    .catch(err=>{
+      const error_msg = 'Update Vaccine by ID Error : ' + err.message
+      console.log(error_msg)
+      res.status(500).json({
+        err_msg: error_msg
+      })
+    })
+})
+
+/*DELETE to delete vaccine by id */
+router.delete("/:vaccineId", (req, res, next)=>{
+  const id = req.params.vaccineId;
+  Vaccine.remove({_id: id})
+    .exec()
+    .then(result=>{
+      res.status(200).json({
+        message: 'vaccineId : ' + id + 'Deleted',
+        request:{
+          type: 'GET',
+          url : server.url + '/vaccines'
+        }
+      })
+    })
+    .catch(err=>{
+      const error_msg = 'Delete Vaccine by ID Error : ' + err.message
+      console.log(error_msg)
+      res.status(500).json({
+        err_msg: error_msg
+      })
+    })
 })
 
 /*todo : update vaccine and delete vaccine. 
