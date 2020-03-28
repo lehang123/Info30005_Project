@@ -19,7 +19,7 @@ const vaccineSchema = mongoose.Schema({
         type: Number,
         required: true,
         validate: {validator: function(stock){
-                return Number.isInteger(stock) && stock>0
+                return Number.isInteger(stock) && stock>=0
             },
             message: props => `stock ${props.value} is an valid number !!`
         }

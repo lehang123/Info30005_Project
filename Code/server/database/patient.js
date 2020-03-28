@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 const patientSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    account_name: {
+    account_id: {
         type: String,
         unique: true, // account_name has to be unique
         required: true // boolean or function, if true adds a required validator for this property(means can't be empty)
@@ -11,11 +11,11 @@ const patientSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    name: {
+    username: {
         type: String,
         required: true,
     },
-    birthday: {
+    birthday: { // JSON date format: "2012-03-19"
         type: Date,
         required: true,
     },
@@ -30,7 +30,8 @@ const patientSchema = mongoose.Schema({
     emergency_contact: String,
     heatlh_detail: String,
     location: String,
-    vaccine_history: String
+    vaccine_history: String,
+    language: [String]
 });
 
 module.exports = mongoose.model('Patient', patientSchema)

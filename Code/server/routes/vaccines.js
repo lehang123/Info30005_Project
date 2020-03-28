@@ -104,7 +104,7 @@ router.post("/", (req, res, next)=>{
 router.patch("/:vaccineId", (req, res, next)=>{
   const id = req.params.vaccineId
 
-  Vaccine.update({_id: id}, {$set: req.body})
+  Vaccine.updateOne({_id: id}, {$set: req.body})
     .exec()
     .then(result => {
       res.status(200).json({
@@ -132,7 +132,7 @@ router.delete("/:vaccineId", (req, res, next)=>{
     .exec()
     .then(result=>{
       res.status(200).json({
-        message: 'vaccineId : ' + id + 'Deleted',
+        message: 'vaccineId : ' + id + ' Deleted',
         request:{
           type: 'GET',
           url : server.url + '/vaccines'

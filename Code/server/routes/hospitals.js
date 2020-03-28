@@ -96,7 +96,7 @@ router.post("/", (req, res, next)=>{
 router.patch("/:hospitalId", (req, res, next)=>{
     const id = req.params.hospitalId
   
-    Hospital.update({_id: id}, {$set: req.body})
+    Hospital.updateOne({_id: id}, {$set: req.body})
       .exec()
       .then(result => {
         res.status(200).json({
@@ -117,28 +117,28 @@ router.patch("/:hospitalId", (req, res, next)=>{
       })
   })
   
-  /*DELETE to delete vaccine by id */
-  router.delete("/:hospitalId", (req, res, next)=>{
-    const id = req.params.hospitalId;
-    Hospital.remove({_id: id})
-      .exec()
-      .then(result=>{
-        res.status(200).json({
-          message: 'hospitalId : ' + id + 'Deleted',
-          request:{
-            type: 'GET',
-            url : server.url + '/hospitals'
-          }
-        })
-      })
-      .catch(err=>{
-        const error_msg = 'Delete Hospital by ID Error : ' + err.message
-        console.log(error_msg)
-        res.status(500).json({
-          err_msg: error_msg
-        })
-      })
-  })
+/*DELETE to delete vaccine by id */
+router.delete("/:hospitalId", (req, res, next)=>{
+const id = req.params.hospitalId;
+Hospital.remove({_id: id})
+    .exec()
+    .then(result=>{
+    res.status(200).json({
+        message: 'hospitalId : ' + id + ' Deleted',
+        request:{
+        type: 'GET',
+        url : server.url + '/hospitals'
+        }
+    })
+    })
+    .catch(err=>{
+    const error_msg = 'Delete Hospital by ID Error : ' + err.message
+    console.log(error_msg)
+    res.status(500).json({
+        err_msg: error_msg
+    })
+    })
+})
 
 
 

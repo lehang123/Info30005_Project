@@ -19,9 +19,17 @@ router.post('/signup', async function(req, res, next) {
     /* create instance Patient from post request's body (Note: only JSON recongized)*/
     const patient = new Patient({
       _id: new mongoose.Types.ObjectId(),
-      account_name: req.body.username,
+      account_id: req.body.account_id,
       password: hashedPassword, 
-      name: req.body.name,  
+      username: req.body.username,
+      birthday: req.body.birthday,
+      gender: req.body.gender,
+      contact: req.body.contact,
+      emergency_contact: req.body.emergency_contact,
+      heatlh_detail: req.body.heatlh_detail,
+      location: req.body.location,
+      vaccine_history: req.body.vaccine_history,
+      language: req.body.language
     });
 
     // save paitent object to db
@@ -39,7 +47,7 @@ router.post('/signup', async function(req, res, next) {
         error_msg: err.message
       })
     });
-    
+
   }catch(err){
     res.status(500).send('something went wrong : ' + err.message)
   }
@@ -48,7 +56,7 @@ router.post('/signup', async function(req, res, next) {
 
 router.post('/login', (req, res, next)=>{
   // find user with the match username from 
-  Patient.findOne({account_name: req.body.username}, async (err, result)=>{
+  Patient.findOne({account_id: req.body.account_id}, async (err, result)=>{
     if (result){
       try{
         if(await bcrypt.compare(req.body.password, result.password)){
