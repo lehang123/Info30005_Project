@@ -7,6 +7,7 @@ import Vaccines from './components/Vaccines/Vaccines';
 import Vaccine from './components/Vaccines/Vaccine';
 import AboutUs from './components/AboutUs/AboutUs';
 import Login from './components/Login/Login';
+import Home from './components/HomePage/Home';
 
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -32,13 +33,4 @@ class App extends Component{
     );
   }
 }
-
-const Home = ()=>(
-  <div>
-    <h1>Home Page</h1>
-  </div>
-)
-
-
-
 export default App;
