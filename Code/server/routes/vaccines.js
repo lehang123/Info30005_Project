@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
       count: docs.length, // how many entries
       vaccines: docs.map(doc => {
         return {
+          id: doc._id,
           name: doc.name,
           prevent_disease: doc.prevent_disease,
           alleries: doc.alleries,
@@ -46,14 +47,7 @@ router.get("/:vaccineId", (req, res, next)=>{
     .then(doc => {
       console.log('from database', doc)
       if (doc){
-        res.status(200).json(
-          {
-            vaccine: doc,
-            request: {
-              type:'GET',
-              url: server.url + '/vaccines'
-            }
-          })
+        res.status(200).json(doc)
       }else {
         res.status(404).json({ message: "No valid entry found for provided vaccineId" })
       }
