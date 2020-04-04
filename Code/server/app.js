@@ -5,13 +5,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// server url
+var url = "http://localhost:5000"
+
 // db
 var mongoose = require("mongoose")
 var mongooseUrl =  "mongodb+srv://lehang:ap7NCXjKcPzLt3Ap@cluster0-xmtxf.mongodb.net/test?retryWrites=true&w=majority"
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var productRouter = require('./routes/products');
+var vaccineRouter = require('./routes/vaccines');
+var hospitalRouter = require('./routes/hospitals');
+var appointmentRouter = require('./routes/appointments');
+var hospital_vaccineRouter = require('./routes/hospitals_vaccines');
 
 var app = express();
 
@@ -30,7 +36,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/products', productRouter)
+app.use('/vaccines', vaccineRouter)
+app.use('/hospitals', hospitalRouter);
+app.use('/appointments', appointmentRouter);
+app.use('/hospitals_vaccines', hospital_vaccineRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,3 +58,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+exports.url = url
