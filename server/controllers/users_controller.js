@@ -4,6 +4,33 @@ const mongoose = require('mongoose');
   this is an async library */
 const bcrypt = require('bcrypt');
 
+/* get all the user listing on databse*/
+const getUsers = (req, res, next)=>{
+  Patient.find()
+  .select('_id username account_id')
+  .exec()
+  .then(docs => {
+    const respone = {
+        count: docs.length, // how many entries
+        patients: docs.map(doc => {
+        return {
+            id: doc._id,
+            username: doc.username,
+            account_id: doc.account_id,
+          }
+        })
+      }
+      res.status(200).json(respone);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+        error:err
+      });
+  });
+}
+
+/* signup the user to server */
 const signupUser = async (req, res, next)=>{
     try{
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -45,6 +72,7 @@ const signupUser = async (req, res, next)=>{
       }
 }
 
+/* login the user to server */
 const loginUser = (req, res, next)=>{
     Patient.findOne({account_id: req.body.account_id}, async (err, result)=>{
         if (result){
@@ -58,13 +86,13 @@ const loginUser = (req, res, next)=>{
             res.status(500).send('something wrong : ' + e.message)
           }
         }else{
-          console.log('error requesting account_name: ' + err)
-          // todo: feedback to client tell them something is wrong
+          console.log('error requesting account_id: ' + err)
         }
       })
 }
 
 module.exports = {
     signupUser,
-    loginUser
+    loginUser,
+    getUsers
 }

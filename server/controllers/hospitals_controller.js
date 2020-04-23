@@ -2,6 +2,7 @@ const Hospital = require('../models/hospital');
 const server = require('../app');
 const mongoose = require('mongoose')
 
+// get hospitals listing, to shows on web page
 const getAllHospitals = (req, res, next)=>{
     Hospital.find()
     .select('_id name location language')
@@ -32,6 +33,7 @@ const getAllHospitals = (req, res, next)=>{
     });
 }
 
+// get a specifiy hopstial by Id
 const getHospitalById = (req, res, next)=>{
     const id = req.params.hospitalId;
     Hospital.findById(id)
@@ -59,6 +61,7 @@ const getHospitalById = (req, res, next)=>{
     })
 }
 
+// upload a new hospital to database
 const postHospital = (req, res, next)=>{
     const hospital = new Hospital({
         _id: new mongoose.Types.ObjectId(),
@@ -85,6 +88,7 @@ const postHospital = (req, res, next)=>{
     })
 }
 
+// update a hospital information by Id, update thing by the request body
 const updateHospitalById = (req, res, next)=>{
     const id = req.params.hospitalId
   
@@ -109,6 +113,7 @@ const updateHospitalById = (req, res, next)=>{
       })
 }
 
+// delete a hospital by Id
 const deleteHospitalById = (req, res, next)=>{
     const id = req.params.hospitalId;
     Hospital.remove({_id: id})

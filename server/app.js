@@ -26,13 +26,18 @@ mongoose.connect(mongooseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 .catch(error=>{console.log('initial connection db error: message' + error)});
 
 // view engine setup
-// app.set('view engine', 'pug')
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static('../client/build'))
+
+if (process.env.NODE_ENV === 'production'){
+  app.use(express.static('../client/build'))
+}else {
+  app.set('view engine', 'pug')
+}
+
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
@@ -58,10 +63,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// if (process.env.NODE_ENV === 'production'){
-//   app.use(express.static('../client/build'))
-// }
 
 module.exports = app;
 exports.url = url

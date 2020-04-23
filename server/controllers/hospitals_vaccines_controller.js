@@ -2,6 +2,8 @@ const HospVacc = require('../models/hospital_vaccine');
 const server = require('../app');
 const mongoose = require('mongoose')
 
+/* upload a hospital and vaccine relationship,
+ as hospital to vaccine is many to many relationship */
 const postHospVacc = (req, res, next)=>{
     const hospVacc = new HospVacc({
         _id: new mongoose.Types.ObjectId(),
@@ -28,6 +30,7 @@ const postHospVacc = (req, res, next)=>{
     })
 }
 
+/* update a hospital and vaccine relationship, for example increase or decrease stock number */
 const updateHospVacc = (req, res, next)=>{
     const hospital_id = req.query.hospital_id;
     const vaccine_id = req.query.vaccine_id;

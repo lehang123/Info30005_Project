@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 const appointmentController = require('../controllers/appointments_controller');
 
+/* GET appointment listings from database. */
+router.get("/", (req, res, next)=>{
+    appointmentController.getAppointments(req, res, next)
+})
+
 /* POST appointment to database. */
 router.post("/", (req, res, next)=>{
     appointmentController.postAppointments(req, res, next)

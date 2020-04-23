@@ -2,6 +2,36 @@ var Appointment = require('../models/appointment')
 const server = require('../app');
 const mongoose = require('mongoose')
 
+/* get all the appointment listing on databse*/
+const getAppointments = (req, res, next)=>{
+    Appointment.find()
+    .select('_id hospital_id patient_id vaccine_id date_time cost')
+    .exec()
+    .then(docs => {
+      const respone = {
+          count: docs.length, // how many entries
+          appointments: docs.map(doc => {
+          return {
+              id: doc._id,
+              hospital_id: doc.hospital_id,
+              patient_id: doc.patient_id,
+              vaccine_id: doc.vaccine_id,
+              date_time: doc.date_time,
+              cost: doc.cost
+            }
+          })
+        }
+        res.status(200).json(respone);
+      })
+      .catch(err=>{
+          console.log(err);
+          res.status(500).json({
+          error:err
+        });
+    });
+}
+
+// create a new appoinment into the database
 const postAppointments = (req, res, next) => {
     const appointment = new Appointment({
         _id: new mongoose.Types.ObjectId(),
@@ -30,6 +60,7 @@ const postAppointments = (req, res, next) => {
     })
 }
 
+// delete an appoinment from our database
 const deleteAppointments = (req, res, next) =>{
     const id = req.params.appointmentId;
     Appointment.remove({_id: id})
@@ -52,5 +83,6 @@ const deleteAppointments = (req, res, next) =>{
 
 module.exports = {
     postAppointments,
-    deleteAppointments
+    deleteAppointments,
+    getAppointments
 }

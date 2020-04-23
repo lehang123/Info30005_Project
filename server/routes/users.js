@@ -4,7 +4,7 @@ const router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
- // todo: do we really want ?
+ usersController.getUsers(req, res, next)
 });
 
 /* respone to signup post request. */

@@ -2,7 +2,7 @@ var Vaccine = require('../models/vaccine')
 const server = require('../app');
 const mongoose = require('mongoose')
 
-
+/* get vaccine listing to show on the vaccine page */
 const getAllVaccines = (req, res, next)=>{
   Vaccine.find()
   .select('_id name alleries prevent_disease good_for_groups recommend_star')
@@ -35,6 +35,7 @@ const getAllVaccines = (req, res, next)=>{
   });
 }
 
+/* get a specific vaccine by id from the server */
 const getVaccineById = (req, res, next)=>{
     const id = req.params.vaccineId;
     Vaccine.findById(id)
@@ -54,6 +55,7 @@ const getVaccineById = (req, res, next)=>{
       })
 }
 
+/* post a new vaccine to database */
 const postVaccine = (req, res, next) =>{
     const vaccine = new Vaccine({
         _id: new mongoose.Types.ObjectId(),
@@ -87,6 +89,7 @@ const postVaccine = (req, res, next) =>{
     })
 }
 
+/* update a vaccine by request body */
 const updateVaccineById = (req, res, next) =>{
   const id = req.params.vaccineId
 
@@ -111,6 +114,7 @@ const updateVaccineById = (req, res, next) =>{
     })
 }
 
+/* delete a vaccine by id */
 const deleteVaccineById = (req, res, next) =>{
   const id = req.params.vaccineId;
   Vaccine.remove({_id: id})

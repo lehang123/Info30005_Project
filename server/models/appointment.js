@@ -3,6 +3,17 @@ const Vaccine = require('./vaccine');
 const Patient = require('./patient');
 const Hospital = require('./hospital');
 
+/*
+    this is a appointment schema,
+    (* is a must have information)
+
+    Id* : to identify appointment,
+    patient_id* : who books the appointment, 
+    hospital_id* : the hospital that the patient booked,
+    date_time* : when is the appoinment,
+    cost* : How much for the appoinment(vaccine cost),
+    vaccine_id* : the vaccine that patient is booking for
+*/
 const appointmentSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     patient_id: {
