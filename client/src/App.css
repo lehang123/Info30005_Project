@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-Nav{
+nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -12,6 +12,7 @@ Nav{
 }
 
 .Navi-links{
+  height: 5px;
   width: 40%;
   display: flex;
   justify-content: space-around;

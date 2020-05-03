@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Logo from '../LogoBlue.png'
 
 function Navi() {
 
@@ -9,7 +10,7 @@ function Navi() {
 
   return (
     <nav>
-      <h3>Logo Here</h3>
+      <img src = {Logo} alt = 'logo' width="100" height="100"/>
       <ul className="Navi-links">
         <Link style={naviStyle} to= '/patients'><li>Patients</li></Link>
         <Link style={naviStyle} to= '/faculties'><li>faculties</li></Link>
