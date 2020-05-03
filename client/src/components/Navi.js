@@ -5,7 +5,7 @@ import Logo from '../LogoBlue.png'
 function Navi() {
 
   const naviStyle = {
-    color: 'white'
+    color: 'black'
   }
 
   return (
