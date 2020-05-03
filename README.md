@@ -60,6 +60,9 @@ server function done so far:
                     account_id* : a patient's account id, 
                     password* : password to login
                 }
+                dummy account: 
+                    account_id: ”lehanTesting2“
+                    password: ”12345“
         
         vaccines: to store and record all vaccines information
 
