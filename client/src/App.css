@@ -2,20 +2,39 @@
   text-align: center;
 }
 
+.navText{
+  text-align: center;
+  align-items: center
+}
+
+.intro {
+  text-decoration: underline;
+  text-align: left;
+}
+
+.cover {
+  text-align: left;
+}
+
 Nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 30vh;
-  background: url("./Home.jpg") center/cover no-repeat;
+  min-height: 45vh;
+  background: url("./Vaccines banner.jpg") center/cover no-repeat;
   color: rgb(255, 255, 255);
 }
 
 .Navi-links{
+  float: right;
+  display: flex;
+}
+
+.Navi-links a{
   height: 10px;
   width: 40%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   font-size: 25px;
   padding: 14px;
   text-decoration: none;

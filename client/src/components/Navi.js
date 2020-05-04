@@ -11,6 +11,12 @@ function Navi() {
   return (
     <nav>
       <img src = {Logo} alt = 'logo' width="100" height="100"/>
+      <div class = 'navText'>
+        <h3 class="intro"> ACCELERATING IMMUNISATION COVERAGE FOR RAPID URBANISATION CHALLENGE<br/></h3>
+        <h1 class='cover'> AFRAID OF THE CORONAVIRUS?<br/></h1>
+        <h1 class='cover'> NEED IMMUNIZATION?<br/></h1>
+        <h1 class='cover'> REGISTER NOW<br/> </h1>
+      </div>
       <ul className="Navi-links">
         <Link style={naviStyle} to= '/patients'><li>Patients</li></Link>
         <Link style={naviStyle} to= '/faculties'><li>faculties</li></Link>
