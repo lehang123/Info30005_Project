@@ -10,5 +10,7 @@
     "install-client": "npm install --prefix client",
     "heroku-postbuild": "npm run install-client && npm run build"
   },
-  "dependencies": {}
+  "dependencies": {
+    "concurrently": "^5.2.0"
+  }
 }
