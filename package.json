@@ -11,6 +11,7 @@
     "heroku-postbuild": "npm run install-client && npm run build"
   },
   "dependencies": {
-    "concurrently": "^5.2.0"
+    "concurrently": "^5.2.0",
+    "material-ui": "^0.20.2"
   }
 }
