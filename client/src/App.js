@@ -22,6 +22,7 @@ class App extends Component{
             <Switch>
               <Route path="/" exact component={Home}></Route>
               <Route path="/appointment" exact component={Appointment}></Route>
+              <Route path="/home" exact component={Home}></Route>
               <Route path="/patients" exact component={Patients}></Route>
               <Route path="/faculties" exact component={Faculties}></Route>
               <Route path="/vaccines" exact component={Vaccines}></Route>
