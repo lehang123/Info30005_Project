@@ -71,3 +71,50 @@ Nav{
   padding-right: 200px;
   
 }
+
+.body{
+  position:relative;
+  margin-top: 200px;
+  left: 35%;
+  width: 30%;
+  height: 400px;
+  background: white;
+  display: grid;
+  grid-template-rows: 20% 15% 15% 20% 30%;
+}
+
+.body div{
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-bottom: 0px;
+  justify-self: start;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: Roboto;
+}
+
+.body button{
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  height: 30px;
+  width: 405px;
+  background: #094183;
+  color: white;
+}
+
+.input-container input{
+  border:none;
+  border-bottom:1px solid #555;
+  background:transparent;
+  width:400px;
+  padding:8px 0 5px 0;
+  font-size:16px;
+}
+
+.input-container input:focus{
+  border:none;
+  outline:none;
+  border-bottom:1px solid black;
+}
