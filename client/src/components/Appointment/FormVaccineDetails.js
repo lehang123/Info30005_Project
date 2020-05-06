@@ -3,6 +3,24 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+//const classes = useStyles();
+
+// const useStyles = makeStyles((theme) => ({
+    //     formControl: {
+    //       margin: theme.spacing(1),
+    //       minWidth: 120,
+    //     },
+    //     selectEmpty: {
+    //       marginTop: theme.spacing(2),
+    //     },
+    //   }));
 
 export class FormVaccineDetails extends Component {
     continue = e => {
@@ -18,6 +36,17 @@ export class FormVaccineDetails extends Component {
     render() {
         const {values, handleChange} = this.props;
 
+        // const useStyles = makeStyles((theme) => ({
+        //     formControl: {
+        //       margin: theme.spacing(1),
+        //       minWidth: 120,
+        //     },
+        //     selectEmpty: {
+        //       marginTop: theme.spacing(2),
+        //     },
+        //   }));
+
+        // const classes = useStyles();
         return (
             <MuiThemeProvider>
                 <React.Fragment>
@@ -36,12 +65,21 @@ export class FormVaccineDetails extends Component {
                         defaultValue = {values.hospital}
                     />
                     <br/>
-                    <TextField
-                        hintText = "Enter Appointment time"
-                        floatingLabelText = "Appointment Time"
-                        onChange = {handleChange('datetime')}
-                        defaultValue = {values.datetime}
-                    />
+                    <br/>
+                    {/* <FormControl className={classes.formControl}> */}
+                        <InputLabel id="datetime-select-label">Appointment Time</InputLabel>
+                        <Select
+                        labelId="datetime-select-label"
+                        id="datetime-select"
+                        value={values.datetime}
+                        onChange={handleChange('datetime')}
+                        style = {styles.select}
+                        >
+                        <MenuItem value={10} style = {styles.select}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                        </Select>
+                    {/* </FormControl> */}
                     <br/>
                     <TextField
                         hintText = "Are You Allergic to Anything?"
@@ -92,6 +130,9 @@ export class FormVaccineDetails extends Component {
 const styles = {
     button: {
         margin: 15
+    },
+    select: {
+        width: 500
     }
 }
 
