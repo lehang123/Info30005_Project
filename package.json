@@ -1,0 +1,17 @@
+{
+  "name": "code",
+  "version": "0.1.0",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "server": "npm run devstart --prefix server",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "deploy": "npm run start --prefix server",
+    "build": "npm run build --prefix client",
+    "install-client": "npm install --prefix client",
+    "install-server": "npm install --prefix server",
+    "heroku-postbuild": "npm run install-client && npm run install-server && npm run build"
+  },
+  "dependencies": {
+    "concurrently": "^5.2.0"
+  }
+}

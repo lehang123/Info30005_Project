@@ -1,0 +1,73 @@
+.App {
+  text-align: center;
+}
+
+.navText{
+  text-align: center;
+  align-items: center
+}
+
+.intro {
+  text-decoration: underline;
+  text-align: left;
+}
+
+.cover {
+  text-align: left;
+}
+
+Nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 45vh;
+  background: url("./Vaccines banner.jpg") center/cover no-repeat;
+  color: rgb(255, 255, 255);
+}
+
+.Navi-links{
+  float: right;
+  display: flex;
+}
+
+.Navi-links a{
+  height: 10px;
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 25px;
+  padding: 14px;
+  text-decoration: none;
+  align-items: center;
+  list-style: none;
+}
+
+.Navi-links a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.textSet{
+  margin-top: 100px;
+  align-items: center;
+  vertical-align: middle;
+  
+}
+
+.collPic{
+  padding: 40px;
+}
+
+.addLine{
+  margin-top: 100px;
+  display: inline-block;
+  vertical-align: middle; 
+  padding: 40px;
+}
+
+.introText{
+  text-align: left;
+  padding-left: 200px;
+  padding-right: 200px;
+  
+}

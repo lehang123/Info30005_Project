@@ -1,9 +1,0 @@
-{
-  "name": "code",
-  "version": "0.1.0",
-  "scripts": {
-    "client": "npm start --prefix client",
-    "server": "npm run devstart --prefix server",
-    "dev": "concurrently \"npm run client\" \"npm run server\""
-  }
-}
