@@ -62,18 +62,24 @@ export class FormVaccineDetails extends Component {
                     onChange={handleChange('vaccine')}
                     style = {styles.select}
                     >
-                    <MenuItem value={10} style = {styles.select}>Cholera</MenuItem>
-                    <MenuItem value={20}>Dengue fever</MenuItem>
-                    <MenuItem value={30}>Diphtheria</MenuItem>
+                    <MenuItem value={"Cholera"} style = {styles.select}>Cholera</MenuItem>
+                    <MenuItem value={"Dengue fever"}>Dengue fever</MenuItem>
+                    <MenuItem value={"Diphtheria"}>Diphtheria</MenuItem>
                     </Select>
                     <br/>
-                    <TextField
-                        hintText = "Enter Hospital You Want to Have Vaccination"
-                        floatingLabelText = "Hospital"
-                        onChange = {handleChange('hospital')}
-                        defaultValue = {values.hospital}
-                        style = {styles.select}
-                    />
+                    <br/>
+                    <InputLabel id="hospital-select-label">Hospital</InputLabel>
+                    <Select
+                    labelId="hospital-select-label"
+                    id="hospital-select"
+                    value={values.hospital}
+                    onChange={handleChange('hospital')}
+                    style = {styles.select}
+                    >
+                    <MenuItem value={"Hospital A"} style = {styles.select}>Hospital A</MenuItem>
+                    <MenuItem value={"Hospital B"}>Hospital B</MenuItem>
+                    <MenuItem value={"Hospital C"}>Hospital C</MenuItem>
+                    </Select>
                     <br/>
                     <br/>
                     <InputLabel id="datetime-select-label">Appointment Time</InputLabel>
@@ -84,22 +90,10 @@ export class FormVaccineDetails extends Component {
                     onChange={handleChange('datetime')}
                     style = {styles.select}
                     >
-                    <MenuItem value={10} style = {styles.select}>07 May 2020 11:00am</MenuItem>
-                    <MenuItem value={20}>07 May 2020 12:00am</MenuItem>
-                    <MenuItem value={30}>07 May 2020 14:00pm</MenuItem>
+                    <MenuItem value={"07 May 2020 11:00am"} style = {styles.select}>07 May 2020 11:00am</MenuItem>
+                    <MenuItem value={"07 May 2020 12:00am"}>07 May 2020 12:00am</MenuItem>
+                    <MenuItem value={"07 May 2020 14:00pm"}>07 May 2020 14:00pm</MenuItem>
                     </Select>
-                    {/* <InputLabel htmlFor="grouped-native-select">Grouping</InputLabel>
-                        <Select native defaultValue="" id="grouped-native-select">
-                    <option aria-label="None" value="" />
-                    <optgroup label="Category 1">
-                        <option value={1}>Option 1</option>
-                        <option value={2}>Option 2</option>
-                    </optgroup>
-                    <optgroup label="Category 2">
-                        <option value={3}>Option 3</option>
-                        <option value={4}>Option 4</option>
-                    </optgroup>
-                    </Select> */} 
                     <br/>
                     <TextField
                         hintText = "Are You Allergic to Anything?"
