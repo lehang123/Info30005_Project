@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Navi from './components/Navi';
+import Appointment from './components/Appointment/Appointment';
 import Patients from './components/Patients/Patients';
 import Faculties from './components/Faculties/Faculties';
 import Vaccines from './components/Vaccines/Vaccines';
@@ -19,6 +20,8 @@ class App extends Component{
         <div className="App">
           <Navi/>
             <Switch>
+              <Route path="/" exact component={Home}></Route>
+              <Route path="/appointment" exact component={Appointment}></Route>
               <Route path="/home" exact component={Home}></Route>
               <Route path="/patients" exact component={Patients}></Route>
               <Route path="/faculties" exact component={Faculties}></Route>

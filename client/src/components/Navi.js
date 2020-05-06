@@ -18,6 +18,7 @@ function Navi() {
         <h1 class='cover'> REGISTER NOW<br/> </h1>
       </div>
       <ul className="Navi-links">
+        <Link style={naviStyle} to= '/appointment'><li>Appointment</li></Link>
         <Link style={naviStyle} to= '/home'><li>Home</li></Link>
         <Link style={naviStyle} to= '/patients'><li>Patients</li></Link>
         <Link style={naviStyle} to= '/faculties'><li>Faculties</li></Link>
