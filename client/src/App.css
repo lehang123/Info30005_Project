@@ -118,3 +118,9 @@ Nav{
   outline:none;
   border-bottom:1px solid black;
 }
+
+
+#login-link{
+  font-size: 20px;
+  font-weight: normal;
+}
