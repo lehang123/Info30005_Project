@@ -12,7 +12,7 @@ import Home from './components/HomePage/Home';
 
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-class App extends Component{
+function App() extends Component{
 
   render(){
     return (
@@ -36,4 +36,5 @@ class App extends Component{
     );
   }
 }
+
 export default App;
