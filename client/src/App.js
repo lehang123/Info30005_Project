@@ -32,7 +32,7 @@ function App() extends Component{
             </Switch>
         </div>
       </Router>
-  
+
     );
   }
 }
