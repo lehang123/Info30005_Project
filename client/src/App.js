@@ -87,12 +87,12 @@ class App extends Component{
                             {(props) => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
                         <Route path='/aboutus' exact component={AboutUs}/>
                         <Route path="/vaccines" exact component=
-                            {(props) => <Vaccines vaccineBackground ={this.vaccineBackground}/>}/>
+                            {Vaccines}/>
                             <Route path="/vaccines/:id" component = {VaccinesID}/>
                     </Switch>
                 </div>
             </Router>
-        );
+        );  
     }
 }
 

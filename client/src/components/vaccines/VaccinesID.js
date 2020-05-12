@@ -11,7 +11,11 @@ class VaccinesID extends Component{
     }
 
     fetchItem(){
-        fetch(`/vaccines/${this.props.match.params.id}`)
+        const url = 'http://localhost:5000/vaccines'
+        if (process.env.NODE_ENV === 'production'){
+            url = '/vaccines'
+        }
+        fetch(`${url}/${this.props.match.params.id}`)
             .then(res=>res.json())
             .then(vaccine=> {
                 console.log(vaccine)

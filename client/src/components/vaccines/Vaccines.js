@@ -2,15 +2,22 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
 function Vaccines(props) {
-  props.vaccineBackground()
+  // props.vaccineBackground()
   const [items, setItems] = useState([])
 
   useEffect(() => {
+    console.log('nbbbb')
     fetchItems();
   },[]);
 
+  
+
   const fetchItems = ()=>{
-    fetch('/vaccines')
+    const url = 'http://localhost:5000/vaccines'
+    if (process.env.NODE_ENV === 'production'){
+      url = '/vaccines'
+    }
+    fetch(url)
     .then(res=>res.json())
     .then(vaccines=> {
       setItems(vaccines.vaccines)

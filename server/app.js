@@ -4,9 +4,9 @@ var pug = require('pug');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
 
 // server url
-var url = "http://localhost:5000"
 
 // db
 var mongoose = require("mongoose")
@@ -31,6 +31,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
 if (process.env.NODE_ENV === 'production'){
   app.use(express.static('../client/build'))
@@ -65,4 +66,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-exports.url = url
