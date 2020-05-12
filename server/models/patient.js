@@ -17,6 +17,12 @@ var mongoose = require('mongoose');
     location: where the patient live (town)
     vaccine_history: vaccine history of patient
     language: what language patient speaks
+    first_name:
+    last_name:
+    emergency_contact_name:
+    emergency_contact_number:
+    allergy:
+    medicare: 
 */
 
 const patientSchema = mongoose.Schema({
@@ -30,7 +36,7 @@ const patientSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    username: {
+    username: { // name to display on the website
         type: String,
         required: true,
     },
@@ -46,7 +52,18 @@ const patientSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    emergency_contact: String,
+    first_name: { // real name to record on the appoinment
+        type: String,
+        required: true,
+    },
+    last_name: { // real name to record on the appoinment
+        type: String,
+        required: true,
+    },
+    emergency_contact_name: String, // who's it to the patient
+    emergency_contact_number: String, // the number
+    allergy: String,
+    medicare: String,
     heatlh_detail: String,
     location: String,
     vaccine_history: String,
