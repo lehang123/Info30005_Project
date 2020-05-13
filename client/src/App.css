@@ -194,7 +194,7 @@
   display: grid;
   grid-column-gap: 20px;
   grid-template-columns: 20% 30% 40%;
-  align-content:center;
+  align-content: center;
 }
 
 .white-container{
@@ -231,5 +231,6 @@
 }
 
 .Vaccines{
+  margin-top: 150px; 
   background: white;
 }
