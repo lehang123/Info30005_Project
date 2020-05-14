@@ -71,6 +71,7 @@ class App extends Component{
                         <Route path= '/patients' exact component={DefaultHeader}/>
                         <Route path= '/faculties' exact component={DefaultHeader}/>
                         <Route path= '/vaccines' exact component={DefaultHeader}/>
+                        <Route path="/vaccines/:id" component = {LoginHeader}/>
                         <Route path="/login" exact component={LoginHeader}/>
                         <Route path= '/aboutus' exact component={LoginHeader}/>
                         <Route path= '/signup' exact component={LoginHeader}/>

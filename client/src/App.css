@@ -8,7 +8,7 @@
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/forest.jpg") no-repeat;
-  background-size: 100vw 60vh;
+  background-size: 100% 60%;
 }
 
 .LoginApp {
@@ -29,7 +29,7 @@
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),  url("images/Unimelb.jpg") no-repeat;
-  background-size: 100vw 80vh;
+  background-size: 100% 80%;
 }
 
 .VaccinesApp{
@@ -39,7 +39,7 @@
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/Vaccines.jpg") no-repeat;
-  background-size: 100vw 60vh;
+  background-size: 100% 60%;
 }
 
 
