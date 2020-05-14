@@ -8,8 +8,8 @@ function Home(props){
         <body className="home">
             <h2> IN COLLABORATION WITH:</h2>
             <div className="collaboration">
-                <img className="image" src={Gavi}></img>
-                <img className="image" src={OpenIdeo}></img>
+                <img className="image" alt="Gavi Logo" src={Gavi}></img>
+                <img className="image" alt="OpenIdeo Logo" src={OpenIdeo}></img>
             </div>
             <h4>In response to the growing threat of pandemic disease</h4>
             <h4>our team have take the challenge to provide solutions to those affected</h4>
