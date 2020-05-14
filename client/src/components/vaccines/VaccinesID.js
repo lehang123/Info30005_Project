@@ -11,7 +11,7 @@ class VaccinesID extends Component{
     }
 
     fetchItem(){
-        const url = 'http://localhost:5000/vaccines'
+        var url = 'http://localhost:5000/vaccines'
         if (process.env.NODE_ENV === 'production'){
             url = '/vaccines'
         }
