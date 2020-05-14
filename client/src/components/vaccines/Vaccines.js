@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Vaccines(props) {
-  // props.vaccineBackground()
+  props.vaccineBackground()
   const [items, setItems] = useState([])
   const classes = useStyles()
 
