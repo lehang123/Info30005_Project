@@ -25,7 +25,7 @@ class VaccinesID extends Component{
 
     render() {
         return (
-            <div>
+            <div className="white-container">
                 <h1>Vaccine Detail</h1>
                 <h2>name: {this.state.item.name}</h2>
                 <h2>alleries: {this.state.item.alleries}</h2>
