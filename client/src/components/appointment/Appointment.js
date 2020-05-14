@@ -79,6 +79,9 @@ export class Appointment extends Component {
                 )
             case 4:
                 return (<div className="white-container"><Success /></div>)
+
+            default:
+                // no default
         }
         return (
             <div>
