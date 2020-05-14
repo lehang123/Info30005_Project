@@ -87,7 +87,7 @@ class App extends Component{
                             {() => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
                         <Route path='/aboutus' exact component={AboutUs}/>
                         <Route path="/vaccines" exact component=
-                            {Vaccines}/>
+                            {() => <Vaccines vaccineBackground = {this.vaccineBackground()}/>}/>
                             <Route path="/vaccines/:id" component = {VaccinesID}/>
                     </Switch>
                 </div>
