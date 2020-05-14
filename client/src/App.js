@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import LoginHeader from "./components/loginHeader";
 import DefaultHeader from "./components/defaultHeader";
@@ -17,15 +17,15 @@ import Appointment from "./components/appointment/Appointment";
 
 class App extends Component{
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props);
         this.state = {
             isBackground : 0,
-        }
-        this.loginBackground = this.loginBackground.bind(this)
-        this.defaultBackground = this.defaultBackground.bind(this)
-        this.appointmentBackground = this.appointmentBackground.bind(this)
-        this.vaccineBackground = this.vaccineBackground.bind(this)
+        };
+        this.loginBackground = this.loginBackground.bind(this);
+        this.defaultBackground = this.defaultBackground.bind(this);
+        this.appointmentBackground = this.appointmentBackground.bind(this);
+        this.vaccineBackground = this.vaccineBackground.bind(this);
     }
 
     defaultBackground(){
@@ -54,15 +54,15 @@ class App extends Component{
 
 
     render(){
-        let background = "DefaultApp"
+        let background = "DefaultApp";
         if(this.state.isBackground === 0)
-            background = "DefaultApp"
+            background = "DefaultApp";
         if(this.state.isBackground === 1)
-            background = "LoginApp"
+            background = "LoginApp";
         if(this.state.isBackground === 2)
-            background = "AppointmentApp"
+            background = "AppointmentApp";
         if(this.state.isBackground === 3)
-            background = "VaccinesApp"
+            background = "VaccinesApp";
         return (
             <Router>
                 <div className={background}>
@@ -78,16 +78,16 @@ class App extends Component{
                         <Route path= '/profileID/appointment' exact component={innerHeader}/>
                     </Switch>
                     <Switch>
-                        <Route path="/" exact component={(props) =>
+                        <Route path="/" exact component={() =>
                             <Home defaultBackground={this.defaultBackground}/>}/>
                         <Route path="/login" exact component=
-                            {(props) => <Login loginBackground={this.loginBackground}/>}/>
+                            {() => <Login loginBackground={this.loginBackground}/>}/>
                         <Route path="/signup" exact component ={Signup}/>
                         <Route path="/profileID/appointment" exact component=
-                            {(props) => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
+                            {() => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
                         <Route path='/aboutus' exact component={AboutUs}/>
                         <Route path="/vaccines" exact component=
-                            {Vaccines}/>
+                            {() => <Vaccines vaccineBackground = {this.vaccineBackground()}/>}/>
                             <Route path="/vaccines/:id" component = {VaccinesID}/>
                     </Switch>
                 </div>
