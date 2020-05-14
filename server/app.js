@@ -12,12 +12,7 @@ const cors = require('cors');
 var mongoose = require("mongoose")
 var mongooseUrl =  "mongodb+srv://lehang:ap7NCXjKcPzLt3Ap@cluster0-xmtxf.mongodb.net/test?retryWrites=true&w=majority"
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var vaccineRouter = require('./routes/vaccines');
-var hospitalRouter = require('./routes/hospitals');
-var appointmentRouter = require('./routes/appointments');
-var hospital_vaccineRouter = require('./routes/hospitals_vaccines');
+var apiRouter = require('./routes/api');
 
 var app = express();
 
@@ -42,12 +37,7 @@ if (process.env.NODE_ENV === 'production'){
 
 // app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/vaccines', vaccineRouter)
-app.use('/hospitals', hospitalRouter);
-app.use('/appointments', appointmentRouter);
-app.use('/hospitals_vaccines', hospital_vaccineRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

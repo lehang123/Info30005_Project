@@ -128,9 +128,9 @@ function Vaccines(props) {
 
 
   const fetchItems = () => {
-    var url = 'http://localhost:5000/vaccines'
+    var url = 'http://localhost:5000/api/vaccines'
     if (process.env.NODE_ENV === 'production') {
-      url = '/vaccines'
+      url = '/api/vaccines'
     }
     fetch(url)
       .then(res => res.json())
