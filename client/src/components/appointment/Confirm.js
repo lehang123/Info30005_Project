@@ -7,7 +7,16 @@ import RaisedButton from 'material-ui/RaisedButton'
 export class Confirm extends Component {
     continue = e => {
         e.preventDefault();
-        // PROCESS FORM //
+        const {values : {firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber}} = this.props;
+        var data = {"vaccine": {vaccine}, "hospital": {hospital}, "datetime": {datetime}}
+        fetch("https://team-vaccine.herokuapp.com/appointments", {
+            method: "POST",
+            body: JSON.stringify(data)
+        }).then(function(response){
+            return response.json();
+        }).then(function(data){
+            console.log(data)
+        })
         this.props.nextStep();
     }
 
