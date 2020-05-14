@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 /* get vaccine listing to show on the vaccine page */
 const getAllVaccines = (req, res, next)=>{
   Vaccine.find()
-  .select('_id name alleries prevent_disease good_for_groups recommend_star')
+  .select('_id name alleries prevent_disease good_for_groups recommend_star cost')
   .exec()
   .then(docs => {
     const respone = {
@@ -18,6 +18,7 @@ const getAllVaccines = (req, res, next)=>{
             alleries: doc.alleries,
             good_for_groups: doc.good_for_groups,
             recommend_star: doc.recommend_star,
+            cost: doc.cost,
             request: {
                 type: "GET",
                 url: server.url + "/vaccines/" + doc._id,
