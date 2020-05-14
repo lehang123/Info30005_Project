@@ -1,6 +1,4 @@
 import React from 'react';
-import Gavi from '../../images/Gavi.png'
-import OpenIdeo from '../../images/OpenIdeo.png'
 
 function Patients(props){
     props.defaultBackground()
