@@ -1,5 +1,4 @@
 const HospVacc = require('../models/hospital_vaccine');
-const server = require('../app');
 const mongoose = require('mongoose')
 
 /* upload a hospital and vaccine relationship,
@@ -19,7 +18,7 @@ const postHospVacc = (req, res, next)=>{
             new_hospital_vaccine: result,
             request:{
                 type: 'GET',
-                url: server.url + "/hospitals_vaccines/" + result._id
+                url: "/hospitals_vaccines/" + result._id
             }
         })
     })

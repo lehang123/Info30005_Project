@@ -1,5 +1,4 @@
 var Vaccine = require('../models/vaccine')
-const server = require('../app');
 const mongoose = require('mongoose')
 
 /* get vaccine listing to show on the vaccine page */
@@ -21,7 +20,7 @@ const getAllVaccines = (req, res, next)=>{
             cost: doc.cost,
             request: {
                 type: "GET",
-                url: server.url + "/vaccines/" + doc._id,
+                url: "/vaccines/" + doc._id,
             }
         }
         })
@@ -78,7 +77,7 @@ const postVaccine = (req, res, next) =>{
             createdVaccine: result,
             request:{
             type:"GET",
-            url: server.url + "/vaccines/" + result._id
+            url: "/vaccines/" + result._id
             }
         })
         })
@@ -102,7 +101,7 @@ const updateVaccineById = (req, res, next) =>{
         upated_ops: req.body,
         request: {
             type: 'GET',
-            url: server.url + "/vaccines/" + id
+            url: "/vaccines/" + id
         }
         })
     })
@@ -125,7 +124,7 @@ const deleteVaccineById = (req, res, next) =>{
         message: 'vaccineId : ' + id + ' Deleted',
         request:{
           type: 'GET',
-          url : server.url + '/vaccines'
+          url : '/vaccines'
         }
       })
     })

@@ -1,5 +1,4 @@
 var Appointment = require('../models/appointment')
-const server = require('../app');
 const mongoose = require('mongoose')
 
 /* get all the appointment listing on databse*/
@@ -49,7 +48,7 @@ const postAppointments = (req, res, next) => {
             new_appointment: result,
             request:{
                 type: 'GET',
-                url: server.url + "/appointments/" + result._id
+                url: "/appointments/" + result._id
             }
         })
     })

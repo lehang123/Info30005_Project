@@ -1,5 +1,4 @@
 const Hospital = require('../models/hospital');
-const server = require('../app');
 const mongoose = require('mongoose')
 
 // get hospitals listing, to shows on web page
@@ -17,7 +16,7 @@ const getAllHospitals = (req, res, next)=>{
             language: doc.language,
             request: {
               type: "GET",
-              url: server.url + "/hospitals/" + doc._id,
+              url: "/hospitals/" + doc._id,
             }
           }
         })
@@ -47,7 +46,7 @@ const getHospitalById = (req, res, next)=>{
             hospital: doc,
             request: {
             type:'GET',
-            url: server.url + '/hospitals'
+            url: '/hospitals'
             }
         })
         }else {
@@ -77,7 +76,7 @@ const postHospital = (req, res, next)=>{
             new_hospital: result,
             request:{
                 type: 'GET',
-                url: server.url + "/hospitals/" + result._id
+                url: "/hospitals/" + result._id
             }
         })
     })
@@ -100,7 +99,7 @@ const updateHospitalById = (req, res, next)=>{
           upated_ops: req.body,
           request: {
             type: 'GET',
-            url: server.url + "/hospitals/" + id
+            url: "/hospitals/" + id
           }
         })
       })
@@ -123,7 +122,7 @@ const deleteHospitalById = (req, res, next)=>{
             message: 'hospitalId : ' + id + ' Deleted',
             request:{
             type: 'GET',
-            url : server.url + '/hospitals'
+            url : '/hospitals'
             }
         })
         })
