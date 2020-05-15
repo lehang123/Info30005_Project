@@ -12,4 +12,9 @@ router.patch("/", (req, res, next)=>{
     hospitalVaccineController.updateHospVacc(req, res, next)
   })
 
+/* GET the vaccine stock information by using vaccineId. */
+router.get("/:vaccineId", (req, res, next)=>{
+    hospitalVaccineController.getHospVaccByVaccId(req, res, next)
+})
+
 module.exports = router;

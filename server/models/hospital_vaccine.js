@@ -43,4 +43,7 @@ const hospVaccSchema = mongoose.Schema({
     }
 })
 
+/* combine key must not be duplicated */
+hospVaccSchema.index({ hospital_id: 1, vaccine_id: 1}, { unique: true })
+
 module.exports = mongoose.model('Hosp-Vacc', hospVaccSchema)

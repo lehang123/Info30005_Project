@@ -1,4 +1,5 @@
-var Vaccine = require('../models/vaccine')
+const Vaccine = require('../models/vaccine')
+const HospVacc = require('../models/hospital_vaccine');
 const mongoose = require('mongoose')
 
 /* get vaccine listing to show on the vaccine page */
@@ -39,7 +40,7 @@ const getAllVaccines = (req, res, next)=>{
 const getVaccineById = (req, res, next)=>{
     const id = req.params.vaccineId;
     Vaccine.findById(id)
-      .select('_id name cost stocks alleries prevent_disease good_for_groups recommend_star available_at manufacturer')
+      .select('_id name cost alleries prevent_disease good_for_groups recommend_star manufacturer')
       .exec()
       .then(doc => {
         console.log('from database', doc)
@@ -61,12 +62,10 @@ const postVaccine = (req, res, next) =>{
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         cost: req.body.cost,
-        stocks: req.body.stocks,
         alleries: req.body.alleries,
         prevent_disease: req.body.prevent_disease,
         good_for_groups: req.body.good_for_groups,
         recommend_star: req.body.recommend_star,
-        available_at: req.body.available_at,
         manufacturer: req.body.manufacturer
     });
     vaccine.save()
@@ -117,16 +116,11 @@ const updateVaccineById = (req, res, next) =>{
 /* delete a vaccine by id */
 const deleteVaccineById = (req, res, next) =>{
   const id = req.params.vaccineId;
-  Vaccine.remove({_id: id})
+  Vaccine.deleteMany({_id: id})
     .exec()
     .then(result=>{
-      res.status(200).json({
-        message: 'vaccineId : ' + id + ' Deleted',
-        request:{
-          type: 'GET',
-          url : '/vaccines'
-        }
-      })
+      /* after deleted the vaccine from db, those in hosp-vacc relationship should be delete too */
+      deleteHospVaccRelationById(id, res)
     })
     .catch(err=>{
       const error_msg = 'Delete Vaccine by ID Error : ' + err.message
@@ -135,6 +129,27 @@ const deleteVaccineById = (req, res, next) =>{
         err_msg: error_msg
       })
     })
+}
+
+const deleteHospVaccRelationById = (id, res) =>{
+  HospVacc.deleteMany({vaccine_id: id})
+      .exec()
+      .then(result=>{
+        res.status(200).json({
+          message: 'vaccineId : ' + id + ' in HospVacc relation Deleted',
+          request:{
+            type: 'GET',
+            url : '/hospitals_vaccines'
+          }
+        })
+      })
+      .catch(err=>{
+        const error_msg = 'Delete Vaccine by ID in HospVacc relation Error : ' + err.message
+        console.log(error_msg)
+        res.status(500).json({
+          err_msg: error_msg
+        })
+      })
 }
 
 module.exports = {

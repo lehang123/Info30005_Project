@@ -1,4 +1,5 @@
 const Hospital = require('../models/hospital');
+const HospVacc = require('../models/hospital_vaccine');
 const mongoose = require('mongoose')
 
 // get hospitals listing, to shows on web page
@@ -115,16 +116,11 @@ const updateHospitalById = (req, res, next)=>{
 // delete a hospital by Id
 const deleteHospitalById = (req, res, next)=>{
     const id = req.params.hospitalId;
-    Hospital.remove({_id: id})
+    Hospital.deleteMany({_id: id})
         .exec()
         .then(result=>{
-        res.status(200).json({
-            message: 'hospitalId : ' + id + ' Deleted',
-            request:{
-            type: 'GET',
-            url : '/hospitals'
-            }
-        })
+        /* after deleted the hospital from db, those in hosp-vacc relationship should be delete too */
+        deleteHospVaccRelationById(id, res)
         })
         .catch(err=>{
         const error_msg = 'Delete Hospital by ID Error : ' + err.message
@@ -133,6 +129,27 @@ const deleteHospitalById = (req, res, next)=>{
             err_msg: error_msg
         })
     })
+}
+
+const deleteHospVaccRelationById = (id, res) =>{
+  HospVacc.deleteMany({hospital_id: id})
+      .exec()
+      .then(result=>{
+        res.status(200).json({
+          message: 'hospitalId : ' + id + ' in HospVacc relation Deleted',
+          request:{
+            type: 'GET',
+            url : '/hospitals_vaccines'
+          }
+        })
+      })
+      .catch(err=>{
+        const error_msg = 'Delete hospitalId by ID in HospVacc relation Error : ' + err.message
+        console.log(error_msg)
+        res.status(500).json({
+          err_msg: error_msg
+        })
+      })
 }
 
 module.exports = {
