@@ -13,6 +13,7 @@ var mongoose = require('mongoose');
     good_for_groups: who are the suitable/recommend to take the vaccine
     recommend_star* : how recommended this vaccine to the public
     manufacturer* : manufacturer of the vaccine
+    image_url : url that lead to the vaccine image
 
 */
 
@@ -54,6 +55,10 @@ const vaccineSchema = mongoose.Schema({
     manufacturer: {
         type: String,
         required: true
+    },
+    image_url: {
+        type: String,
+        
     }
 })
 
