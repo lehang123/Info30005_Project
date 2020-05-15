@@ -62,7 +62,7 @@ const postAppointments = (req, res, next) => {
 // delete an appoinment from our database
 const deleteAppointments = (req, res, next) =>{
     const id = req.params.appointmentId;
-    Appointment.remove({_id: id})
+    Appointment.deleteMany({_id: id})
     .exec()
     .then(result=>{
         res.status(200).json({
