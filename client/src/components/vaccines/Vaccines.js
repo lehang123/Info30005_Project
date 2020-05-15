@@ -140,7 +140,7 @@ function Vaccines(props) {
   }
 
   return (
-    <div className="Vaccines">
+    <div className="white-container">
       <div>{items.map(item =>
         (<div>
           <Paper className={classes.paper}>

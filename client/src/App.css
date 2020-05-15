@@ -198,6 +198,7 @@
 
 .white-container{
   background: white;
+  align-items: center;
 }
 
 #logo{
@@ -219,9 +220,4 @@
 
 #login-link .sublink:hover{
   text-decoration: underline;
-}
-
-.Vaccines{
-  align-items: center;
-  background: white;
 }
