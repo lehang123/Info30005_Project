@@ -116,7 +116,7 @@ class App extends Component{
                         <Route path="/Patients" exact component=
                             {() => <Patients defaultBackground = {this.defaultBackground}/>}/>
                         <Route path="/appointment" exact component=
-                            {() => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
+                            {() => <Appointment patientInfo={this.state.patient} appointmentBackground ={this.appointmentBackground}/>}/>
                     </Switch>
                 </div>
             </Router>

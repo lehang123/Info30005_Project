@@ -1,14 +1,24 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import AppBar from 'material-ui/AppBar'
+//import AppBar from 'material-ui/AppBar'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 export class FormUserDetails extends Component {
     continue = e => {
         e.preventDefault();
         this.props.nextStep();
+    }
+
+    history = e => {
+        e.preventDefault();
+        this.props.historyStep();
     }
 
     render() {
@@ -17,7 +27,17 @@ export class FormUserDetails extends Component {
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <AppBar title = "Enter User Details" />
+                <AppBar position="static" style={styles.appBar}>
+                    <Toolbar>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" style={styles.title}>
+                        Enter User Details
+                    </Typography>
+                    <Button color="inherit" onClick={this.history}>History</Button>
+                    </Toolbar>
+                </AppBar>
                     <TextField
                         hintText = "Enter Your First Name"
                         floatingLabelText = "First Name"
@@ -76,6 +96,12 @@ const styles = {
     },
     textField:{
         width : 500
+    },
+    appBar:{
+        backgroundColor: "#00BCD4"
+    },
+    title: {
+        flexGrow: 1,
     }
 }
 

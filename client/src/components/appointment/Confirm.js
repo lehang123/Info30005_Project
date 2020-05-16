@@ -22,13 +22,13 @@ export class Confirm extends Component {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data1)
-}).then(function (response) {
-    return response.json();
-}).then(function (data1) {
-    console.log(JSON.stringify(data1))
-})
-this.props.nextStep();
-    }
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data1) {
+            console.log(JSON.stringify(data1))
+        })
+        this.props.nextStep();
+            }
 
     back = e => {
         e.preventDefault();
