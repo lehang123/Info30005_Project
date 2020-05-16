@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
 class Login extends React.Component{
@@ -6,22 +6,21 @@ class Login extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            authorization :true,
-            array: "try",
+            authorization :false,
         };
         this.collect_login = this.collect_login.bind(this);
     }
 
     collect_login() {
-        this.setState({failure: true})
+        this.setState({authorization: true})
         const Username = document.getElementById('username').value;
         const Password = document.getElementById('password').value;
-        let url = 'http://localhost:5000/api/users/login';
-
         let data = {
             account_id: Username,
             password: Password,
         }
+
+        let url = 'http://localhost:5000/api/users/login';
         if (process.env.NODE_ENV === 'production') {
             url = '/api/users/login'
         }
