@@ -83,7 +83,7 @@ const loginUser = (req, res, next)=>{
         if (result){
           try{
             if(await bcrypt.compare(req.body.password, result.password)){
-              res.send('login success')
+              res.status(200).json(result)
             }else{
               res.send('login failed')
             }
