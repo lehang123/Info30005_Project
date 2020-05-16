@@ -50,7 +50,7 @@ function Vaccines(props) {
   }
 
   return (
-    <Container container maxWidth="lg">
+    <Container className="white-container" container maxWidth="lg">
       <Grid container justify="left" spacing={2}>
         {items.map(item => ([0].map((value) => (
            <Grid key={value} xs={4} item>
