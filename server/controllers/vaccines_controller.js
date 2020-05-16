@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 /* get vaccine listing to show on the vaccine page */
 const getAllVaccines = (req, res, next)=>{
   Vaccine.find()
-  .select('_id name alleries prevent_disease good_for_groups recommend_star cost')
+  .select('_id name alleries prevent_disease good_for_groups recommend_star cost image_url')
   .exec()
   .then(docs => {
     const respone = {
@@ -19,6 +19,7 @@ const getAllVaccines = (req, res, next)=>{
             good_for_groups: doc.good_for_groups,
             recommend_star: doc.recommend_star,
             cost: doc.cost,
+            image_url: doc.image_url,
             request: {
                 type: "GET",
                 url: "/vaccines/" + doc._id,
@@ -40,7 +41,7 @@ const getAllVaccines = (req, res, next)=>{
 const getVaccineById = (req, res, next)=>{
     const id = req.params.vaccineId;
     Vaccine.findById(id)
-      .select('_id name cost alleries prevent_disease good_for_groups recommend_star manufacturer')
+      .select('_id name cost alleries prevent_disease good_for_groups recommend_star manufacturer image_url')
       .exec()
       .then(doc => {
         console.log('from database', doc)
@@ -66,7 +67,8 @@ const postVaccine = (req, res, next) =>{
         prevent_disease: req.body.prevent_disease,
         good_for_groups: req.body.good_for_groups,
         recommend_star: req.body.recommend_star,
-        manufacturer: req.body.manufacturer
+        manufacturer: req.body.manufacturer,
+        image_url: req.body.image_url
     });
     vaccine.save()
     .then(result =>{
