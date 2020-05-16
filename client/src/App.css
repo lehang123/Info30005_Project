@@ -9,12 +9,12 @@
 
 /* BACKGROUND TAGS */
 .DefaultApp{
-  position:relative;
+  position:absolute;
   min-width:100%;
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('images/forest.jpg');
+  background:  url('images/forest.jpg') no-repeat;
   background-size: 100% 60%;
 }
 
@@ -29,23 +29,23 @@
 }
 
 .AppointmentApp{
-  position: relative;
+  position: absolute;
   overflow: auto;
   min-width:100%;
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('images/Unimelb.jpg');
+  background: url('images/Unimelb.jpg');
   background-size: 100% 80%;
 }
 
 .VaccinesApp{
-  position:relative;
+  position:absolute;
   min-width:100%;
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('images/Vaccines.jpg') no-repeat;
+  background: url('images/Vaccines.jpg') no-repeat;
   background-size: 100% 50%;
 }
 
