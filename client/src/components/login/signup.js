@@ -107,7 +107,7 @@ class Signup extends React.Component{
                         <option value="Other">Other</option>
                     </select></div>
                     <div>
-                        <input type="text" id="DoB" placeholder="Date of Birth (DD/MM/YY)" required=""/>
+                        <input type="text" id="DoB" placeholder="Date of Birth(YYYY-MM-DD)" required=""/>
                     </div>
                 </div>
                 <div id="btn-sign">

@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import LoginHeader from "./components/loginHeader";
 import DefaultHeader from "./components/defaultHeader";
+import DefaultHeader2 from "./components/defaultHeader2";
 import innerHeader from "./components/innerHeader";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
@@ -68,10 +69,10 @@ class App extends Component{
                 <div className={background}>
                     <Switch>
                         <Route path="/" exact component={DefaultHeader}/>
-                        <Route path= '/patients' exact component={DefaultHeader}/>
-                        <Route path= '/faculties' exact component={DefaultHeader}/>
-                        <Route path= '/vaccines' exact component={DefaultHeader}/>
-                        <Route path="/vaccines/:id" component = {LoginHeader}/>
+                        <Route path= '/patients' exact component={DefaultHeader2}/>
+                        <Route path= '/faculties' exact component={DefaultHeader2}/>
+                        <Route path= '/vaccines' exact component={DefaultHeader2}/>
+                        <Route path="/vaccines/:id" component = {DefaultHeader2}/>
                         <Route path="/login" exact component={LoginHeader}/>
                         <Route path= '/aboutus' exact component={LoginHeader}/>
                         <Route path= '/signup' exact component={LoginHeader}/>
@@ -79,8 +80,8 @@ class App extends Component{
                         <Route path= '/profileID/appointment' exact component={innerHeader}/>
                     </Switch>
                     <Switch>
-                        <Route path="/" exact component={() =>
-                            <Home defaultBackground={this.defaultBackground}/>}/>
+                        <Route path="/" exact component=
+                            {() => <Home defaultBackground={this.defaultBackground}/>}/>
                         <Route path="/login" exact component=
                             {() => <Login loginBackground={this.loginBackground}/>}/>
                         <Route path="/signup" exact component=
@@ -89,8 +90,12 @@ class App extends Component{
                             {() => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
                         <Route path='/aboutus' exact component={AboutUs}/>
                         <Route path="/vaccines" exact component=
-                            {() => <Vaccines vaccineBackground = {this.vaccineBackground()}/>}/>
+                            {() => <Vaccines vaccineBackground = {this.vaccineBackground}/>}/>
                             <Route path="/vaccines/:id" component = {VaccinesID}/>
+                        <Route path="/Faculties" exact component=
+                            {() => <Faculties defaultBackground = {this.defaultBackground}/>}/>
+                        <Route path="/Patients" exact component=
+                            {() => <Patients defaultBackground = {this.defaultBackground}/>}/>
                     </Switch>
                 </div>
             </Router>
