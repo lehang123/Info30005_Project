@@ -69,6 +69,7 @@ class App extends Component{
                 <div className={background}>
                     <Switch>
                         <Route path="/" exact component={DefaultHeader}/>
+                        <Route path= '/appointment' exact component={DefaultHeader2}/>
                         <Route path= '/patients' exact component={DefaultHeader2}/>
                         <Route path= '/faculties' exact component={DefaultHeader2}/>
                         <Route path= '/vaccines' exact component={DefaultHeader2}/>
@@ -96,6 +97,8 @@ class App extends Component{
                             {() => <Faculties defaultBackground = {this.defaultBackground}/>}/>
                         <Route path="/Patients" exact component=
                             {() => <Patients defaultBackground = {this.defaultBackground}/>}/>
+                        <Route path="/appointment" exact component=
+                            {() => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
                     </Switch>
                 </div>
             </Router>

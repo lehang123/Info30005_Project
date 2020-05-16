@@ -38,6 +38,7 @@ export class Appointment extends Component {
         this.setState({[input]: e.target.value})
     }
 
+
     render() {
         this.props.appointmentBackground()
 
