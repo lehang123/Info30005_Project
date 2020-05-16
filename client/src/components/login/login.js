@@ -6,13 +6,13 @@ class Login extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            username: "admin",
-            password: "password",
+            failure :false,
         };
         this.collect_login = this.collect_login.bind(this);
     }
 
     collect_login() {
+        this.setState({failure: true})
         const Username = document.getElementById('username').value;
         const Password = document.getElementById('password').value;
         let url = 'http://localhost:5000/api/users/login';
@@ -45,25 +45,33 @@ class Login extends React.Component{
     }
 
     render() {
-        this.props.loginBackground()
-        return (
-            <body className="login">
-            <div>Sign In</div>
-            <div className="input-container">
-                <input type="text" id="username" placeholder="Username or Email" required=""/>
-            </div>
-            <div className="input-container">
-                <input type="text" id="password" placeholder="Password" required=""/>
-            </div>
-            <div id="btn-log">
-                <Link className="button" to='/profileID/appointment'><button onClick={this.collect_login}>Next</button></Link>
-            </div>
-            <div id="login-link">
-                <Link className="sublink" to='/forgotPassword'>Forgot Password</Link> /
-                <Link className="sublink" to='/signup'>Sign Up</Link>
-            </div>
-            </body>
-        )
+        this.props.loginBackground();
+        if(this.state.failure === false) {
+            return (
+                <body className="login">
+                <div>Sign In</div>
+                <div className="input-container">
+                    <input type="text" id="username" placeholder="Username or Email" required=""/>
+                </div>
+                <div className="input-container">
+                    <input type="text" id="password" placeholder="Password" required=""/>
+                </div>
+                <div id="btn-log">
+                    <Link className="button" to='/profileID/appointment'>
+                        <button onClick={this.collect_login}>Next</button>
+                    </Link>
+                </div>
+                <div id="login-link">
+                    <Link className="sublink" to='/forgotPassword'>Forgot Password</Link> /
+                    <Link className="sublink" to='/signup'>Sign Up</Link>
+                </div>
+                </body>
+            )
+        }else{
+            return(
+                <h1>hello</h1>
+            )
+        }
     }
 }
 

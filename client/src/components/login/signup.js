@@ -111,7 +111,7 @@ class Signup extends React.Component{
                     </div>
                 </div>
                 <div id="btn-sign">
-                    <Link className="button" to='/login'> <button id="prev">Prev</button></Link>
+                    <Link className="button" to='/login'> <button id="prev">Previous</button></Link>
                     <button onClick={this.collect_person}>Next</button>
                 </div>
                 </body>
@@ -129,8 +129,8 @@ class Signup extends React.Component{
                 <div><b>Gender</b> : {this.state.gender}</div>
                 <div><b>Date of Birth</b> : {this.state.birthday}</div>
                 <div id="btn-sign">
-                    <button id="prev" onClick={this.prev}>Prev</button>
-                    <Link className="button" to='/login'><button onClick={this.sendData}>Next</button></Link>
+                    <button id="prev" onClick={this.prev}>Back</button>
+                    <Link className="button" to='/login'><button onClick={this.sendData}>Confirm</button></Link>
                 </div>
                 </body>
             )
