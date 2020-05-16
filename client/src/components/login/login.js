@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 class Login extends React.Component{
 
@@ -7,12 +7,15 @@ class Login extends React.Component{
         super(props);
         this.state = {
             authorization :false,
+            patient_id : ""
         };
         this.collect_login = this.collect_login.bind(this);
+        const {values: {patient_id, isLoggedIn}, handleChange} = this.props;
+        this.handleChange = handleChange.bind(this)       
     }
 
     collect_login() {
-        this.setState({authorization: true})
+        //this.setState({authorization: true})
         const Username = document.getElementById('username').value;
         const Password = document.getElementById('password').value;
         let data = {
@@ -33,7 +36,18 @@ class Login extends React.Component{
             body: JSON.stringify(data)
         }).then(function (response) {
             return response.json();
-        }).then(function (data) {
+        }).then((data) => {
+            //const {values: {patient_id, isLoggedIn}, handleChange} = this.props;
+            console.log(this.props)
+            if("_id" in data){
+                this.setState({authorization: true})
+                console.log(1)
+                this.setState({patient_id : data._id})
+                this.props.handleChange("patient_id", data._id)
+                // this.handleChange("isLoggedIn", true)
+                // let history = useHistory()
+                history.push("/")
+            }
             console.log(JSON.stringify(data))
         }).catch(err=>{
             console.log(err);

@@ -22,11 +22,14 @@ class App extends Component{
         super(props);
         this.state = {
             isBackground : 0,
+            patient_id: '',
+            isLoggedIn: false
         };
         this.loginBackground = this.loginBackground.bind(this);
         this.defaultBackground = this.defaultBackground.bind(this);
         this.appointmentBackground = this.appointmentBackground.bind(this);
         this.vaccineBackground = this.vaccineBackground.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     defaultBackground(){
@@ -53,8 +56,18 @@ class App extends Component{
         }
     }
 
+    // Handle changes
+    handleChange = (input,value) => {
+        console.log(input)
+        // console.log(value)
+        this.setState({[input]: value})
+    }
 
     render(){
+        const {patient_id, isLoggedIn} = this.state
+        const values = {patient_id, isLoggedIn}
+
+
         let background = "DefaultApp";
         if(this.state.isBackground === 0)
             background = "DefaultApp";
@@ -84,7 +97,10 @@ class App extends Component{
                         <Route path="/" exact component=
                             {() => <Home defaultBackground={this.defaultBackground}/>}/>
                         <Route path="/login" exact component=
-                            {() => <Login loginBackground={this.loginBackground}/>}/>
+                            {() => <Login 
+                            loginBackground={this.loginBackground}
+                            values={values}
+                            handleChange = {this.handleChange}/>}/>
                         <Route path="/signup" exact component=
                             {() => <Signup loginBackground={this.loginBackground}/>}/>
                         <Route path="/profileID/appointment" exact component=
