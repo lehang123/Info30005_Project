@@ -121,15 +121,15 @@ class VaccinesID extends Component{
                         <tr>Summary Of this Vaccine</tr> 
                     </thead>
                     <tbody>
-                        <tr>Name: {this.state.item.name} </tr>
-                        <tr class = "colorful-row">Alleries: {this.state.item.alleries}</tr>
-                        <tr>Prevent_disease: {this.state.item.prevent_disease}</tr>
-                        <tr class = "colorful-row">Good_for_groups:{this.state.item.good_for_groups}</tr>
-                        <tr>Available_at:{this.state.item.available_at}</tr>
-                        <tr class = "colorful-row">Cost:{this.state.item.cost}</tr>
-                        <tr>Stocks:{this.state.item.stocks}</tr>
-                        <tr class = "colorful-row">Recommend_star:{this.state.item.recommend_star}</tr>
-                        <tr>Manufacturer:{this.state.item.manufacturer}</tr>
+                        <tr>Name : {this.state.item.name} </tr>
+                        <tr class = "colorful-row">Allergies : {this.state.item.alleries}</tr>
+                        <tr>Prevent Disease : {this.state.item.prevent_disease}</tr>
+                        <tr class = "colorful-row">Good For Groups:{this.state.item.good_for_groups}</tr>
+                        <tr>Available At :{this.state.item.available_at}</tr>
+                        <tr class = "colorful-row">Cost :{this.state.item.cost}</tr>
+                        <tr>Stocks :{this.state.item.stocks}</tr>
+                        <tr class = "colorful-row">Recommend Star :{this.state.item.recommend_star}</tr>
+                        <tr>Manufacturer :{this.state.item.manufacturer}</tr>
                     </tbody>
                 </table>
             </div>
