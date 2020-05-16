@@ -64,11 +64,11 @@
 }
 
 .links{
-  font-size: 24px;
+  font-size: 22px;
   text-decoration: none;
   color: white;
   text-shadow: 0 0 2px;
-  margin: 100px;
+  margin: 80px;
 }
 
 .links:Hover{
@@ -193,6 +193,7 @@
 .signup button{
   margin-top: 10px;
   margin-bottom: 0;
+  margin-left: 20px;
   font-size: 20px;
   height: 30px;
   width: 200px;
@@ -227,7 +228,7 @@
 }
 
 .confirm button{
-  margin-top: 10px;
+  margin-top: 0px;
   margin-left: 20px;
   margin-bottom: 0;
   font-size: 20px;
