@@ -32,31 +32,31 @@ class VaccinesID extends Component{
             })
     }
 
-    render() {
-        return (
-                <Container className="white-container" container maxWidth="lg">
-                    <Grid container>
-                        <Grid xs={4} >
-                            <h1>Vaccine Name</h1>
-                        </Grid>
-                        <Grid xs={8}>
-                            <h1 align="left">{this.state.item.name}</h1>
-                        </Grid>
-                    </Grid>
-                    <Divider variant="middle" />
-                    <Grid container>
-                        <Grid xs={4} >
-                            <Typography variant = "h3" align="left" gutterBottom>
-                                {this.state.item.name}
-                            </Typography>
-                        </Grid>
-                        <Grid xs={8}>
-                            <Typography variant = "h3">
-                                {this.state.item.name}
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </Container>
+    // render() {
+    //     return (
+    //             <Container className="white-container" container maxWidth="lg">
+    //                 <Grid container>
+    //                     <Grid xs={4} >
+    //                         <h1>Vaccine Name</h1>
+    //                     </Grid>
+    //                     <Grid xs={8}>
+    //                         <h1 align="left">{this.state.item.name}</h1>
+    //                     </Grid>
+    //                 </Grid>
+    //                 <Divider variant="middle" />
+    //                 <Grid container>
+    //                     <Grid xs={4} >
+    //                         <Typography variant = "h3" align="left" gutterBottom>
+    //                             {this.state.item.name}
+    //                         </Typography>
+    //                     </Grid>
+    //                     <Grid xs={8}>
+    //                         <Typography variant = "h3">
+    //                             {this.state.item.name}
+    //                         </Typography>
+    //                     </Grid>
+    //                 </Grid>
+    //             </Container>
                 // <h1>Vaccine Detail</h1>
                 // <h2>name: {this.state.item.name}</h2>
                 // <h2>alleries: {this.state.item.alleries}</h2>
@@ -67,10 +67,10 @@ class VaccinesID extends Component{
                 // <h2>stocks: {this.state.item.stocks}</h2>
                 // <h2>recommend_star: {this.state.item.recommend_star}</h2>
                 // <h2>manufacturer: {this.state.item.manufacturer}</h2>
-        )
-    }
+//         )
+//     }
 
-}
+// }
 
 // const title = {
 //     color: "#3C4858",
@@ -110,24 +110,25 @@ class VaccinesID extends Component{
 //             })
 //     }
 
-//     render() {
-//         return (
-//             <div className="white-container">
-//                 <h1>Vaccine Detail</h1>
-//                 <h2>name: {this.state.item.name}</h2>
-//                 <h2>alleries: {this.state.item.alleries}</h2>
-//                 <h2>prevent_disease: {this.state.item.prevent_disease}</h2>
-//                 <h2>good_for_groups: {this.state.item.good_for_groups}</h2>
-//                 <h2>available_at: {this.state.item.available_at}</h2>
-//                 <h2>cost: {this.state.item.cost}</h2>
-//                 <h2>stocks: {this.state.item.stocks}</h2>
-//                 <h2>recommend_star: {this.state.item.recommend_star}</h2>
-//                 <h2>manufacturer: {this.state.item.manufacturer}</h2>
-//             </div>
-//         )
-//     }
+    render() {
+        return (
+            <div className ="itemTitle">
+                <br/><br/><br/>
+                <h1>Vaccine Detail</h1>
+                <h2>name: {this.state.item.name}</h2>
+                <h2>alleries: {this.state.item.alleries}</h2>
+                <h2>prevent_disease: {this.state.item.prevent_disease}</h2>
+                <h2>good_for_groups: {this.state.item.good_for_groups}</h2>
+                <h2>available_at: {this.state.item.available_at}</h2>
+                <h2>cost: {this.state.item.cost}</h2>
+                <h2>stocks: {this.state.item.stocks}</h2>
+                <h2>recommend_star: {this.state.item.recommend_star}</h2>
+                <h2>manufacturer: {this.state.item.manufacturer}</h2>
+            </div>
+        )
+    }
 
-// }
+}
 
 // function Vaccine({match}) {// match is an props that pass to when we do Link to
 
