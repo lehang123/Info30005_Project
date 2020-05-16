@@ -185,6 +185,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.signup div{
+  justify-self: start;
+  margin-left: 50px;
+}
+
 .signup button{
   margin-top: 10px;
   margin-left: 20px;
