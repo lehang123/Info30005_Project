@@ -1,15 +1,15 @@
 import React from 'react';
 
 function Patients(props){
-    props.defaultBackground()
+    props.defaultBackground();
     return(
-        <body className="home">
-        <h2> IN COLLABORATION WITH:</h2>
-        <div className="collaboration">
+        <div className="white-container">
+            <h2>Patients</h2>
+            <h2>CONTENT WILL STRETCH BACKGROUND TO CORRECT SIZE</h2>
+            <h2>IPSUM LOREN CHANGE LATER</h2>
+            <h2>THIS IS A STATIC PAGE</h2>
+            <h2>DO NOT CHANGE</h2>
         </div>
-        <h4>In response to the growing threat of pandemic disease</h4>
-        <h4>our team have take the challenge to provide solutions to those affected</h4>
-        </body>
     )
 }
 export default Patients

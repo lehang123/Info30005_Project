@@ -14,7 +14,7 @@
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/forest.jpg") no-repeat;
+  background:linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),  url('images/forest.jpg') no-repeat;
   background-size: 100% 60%;
 }
 
@@ -29,13 +29,13 @@
 }
 
 .AppointmentApp{
-  position:relative;
+  position: relative;
   overflow: auto;
   min-width:100%;
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),  url("images/Unimelb.jpg") no-repeat;
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('images/Unimelb.jpg');
   background-size: 100% 80%;
 }
 
@@ -45,8 +45,8 @@
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/Vaccines.jpg") no-repeat;
-  background-size: 100% 60%;
+  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('images/Vaccines.jpg') no-repeat;
+  background-size: 100% 50%;
 }
 
 /* NAVBAR TAGS */
@@ -129,7 +129,7 @@
   border:none;
   border-bottom:1px solid #555;
   background:transparent;
-  width:400px;
+  width:24vw;
   padding:8px 0 5px 0;
   font-size:16px;
 }
@@ -160,7 +160,7 @@
   margin-bottom: 0;
   font-size: 20px;
   height: 30px;
-  width: 405px;
+  width: 24vw;
   background: #094183;
   color: white;
 }
@@ -196,7 +196,7 @@
   margin-left: 20px;
   font-size: 20px;
   height: 30px;
-  width: 200px;
+  width: 12vw;
   background: #094183;
   color: white;
 }
@@ -207,6 +207,11 @@
    font-size: 20px;
    cursor: context-menu;
  }
+
+#btn-sign{
+  margin-top: 0px;
+  margin-left: 20px;
+}
 
 .confirm{
   position:relative;
@@ -233,7 +238,7 @@
   margin-bottom: 0;
   font-size: 20px;
   height: 30px;
-  width: 200px;
+  width: 12vw;
   background: #094183;
   color: white;
 }
@@ -249,7 +254,7 @@
   font-size: 20px;
   justify-self: start;
   display: grid;
-  grid-template-columns: 20% 25% 50%;
+  grid-template-columns: 20% 35% 50%;
   align-content: center;
 }
 
@@ -286,7 +291,7 @@
 }
 
 #DoB{
-  width: 220px;
+  width: 12vw;
 }
 
 #prev{

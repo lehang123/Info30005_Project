@@ -8,7 +8,7 @@ function innerHeader(){
             <div className="navbar">
                 <img id="logo" src={Logo} alt={"logo"}/>
                 <div>
-                    <Link className="links" to= '/'>Logout</Link>
+                    <Link className="links" to= '/'>Home</Link>
                 </div>
             </div>
         </header>
