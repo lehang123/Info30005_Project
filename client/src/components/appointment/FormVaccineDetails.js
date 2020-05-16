@@ -70,9 +70,9 @@ export class FormVaccineDetails extends Component {
         for (var i = 0; i < this.state.vaccine_hospital.length; i++) {
             if (this.state.vaccine_hospital[i].vacc === vaccineID) {
                 var match_hosp = []
-                for(var j = 0; j < this.state.vaccine_hospital[i].hosps.length; j++){
-                    for (var k = 0; k < this.state.hospitals.length; k++){
-                        if(this.state.vaccine_hospital[i].hosps[j] === this.state.hospitals[k].id){
+                for (var j = 0; j < this.state.vaccine_hospital[i].hosps.length; j++) {
+                    for (var k = 0; k < this.state.hospitals.length; k++) {
+                        if (this.state.vaccine_hospital[i].hosps[j] === this.state.hospitals[k].id) {
                             match_hosp.push(this.state.hospitals[k])
                         }
                     }
@@ -83,12 +83,10 @@ export class FormVaccineDetails extends Component {
         return []
     }
 
-    getHospitalName
-
     onVacChange = e => {
         e.preventDefault();
         //this.handleChange('vaccine', e)
-        this.setState({isVacSelected : !this.state.isVacSelected})
+        this.setState({ isVacSelected: !this.state.isVacSelected })
     }
 
     continue = e => {
