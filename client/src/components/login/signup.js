@@ -17,6 +17,11 @@ class Signup extends React.Component{
         };
         this.collect_person = this.collect_person.bind(this);
         this.prev = this.prev.bind(this);
+        this.sendData = this.sendData.bind(this);
+    }
+
+    sendData(){
+
     }
 
     prev(){
@@ -99,7 +104,7 @@ class Signup extends React.Component{
                 <div><b>Date of Birth</b> : {this.state.birthday}</div>
                 <div>
                     <button id="prev" onClick={this.prev}>Prev</button>
-                    <Link className="button" to='/login'> <button>Next</button></Link>
+                    <Link className="button" to='/login'><button onClick={this.sendData}>Next</button></Link>
                 </div>
                 </body>
             )
