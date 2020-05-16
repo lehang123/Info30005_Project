@@ -20,6 +20,7 @@ class Login extends React.Component{
             account_id: this.state.username,
             password: this.state.password,
         }
+
         if (process.env.NODE_ENV === 'production') {
             url = '/api/users/login'
         }
@@ -41,8 +42,8 @@ class Login extends React.Component{
         const Username = document.getElementById('username').value;
         const Password = document.getElementById('password').value;
 
-        this.setState({username: Username});
         this.setState({password: Password});
+        this.setState({username: Username});
     }
 
     render() {
@@ -56,9 +57,9 @@ class Login extends React.Component{
             <div className="input-container">
                 <input type="text" id="password" placeholder="Password" required=""/>
             </div>
-            <div id="btn-log"><Link className="button" to='/profileID/appointment'>
-                <button onClick={this.getData}>Next</button>
-            </Link></div>
+            <div id="btn-log">
+                <Link className="button" to='/profileID/appointment'><button onClick={this.getData}>Next</button></Link>
+            </div>
             <div id="login-link">
                 <Link className="sublink" to='/forgotPassword'>Forgot Password</Link> /
                 <Link className="sublink" to='/signup'>Sign Up</Link>
