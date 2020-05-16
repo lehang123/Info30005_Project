@@ -92,7 +92,15 @@ const loginUser = (req, res, next)=>{
             res.status(500).send('something wrong : ' + e.message)
           }
         }else{
-            res.status(500).send(err)
+           res.status(500).json({
+                message: 'Account does not exist',
+            })
+        }
+        if (err){
+            res.status(500).json({
+                message: 'Something went wrong',
+                error_msg: err.message
+            })
         }
       })
 }
