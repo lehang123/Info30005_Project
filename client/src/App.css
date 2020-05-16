@@ -254,7 +254,7 @@
   font-size: 20px;
   justify-self: start;
   display: grid;
-  grid-template-columns: 20% 25% 50%;
+  grid-template-columns: 20% 35% 50%;
   align-content: center;
 }
 
