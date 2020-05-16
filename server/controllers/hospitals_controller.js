@@ -10,7 +10,7 @@ const getAllHospitals = (req, res, next)=>{
     .then(docs => {
       const respone = {
         count: docs.length, // how many entries
-        vaccines: docs.map(doc => {
+        hospitals: docs.map(doc => {
           return {
             name: doc.name,
             location: doc.location,

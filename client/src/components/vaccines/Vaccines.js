@@ -22,6 +22,12 @@ const useStyles = makeStyles((theme) => ({
     },
     section1: {
         margin: theme.spacing(3, 2),
+    },
+    link: {
+        textDecoration: "none"
+    },
+    typography:{
+        color: "#e91e63"
     }
 }));
 
@@ -56,30 +62,36 @@ function Vaccines(props) {
            <Grid key={value} xs={4} item>
             <Card className={classes.root}>
             <CardActionArea>
+            <Link to={`/vaccines/${item.id}`} className = {classes.link}>
                 <CardMedia
                 className={classes.media}
                 image={require("../../images/test_tube.png")}
                 title="test_tube"
                 />
                 <CardContent>
-                    <Grid container alignItems="center" spacing={4}>
+                    <Grid container alignItems="center" spacing={10}>
                         <Grid item xs>
-                            <Typography gutterBottom variant="h4">
+                            <Typography gutterBottom variant="h5" color="textPrimary">
                                 {item.name}
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography gutterBottom variant="h6">
+                            <Typography gutterBottom variant="h5" className = {classes.typography}>
                                 {item.cost.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                             </Typography>
                         </Grid>
                     </Grid>
                     <Typography variant="body2" color="textSecondary" component="p">
                         prevent_disease : {item.prevent_disease}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
                         allergies : {item.alleries}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
                         recommend_star : {item.recommend_star}
                     </Typography>
                 </CardContent>
+            </Link>
             </CardActionArea>
             </Card>
            </Grid>

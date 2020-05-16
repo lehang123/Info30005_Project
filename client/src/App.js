@@ -68,6 +68,7 @@ class App extends Component{
                 <div className={background}>
                     <Switch>
                         <Route path="/" exact component={DefaultHeader}/>
+                        <Route path= '/appointment' exact component={innerHeader}/>
                         <Route path= '/patients' exact component={DefaultHeader}/>
                         <Route path= '/faculties' exact component={DefaultHeader}/>
                         <Route path= '/vaccines' exact component={DefaultHeader}/>
@@ -90,7 +91,9 @@ class App extends Component{
                         <Route path='/aboutus' exact component={AboutUs}/>
                         <Route path="/vaccines" exact component=
                             {() => <Vaccines vaccineBackground = {this.vaccineBackground()}/>}/>
-                            <Route path="/vaccines/:id" component = {VaccinesID}/>
+                        <Route path="/vaccines/:id" component = {VaccinesID}/>
+                        <Route path="/appointment" exact component=
+                            {() => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
                     </Switch>
                 </div>
             </Router>

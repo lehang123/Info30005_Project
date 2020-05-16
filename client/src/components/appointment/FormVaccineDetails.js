@@ -10,16 +10,77 @@ import Select from '@material-ui/core/Select';
 //const classes = useStyles();
 
 // const useStyles = makeStyles((theme) => ({
-    //     formControl: {
-    //       margin: theme.spacing(1),
-    //       minWidth: 120,
-    //     },
-    //     selectEmpty: {
-    //       marginTop: theme.spacing(2),
-    //     },
-    //   }));
+//     formControl: {
+//       margin: theme.spacing(1),
+//       minWidth: 120,
+//     },
+//     selectEmpty: {
+//       marginTop: theme.spacing(2),
+//     },
+//   }));
 
 export class FormVaccineDetails extends Component {
+    constructor(props) {
+        super(props);
+        const { handleChange } = this.props;
+        this.handleChange = handleChange
+        this.state = { vaccines: [], hospitals: [], vaccine_hospital: [], isVacSelected: false }
+        this.getHospForVacc = this.getHospForVacc.bind(this)
+        this.fetchItem = this.fetchItem.bind(this)
+        this.getHospitalId = this.getHospitalId.bind(this)
+    }
+
+    componentDidMount() {
+        this.fetchItem("vaccines");
+        this.fetchItem("hospitals");
+    }
+
+    getHospForVacc(vacc_id) {
+        var url = 'http://localhost:5000/api/hospitals_vaccines/' + vacc_id
+        //var vaccine_hospital = this.state.vaccine_hospital
+        if (process.env.NODE_ENV === 'production') {
+            url = '/api/hospitals_vaccines/' + vacc_id
+        }
+        fetch(url).
+            then(function (response) {
+                return response.json();
+            }).then(data => {
+                var vaccine_hospital = this.state.vaccine_hospital
+                var temp = data.map(item => { return item.hospital_id })
+                vaccine_hospital.push({ vacc: vacc_id, hosps: temp })
+                this.setState({ vaccine_hospital: vaccine_hospital })
+            })
+    }
+
+    fetchItem(itemName) {
+        var url = 'http://localhost:5000/api/' + itemName
+        if (process.env.NODE_ENV === 'production') {
+            url = '/api/' + itemName
+        }
+        fetch(`${url}`)
+            .then(res => res.json()).catch(err => { console.log(err) })
+            .then(result => {
+                console.log(result)
+                console.log(itemName)
+                this.setState({ [itemName]: result[itemName] })
+                if (itemName === "vaccines") { this.state.vaccines.map(vaccine => { this.getHospForVacc(vaccine.id) }) }
+            }).catch(err => { console.log(err) })
+    }
+
+    getHospitalId(vaccineID) {
+        this.state.vaccine_hospital.forEach(element => {
+            if (element.vacc == vaccineID) {
+                return element.hosps
+            }
+        });
+        return [1, 2]
+    }
+
+    onVacChange = e => {
+        e.preventDefault();
+        this.props.handleChange('vaccine', e)
+        //this.setState({isVacSelelcted : !this.state.isVacSelelcted})
+    }
 
     continue = e => {
         e.preventDefault();
@@ -32,8 +93,17 @@ export class FormVaccineDetails extends Component {
     }
 
     render() {
-        const {values, handleChange} = this.props;
+        const { values } = this.props;
+        let va = this.state.vaccines
 
+        // onVacChange = () => {
+        //     handleChange('vaccine')
+        //     this.setState({isVacSelelcted : !this.state.isVacSelelcted})
+        // }
+        // function onVacChange(){
+        //     handleChange('vaccine')
+        //     this.setState({isVacSelelcted : !this.state.isVacSelelcted})
+        // }
         // const useStyles = makeStyles((theme) => ({
         //     formControl: {
         //       margin: theme.spacing(1),
@@ -47,94 +117,94 @@ export class FormVaccineDetails extends Component {
         // const classes = useStyles();
         return (
             <MuiThemeProvider>
+                {/* <h1>{this.state.vaccines}</h1> */}
                 <React.Fragment>
-                    <AppBar title = "Enter Vaccine Related Details" />
+                    <AppBar title="Enter Vaccine Related Details" />
                     <br />
                     <br />
                     <InputLabel id="vaccine-select-label">Vaccine</InputLabel>
                     <Select
-                    labelId="vaccine-select-label"
-                    id="vaccine-select"
-                    value={values.vaccine}
-                    onChange={handleChange('vaccine')}
-                    style = {styles.select}
+                        labelId="vaccine-select-label"
+                        id="vaccine-select"
+                        value={values.vaccine}
+                        onChange={this.onVacChange}
+                        style={styles.select}
                     >
-                    <MenuItem value={"Cholera"} style = {styles.select}>Cholera</MenuItem>
-                    <MenuItem value={"Dengue fever"}>Dengue fever</MenuItem>
-                    <MenuItem value={"Diphtheria"}>Diphtheria</MenuItem>
+                        {this.state.vaccines.map(item => (<MenuItem value={item.id} style={styles.select}>{item.name}</MenuItem>))}
                     </Select>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <InputLabel id="hospital-select-label">Hospital</InputLabel>
                     <Select
-                    labelId="hospital-select-label"
-                    id="hospital-select"
-                    value={values.hospital}
-                    onChange={handleChange('hospital')}
-                    style = {styles.select}
+                        labelId="hospital-select-label"
+                        id="hospital-select"
+                        value={values.hospital}
+                        onChange={this.handleChange('hospital')}
+                        style={styles.select}
                     >
-                    <MenuItem value={"Hospital A"} style = {styles.select}>Hospital A</MenuItem>
+                        {this.getHospitalId(values.vaccine).map(item => (<MenuItem value={item} style={styles.select}>{item}</MenuItem>))}
+                        {/* <MenuItem value={"Hospital A"} style = {styles.select}>{values.vaccine}</MenuItem>
                     <MenuItem value={"Hospital B"}>Hospital B</MenuItem>
-                    <MenuItem value={"Hospital C"}>Hospital C</MenuItem>
+                    <MenuItem value={"Hospital C"}>Hospital C</MenuItem> */}
                     </Select>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <InputLabel id="datetime-select-label">Appointment Time</InputLabel>
                     <Select
-                    labelId="datetime-select-label"
-                    id="datetime-select"
-                    value={values.datetime}
-                    onChange={handleChange('datetime')}
-                    style = {styles.select}
+                        labelId="datetime-select-label"
+                        id="datetime-select"
+                        value={values.datetime}
+                        onChange={this.handleChange('datetime')}
+                        style={styles.select}
                     >
-                    <MenuItem value={"07 May 2020 11:00am"} style = {styles.select}>07 May 2020 11:00am</MenuItem>
-                    <MenuItem value={"07 May 2020 12:00am"}>07 May 2020 12:00am</MenuItem>
-                    <MenuItem value={"07 May 2020 14:00pm"}>07 May 2020 14:00pm</MenuItem>
+                        <MenuItem value={"07 May 2020 11:00am"} style={styles.select}>07 May 2020 11:00am</MenuItem>
+                        <MenuItem value={"07 May 2020 12:00am"}>07 May 2020 12:00am</MenuItem>
+                        <MenuItem value={"07 May 2020 14:00pm"}>07 May 2020 14:00pm</MenuItem>
                     </Select>
-                    <br/>
+                    <br />
                     <TextField
-                        hintText = "Are You Allergic to Anything?"
-                        floatingLabelText = "Allergy"
-                        onChange = {handleChange('allergy')}
-                        defaultValue = {values.allergy}
-                        style = {styles.select}
+                        hintText="Are You Allergic to Anything?"
+                        floatingLabelText="Allergy"
+                        onChange={this.handleChange('allergy')}
+                        defaultValue={values.allergy}
+                        style={styles.select}
                     />
-                    <br/>
+                    <br />
                     <TextField
-                        hintText = "Enter Emergency Contact (Name)"
-                        floatingLabelText = "Emergency Contact (Name)"
-                        onChange = {handleChange('emergencyContactName')}
-                        defaultValue = {values.emergencyContactName}
-                        style = {styles.select}
+                        hintText="Enter Emergency Contact (Name)"
+                        floatingLabelText="Emergency Contact (Name)"
+                        onChange={this.handleChange('emergencyContactName')}
+                        defaultValue={values.emergencyContactName}
+                        style={styles.select}
                     />
-                    <br/>
+                    <br />
                     <TextField
-                        hintText = "Enter Emergency Contact (Phone)"
-                        floatingLabelText = "Emergency Contact (Phone)"
-                        onChange = {handleChange('emergencyContactPhone')}
-                        defaultValue = {values.emergencyContactPhone}
-                        style = {styles.select}
+                        hintText="Enter Emergency Contact (Phone)"
+                        floatingLabelText="Emergency Contact (Phone)"
+                        onChange={this.handleChange('emergencyContactPhone')}
+                        defaultValue={values.emergencyContactPhone}
+                        style={styles.select}
                     />
-                    <br/>
+                    <br />
                     <TextField
-                        hintText = "Enter Medicare Numer (If Any)"
-                        floatingLabelText = "Medicare Numer (If Any)"
-                        onChange = {handleChange('medicareNumber')}
-                        defaultValue = {values.medicareNumber}
-                        style = {styles.select}
+                        hintText="Enter Medicare Numer (If Any)"
+                        floatingLabelText="Medicare Numer (If Any)"
+                        onChange={this.handleChange('medicareNumber')}
+                        defaultValue={values.medicareNumber}
+                        style={styles.select}
                     />
-                    <br/>
+                    <br />
                     <RaisedButton
-                        label = "Continue"
-                        primary = {true}
-                        style = {styles.button}
-                        onClick = {this.continue}
+                        label="Continue"
+                        primary={true}
+                        style={styles.button}
+                        onClick={this.continue}
                     />
                     <RaisedButton
-                        label = "Back"
-                        primary = {false}
-                        style = {styles.button}
-                        onClick = {this.back}
+                        label="Back"
+                        primary={false}
+                        style={styles.button}
+                        onClick={this.back}
                     />
                 </React.Fragment>
             </MuiThemeProvider>
