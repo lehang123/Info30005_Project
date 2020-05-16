@@ -3,6 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
 import { List, ListItem } from 'material-ui/List'
 import RaisedButton from 'material-ui/RaisedButton'
+import Paper from '@material-ui/core/Paper';
+import { Grid } from '@material-ui/core'
 
 export class Confirm extends Component {
     continue = e => {
@@ -38,8 +40,10 @@ this.props.nextStep();
 
         return (
             <MuiThemeProvider>
-                <React.Fragment>
                     <AppBar title="Confirm Your Details" />
+                    <br></br>
+                    <Paper style={styles.paper} elevation={3}>
+                    {/* <Grid container maxWidth="lg" justify = "center"> */}
                     <List>
                         <ListItem
                             primaryText="First Name"
@@ -90,20 +94,22 @@ this.props.nextStep();
                             secondaryText={medicareNumber}
                         />
                     </List>
+                    {/* </Grid> */}
+                    </Paper>
                     <br />
-                    <RaisedButton
-                        label="Confirm"
-                        primary={true}
-                        style={styles.button}
-                        onClick={this.continue}
-                    />
                     <RaisedButton
                         label="Back"
                         primary={false}
                         style={styles.button}
                         onClick={this.back}
                     />
-                </React.Fragment>
+                    <RaisedButton
+                        label="Confirm"
+                        primary={true}
+                        style={styles.button}
+                        onClick={this.continue}
+                    />
+
             </MuiThemeProvider>
         )
     }
@@ -112,6 +118,11 @@ this.props.nextStep();
 const styles = {
     button: {
         margin: 15
+    },
+    paper: {
+        width: 500,
+        height: 'auto',
+        margin: 'auto',
     }
 }
 

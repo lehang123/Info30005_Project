@@ -12,10 +12,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 345,
+      margin: 'auto'
     },
     media: {
       height: 140,
@@ -60,7 +62,7 @@ function Vaccines(props) {
       <Grid container spacing={2}>
         {items.map(item => ([0].map((value) => (
            <Grid key={value} xs={4}  item>
-            <Card className={classes.root} align="center">
+            <Card className={classes.root}>
             <CardActionArea>
             <Link to={`/vaccines/${item.id}`} className = {classes.link}>
                 <CardMedia
@@ -69,14 +71,14 @@ function Vaccines(props) {
                 title="test_tube"
                 />
                 <CardContent>
-                    <Grid container alignItems="center" spacing={10}>
+                    <Grid container alignItems="center">
                         <Grid item xs>
-                            <Typography gutterBottom variant="h5" color="textPrimary">
+                            <Typography gutterBottom variant="h5" color="textPrimary" align='left'>
                                 {item.name}
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography gutterBottom variant="h5" className = {classes.typography}>
+                            <Typography gutterBottom variant="h5" className = {classes.typography} align='right'>
                                 {item.cost.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                             </Typography>
                         </Grid>
@@ -88,8 +90,9 @@ function Vaccines(props) {
                         allergies : {item.alleries}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        recommend_star : {item.recommend_star}
+                        recommend_star : 
                     </Typography>
+                    <Rating name="read-only" value={item.recommend_star} readOnly />
                 </CardContent>
             </Link>
             </CardActionArea>
@@ -101,10 +104,4 @@ function Vaccines(props) {
   );
 }
 
-const styles = {
-  grid: {
-    margin: "0 -15px !important",
-    width: "unset"
-  }
-};
 export default Vaccines;
