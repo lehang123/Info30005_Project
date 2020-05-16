@@ -4,7 +4,6 @@ import './App.css';
 import LoginHeader from "./components/loginHeader";
 import DefaultHeader from "./components/defaultHeader";
 import innerHeader from "./components/innerHeader";
-import VaccineHeader from "./components/vaccineHeader";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
 import Home from "./components/home/Home";
@@ -71,7 +70,7 @@ class App extends Component{
                         <Route path="/" exact component={DefaultHeader}/>
                         <Route path= '/patients' exact component={DefaultHeader}/>
                         <Route path= '/faculties' exact component={DefaultHeader}/>
-                        <Route path= '/vaccines' exact component={VaccineHeader}/>
+                        <Route path= '/vaccines' exact component={DefaultHeader}/>
                         <Route path="/vaccines/:id" component = {LoginHeader}/>
                         <Route path="/login" exact component={LoginHeader}/>
                         <Route path= '/aboutus' exact component={LoginHeader}/>
