@@ -46,7 +46,7 @@ class Login extends React.Component{
                 this.props.handleChange("patient_id", data._id)
                 // this.handleChange("isLoggedIn", true)
                 // let history = useHistory()
-                history.push("/")
+                //history.push("/")
             }
             console.log(JSON.stringify(data))
         }).catch(err=>{

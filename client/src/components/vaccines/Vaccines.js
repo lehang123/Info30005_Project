@@ -57,10 +57,10 @@ function Vaccines(props) {
 
   return (
     <Container className="white-container" container maxWidth="lg">
-      <Grid container justify="" spacing={2}>
+      <Grid container spacing={2}>
         {items.map(item => ([0].map((value) => (
-           <Grid key={value} xs={4} justify='center' alignContent='center' alignItems='center' item>
-            <Card className={classes.root}>
+           <Grid key={value} xs={4}  item>
+            <Card className={classes.root} align="center">
             <CardActionArea>
             <Link to={`/vaccines/${item.id}`} className = {classes.link}>
                 <CardMedia
