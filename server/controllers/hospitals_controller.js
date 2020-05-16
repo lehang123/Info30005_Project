@@ -12,6 +12,7 @@ const getAllHospitals = (req, res, next)=>{
         count: docs.length, // how many entries
         hospitals: docs.map(doc => {
           return {
+            id: doc._id,
             name: doc.name,
             location: doc.location,
             language: doc.language,
