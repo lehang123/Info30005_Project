@@ -6,13 +6,15 @@ class Login extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            username: "logintrial",
-            password: "passtrial",
+            username: "",
+            password: "",
         };
         this.getData = this.getData.bind(this);
+        this.collect_login = this.collect_login.bind(this);
     }
 
     getData(){
+        this.collect_login()
         let url = 'http://localhost:5000/api/users/login';
         let data = {
             account_id: this.state.username,
@@ -22,7 +24,7 @@ class Login extends React.Component{
             url = '/api/users/login'
         }
         fetch(url, {
-            method: "GET",
+            method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -35,19 +37,27 @@ class Login extends React.Component{
         })
     }
 
+    collect_login() {
+        const Username = document.getElementById('username').value;
+        const Password = document.getElementById('password').value;
+
+        this.setState({username: Username});
+        this.setState({password: Password});
+    }
+
     render() {
         this.props.loginBackground()
         return (
             <body className="login">
             <div>Sign In</div>
             <div className="input-container">
-                <input type="text" placeholder="Username or Email" required=""/>
+                <input type="text" id="username" placeholder="Username or Email" required=""/>
             </div>
             <div className="input-container">
-                <input type="text" placeholder="Password" required=""/>
+                <input type="text" id="password" placeholder="Password" required=""/>
             </div>
             <div id="btn-log"><Link className="button" to='/profileID/appointment'>
-                <button>Next</button>
+                <button onClick={this.getData}>Next</button>
             </Link></div>
             <div id="login-link">
                 <Link className="sublink" to='/forgotPassword'>Forgot Password</Link> /
