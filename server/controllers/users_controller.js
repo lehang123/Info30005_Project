@@ -79,6 +79,7 @@ const signupUser = async (req, res, next)=>{
 
 /* login the user to server */
 const loginUser = (req, res, next)=>{
+    console.log(req.body.account_id)
     Patient.findOne({account_id: req.body.account_id}, async (err, result)=>{
         if (result){
           try{

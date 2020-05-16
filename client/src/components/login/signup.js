@@ -128,7 +128,7 @@ class Signup extends React.Component{
                 <div><b>Contact</b> : {this.state.contact}</div>
                 <div><b>Gender</b> : {this.state.gender}</div>
                 <div><b>Date of Birth</b> : {this.state.birthday}</div>
-                <div>
+                <div id="btn-log">
                     <button id="prev" onClick={this.prev}>Prev</button>
                     <Link className="button" to='/login'><button onClick={this.sendData}>Next</button></Link>
                 </div>
