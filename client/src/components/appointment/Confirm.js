@@ -13,19 +13,19 @@ export class Confirm extends Component {
         if (process.env.NODE_ENV === 'production') {
             url = '/api/appointments'
         }
-        fetch(url, {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data1)
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data1) {
-            console.log(JSON.stringify(data1))
-        })
-        this.props.nextStep();
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data1)
+}).then(function (response) {
+    return response.json();
+}).then(function (data1) {
+    console.log(JSON.stringify(data1))
+})
+this.props.nextStep();
     }
 
     back = e => {
