@@ -1,4 +1,8 @@
 var Appointment = require('../models/appointment')
+var Vaccine = require('../models/vaccine')
+var Hospital = require('../models/hospital')
+var Patient = require('../models/patient')
+
 const mongoose = require('mongoose')
 
 /* get all the appointment listing on databse*/
@@ -78,10 +82,35 @@ const deleteAppointments = (req, res, next) =>{
     })
 }
 
+const getAppointmentsByPatientId = (req, res, next)=>{
+    const id = req.params.patientId;
+    Appointment.find({patient_id:id})
+    .exec()
+    .then(async doc =>{
+        if (doc){
+
+            var news = []
+            await Promise.all(doc.map(async appointment => {
+                const patient = await Patient.findOne({_id: appointment.patient_id}).exec();
+                const hospital = await Hospital.findOne({_id: appointment.hospital_id}).exec();
+                const vaccine = await Vaccine.findOne({_id: appointment.vaccine_id}).exec();
+                
+                news.push({patient: patient, hospital: hospital, vaccine: vaccine, date_time: appointment.date_time})
+            }))
+            
+            res.status(200).json(news)
+          }else {
+            res.status(404).json({ message: "No valid entry found for provided patientId" })
+          }
+    })
+}
+  
+
 // todo : update appointments, get appointments by a sepcific paitent
 
 module.exports = {
     postAppointments,
     deleteAppointments,
-    getAppointments
+    getAppointments,
+    getAppointmentsByPatientId
 }

@@ -17,4 +17,9 @@ router.delete("/:appointmentId", (req, res, next)=>{
     appointmentController.deleteAppointments(req, res, next)
 })
 
+/* GET appointment by patient id. */
+router.get("/:patientId", (req, res, next)=>{
+    appointmentController.getAppointmentsByPatientId(req, res, next)
+})
+
 module.exports = router;
