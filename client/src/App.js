@@ -83,7 +83,8 @@ class App extends Component{
                             <Home defaultBackground={this.defaultBackground}/>}/>
                         <Route path="/login" exact component=
                             {() => <Login loginBackground={this.loginBackground}/>}/>
-                        <Route path="/signup" exact component ={Signup}/>
+                        <Route path="/signup" exact component=
+                            {() => <Signup loginBackground={this.loginBackground}/>}/>
                         <Route path="/profileID/appointment" exact component=
                             {() => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
                         <Route path='/aboutus' exact component={AboutUs}/>

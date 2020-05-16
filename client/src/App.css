@@ -99,6 +99,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
+#btn-log{
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
 .login button{
   margin-top: 50px;
   margin-left: 50px;
@@ -114,6 +119,7 @@
   height: 30px;
   color: white;
   text-decoration: none;
+  cursor: context-menu;
 }
 
 .signup{
@@ -126,14 +132,16 @@
   display: grid;
   grid-template-rows: 15% 10% 10% 10% 10% 10% 8%;
   justify-items: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .signup button{
   margin-top: 10px;
+  margin-left: 20px;
   margin-bottom: 0;
   font-size: 20px;
   height: 30px;
-  width: 405px;
+  width: 200px;
   background: #094183;
   color: white;
 }
@@ -142,6 +150,37 @@
   color: white;
   text-decoration: none;
   font-size: 20px;
+  cursor: context-menu;
+}
+
+.confirm{
+  position:relative;
+  margin-top: 50px;
+  left: 35%;
+  width: 30%;
+  height: 600px;
+  background: white;
+  display: grid;
+  grid-template-rows: 15% 8% 8% 8% 8% 8% 8% 8%;
+  justify-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.confirm div{
+  justify-self: start;
+  margin-left: 100px;
+  font-size: 20px;
+}
+
+.confirm button{
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 0;
+  font-size: 20px;
+  height: 30px;
+  width: 200px;
+  background: #094183;
+  color: white;
 }
 
 
@@ -187,14 +226,23 @@
 }
 
 .selection{
-  width: 400px;
-  font-size: 18px;
+  width: 500px;
+  font-size: 20px;
   justify-self: start;
-  margin-left: 100px;
+  margin-left: 125px;
   display: grid;
-  grid-column-gap: 20px;
-  grid-template-columns: 20% 30% 40%;
+  grid-column-gap: 5px;
+  grid-template-columns: 20% 20% 50%;
   align-content: center;
+}
+
+.selection div{
+  font-weight: normal;
+}
+
+.selection *{
+  height: 20px;
+  font-size: 18px;
 }
 
 .white-container{
@@ -221,4 +269,12 @@
 
 #login-link .sublink:hover{
   text-decoration: underline;
+}
+
+#DoB{
+  width: 220px;
+}
+
+#prev{
+  background: slategray;
 }

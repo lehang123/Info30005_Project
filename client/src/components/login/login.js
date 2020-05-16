@@ -12,7 +12,7 @@ function Login(props){
             <div className="input-container">
                 <input type="text" placeholder="Password" required=""/>
             </div>
-            <button><Link className="button" to='/profileID/appointment'>Next</Link></button>
+            <div id="btn-log"><Link className="button" to='/profileID/appointment'><button>Next</button></Link></div>
             <div id="login-link">
                 <Link className="sublink" to='/forgotPassword'>Forgot Password</Link> /
                 <Link className="sublink" to='/signup'>Sign Up</Link>
