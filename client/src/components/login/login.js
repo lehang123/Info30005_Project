@@ -5,10 +5,10 @@ class Login extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {
-            authorization :false,
-            patient : {}
-        };
+        // this.state = {
+        //     authorization :false,
+        //     patient : {}
+        // };
         this.collect_login = this.collect_login.bind(this);
         // const {values: {patient_id, isLoggedIn}, handleChange} = this.props;
         // this.handleChange = handleChange.bind(this)
@@ -40,14 +40,21 @@ class Login extends React.Component{
         }).then((data) => {
             console.log(this.props)
             if("_id" in data){
-                this.setState({authorization: true})
-                console.log(1)
-                this.setState({patient : data})
+                // this.setState({authorization: true})
+                // console.log(1)
+                // this.setState({patient : data})
                 this.props.handleChange("patient", data)
                 this.props.handleChange("isLoggedIn", true)
 
                 const {history} = this.props
                 history.push('/')
+
+                // this.setState({patient_id : data._id})
+                // this.props.handleChange("patient_id", data._id)
+                // // this.handleChange("isLoggedIn", true)
+                // // let history = useHistory()
+                // //history.push("/")
+
             }
             console.log(JSON.stringify(data))
         }).catch(err=>{

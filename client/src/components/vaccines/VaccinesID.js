@@ -114,16 +114,24 @@ class VaccinesID extends Component{
         return (
             <div className ="itemTitle">
                 <br/><br/><br/>
-                <h1>Vaccine Detail</h1>
-                <h2>name: {this.state.item.name}</h2>
-                <h2>alleries: {this.state.item.alleries}</h2>
-                <h2>prevent_disease: {this.state.item.prevent_disease}</h2>
-                <h2>good_for_groups: {this.state.item.good_for_groups}</h2>
-                <h2>available_at: {this.state.item.available_at}</h2>
-                <h2>cost: {this.state.item.cost}</h2>
-                <h2>stocks: {this.state.item.stocks}</h2>
-                <h2>recommend_star: {this.state.item.recommend_star}</h2>
-                <h2>manufacturer: {this.state.item.manufacturer}</h2>
+                <h1> Vaccine Details </h1>
+                <br/>
+                <table class = "content-table">
+                    <thead>
+                        <tr>Summary Of this Vaccine</tr> 
+                    </thead>
+                    <tbody>
+                        <tr>Name: {this.state.item.name} </tr>
+                        <tr class = "colorful-row">Alleries: {this.state.item.alleries}</tr>
+                        <tr>Prevent_disease: {this.state.item.prevent_disease}</tr>
+                        <tr class = "colorful-row">Good_for_groups:{this.state.item.good_for_groups}</tr>
+                        <tr>Available_at:{this.state.item.available_at}</tr>
+                        <tr class = "colorful-row">Cost:{this.state.item.cost}</tr>
+                        <tr>Stocks:{this.state.item.stocks}</tr>
+                        <tr class = "colorful-row">Recommend_star:{this.state.item.recommend_star}</tr>
+                        <tr>Manufacturer:{this.state.item.manufacturer}</tr>
+                    </tbody>
+                </table>
             </div>
         )
     }
