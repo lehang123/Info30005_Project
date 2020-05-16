@@ -6,24 +6,26 @@ class Login extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            password: "",
+            username: "admin",
+            password: "password",
         };
-        this.getData = this.getData.bind(this);
         this.collect_login = this.collect_login.bind(this);
     }
 
-    getData(){
-        this.collect_login()
+    collect_login() {
+        const Username = document.getElementById('username').value;
+        const Password = document.getElementById('password').value;
         let url = 'http://localhost:5000/api/users/login';
+
         let data = {
-            account_id: this.state.username,
-            password: this.state.password,
+            account_id: Username,
+            password: Password,
         }
 
         if (process.env.NODE_ENV === 'production') {
             url = '/api/users/login'
         }
+        console.log("trigger check")
         fetch(url, {
             method: "POST",
             headers: {
@@ -33,17 +35,13 @@ class Login extends React.Component{
             body: JSON.stringify(data)
         }).then(function (response) {
             return response.json();
+        }).catch(err=>{
+            console.log(err);
         }).then(function (data) {
             console.log(JSON.stringify(data))
+        }).catch(err=>{
+            console.log(err);
         })
-    }
-
-    collect_login() {
-        const Username = document.getElementById('username').value;
-        const Password = document.getElementById('password').value;
-
-        this.setState({password: Password});
-        this.setState({username: Username});
     }
 
     render() {
@@ -58,7 +56,7 @@ class Login extends React.Component{
                 <input type="text" id="password" placeholder="Password" required=""/>
             </div>
             <div id="btn-log">
-                <Link className="button" to='/profileID/appointment'><button onClick={this.getData}>Next</button></Link>
+                <Link className="button" to='/profileID/appointment'><button onClick={this.collect_login}>Next</button></Link>
             </div>
             <div id="login-link">
                 <Link className="sublink" to='/forgotPassword'>Forgot Password</Link> /
