@@ -78,6 +78,7 @@ const signupUser = async (req, res, next)=>{
 
 /* login the user to server */
 const loginUser = (req, res, next)=>{
+    console.log(req.body.account_id)
     Patient.findOne({account_id: req.body.account_id}, async (err, result)=>{
         if (result){
           try{
@@ -90,7 +91,15 @@ const loginUser = (req, res, next)=>{
             res.status(500).send('something wrong : ' + e.message)
           }
         }else{
-          res.status(500).send('error requesting account_id: ' + err)
+           res.status(500).json({
+                message: 'Account does not exist',
+            })
+        }
+        if (err){
+            res.status(500).json({
+                message: 'Something went wrong',
+                error_msg: err.message
+            })
         }
       })
 }
