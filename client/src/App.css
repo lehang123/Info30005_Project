@@ -297,3 +297,9 @@
 #prev{
   background: slategray;
 }
+
+.itemTitle{
+  margin-top: 200px;
+  background: white;
+  align-items: center;
+}
