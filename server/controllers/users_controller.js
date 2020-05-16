@@ -92,7 +92,7 @@ const loginUser = (req, res, next)=>{
             res.status(500).send('something wrong : ' + e.message)
           }
         }else{
-          console.log('error requesting account_id: ' + err)
+            res.status(500).send(err)
         }
       })
 }
