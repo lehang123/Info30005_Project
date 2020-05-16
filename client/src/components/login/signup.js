@@ -85,7 +85,7 @@ class Signup extends React.Component{
                     <input type="text" id="username" placeholder="Username or Email" required=""/>
                 </div>
                 <div className="input-container">
-                    <input type="text" id="password" placeholder="Password" required=""/>
+                    <input type="password" id="password" placeholder="Password" required=""/>
                 </div>
                 <div className="input-container">
                     <input type="text" id="firstname" placeholder="First Name" required=""/>

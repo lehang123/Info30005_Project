@@ -9,8 +9,8 @@ import { Grid } from '@material-ui/core'
 export class Confirm extends Component {
     continue = e => {
         e.preventDefault();
-        const { values: { firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber } } = this.props;
-        var data1 = { patient_id: "5eb916ceafa0227c0f91ce16", hospital_id: hospital.id, date_time: datetime, cost: vaccine.cost, vaccine_id: vaccine.id }
+        const { values: { patientID, firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber } } = this.props;
+        var data1 = { patient_id: patientID, hospital_id: hospital.id, date_time: datetime, cost: vaccine.cost, vaccine_id: vaccine.id }
         var url = 'http://localhost:5000/api/appointments'
         if (process.env.NODE_ENV === 'production') {
             url = '/api/appointments'

@@ -8,6 +8,7 @@ import History from './History'
 export class Appointment extends Component {
     state = {
         step: 1,
+        patientID: this.props.patientInfo._id,
         firstName: this.props.patientInfo.first_name,
         lastName: this.props.patientInfo.last_name,
         email: this.props.patientInfo.account_id,
@@ -52,8 +53,8 @@ export class Appointment extends Component {
         this.props.appointmentBackground()
 
         const {step} = this.state
-        const {firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber} = this.state
-        const values = {firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber}
+        const {patientID, firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber} = this.state
+        const values = {patientID, firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber}
         
         switch(step){
             case 1:
@@ -89,14 +90,20 @@ export class Appointment extends Component {
                     </div>
                 )
             case 4:
-                return (<div className="white-container"><Success /></div>)
+                return (
+                    <div className="white-container">
+                    <Success
+                        originStep = {this.originStep}
+                    />
+                    </div>
+                )
             case 5:
                 return (
                     <div className="white-container">
                     <History
                         originStep = {this.originStep}
                         historyStep = {this.historyStep}
-                        // patientID = {this.props.patientInfo._id}
+                        values = {values}
                     />
                     </div>
                 )

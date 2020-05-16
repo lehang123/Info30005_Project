@@ -31,17 +31,17 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
+// function createData(name, calories, fat, carbs, protein) {
+//     return { name, calories, fat, carbs, protein };
+// }
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+// const rows = [
+//     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+//     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+//     createData('Eclair', 262, 16.0, 24, 6.0),
+//     createData('Cupcake', 305, 3.7, 67, 4.3),
+//     createData('Gingerbread', 356, 16.0, 49, 3.9),
+// ];
 
 const styles = {
     table: {
@@ -56,6 +56,39 @@ const styles = {
 //   const classes = useStyles();
 
 export class History extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            appointments : [],
+            rows : []
+        }
+    }
+
+    componentDidMount() {
+        this.fetchAppointments()
+    }
+
+    fetchAppointments(){
+        var url = 'http://localhost:5000/api/appointments/' + this.props.values.patientID
+        console.log(this.props.values.patientID)
+        if (process.env.NODE_ENV === 'production') {
+            url = '/api/appointments/' + this.props.values.patientID
+        }
+        fetch(`${url}`)
+            .then(res => res.json()).catch(err => { console.log(err) })
+            .then(result => {
+                this.setState({ appointments: result })
+                var rows = result.map(item => {
+                    var patient = this.props.values.firstName
+                    var vaccine = item.vaccine.name
+                    var hospital = item.hospital.name
+                    var hospitalLocation = item.hospital.location
+                    var datetime = item.date_time
+                    return {patient, vaccine, hospital, hospitalLocation, datetime}});
+                this.setState({rows: rows})
+            }).catch(err => { console.log(err) })
+    }
+
     originStep = e => {
         e.preventDefault();
         this.props.originStep();
@@ -65,6 +98,18 @@ export class History extends Component {
         e.preventDefault();
         this.props.historyStep();
     }
+
+    // createData(patient, vaccine, hospital, hospitalLocation, datetime) {
+    //     return { patient, vaccine, hospital, hospitalLocation, datetime };
+    // }
+    
+    //  this.state.appointments.map(item => {
+    //     var patient = this.props.values.firstName
+    //     var vaccine = item.vaccine.name
+    //     var hospital = item.hospital.name
+    //     var hospitalLocation = item.hospital.location
+    //     var datetime = item.date_time
+    //     return {patient, vaccine, hospital, hospitalLocation, datetime}});
 
     render() {
         return (
@@ -76,23 +121,23 @@ export class History extends Component {
                     <Table aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-                                <StyledTableCell align="right">Calories</StyledTableCell>
-                                <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-                                <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                                <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+                                <StyledTableCell>Patient</StyledTableCell>
+                                <StyledTableCell align="right">Vaccine</StyledTableCell>
+                                <StyledTableCell align="right">Hospital</StyledTableCell>
+                                <StyledTableCell align="right">Hospital Location</StyledTableCell>
+                                <StyledTableCell align="right">Date Time</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
-                                <StyledTableRow key={row.name}>
+                            {this.state.rows.map((row) => (
+                                <StyledTableRow key={row.patient}>
                                     <StyledTableCell component="th" scope="row">
-                                        {row.name}
+                                        {row.patient}
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                                    <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.vaccine}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.hospital}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.hospitalLocation}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.datetime}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>
