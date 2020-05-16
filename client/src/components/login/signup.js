@@ -110,7 +110,7 @@ class Signup extends React.Component{
                         <input type="text" id="DoB" placeholder="Date of Birth (DD/MM/YY)" required=""/>
                     </div>
                 </div>
-                <div>
+                <div id="btn-sign">
                     <Link className="button" to='/login'> <button id="prev">Prev</button></Link>
                     <button onClick={this.collect_person}>Next</button>
                 </div>
@@ -128,7 +128,7 @@ class Signup extends React.Component{
                 <div><b>Contact</b> : {this.state.contact}</div>
                 <div><b>Gender</b> : {this.state.gender}</div>
                 <div><b>Date of Birth</b> : {this.state.birthday}</div>
-                <div id="btn-log">
+                <div id="btn-sign">
                     <button id="prev" onClick={this.prev}>Prev</button>
                     <Link className="button" to='/login'><button onClick={this.sendData}>Next</button></Link>
                 </div>

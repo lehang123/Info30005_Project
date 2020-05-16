@@ -208,6 +208,11 @@
    cursor: context-menu;
  }
 
+#btn-sign{
+  margin-top: 0px;
+  margin-left: 20px;
+}
+
 .confirm{
   position:relative;
   margin-top: 50px;
@@ -233,7 +238,7 @@
   margin-bottom: 0;
   font-size: 20px;
   height: 30px;
-  width: 200px;
+  width: 12vw;
   background: #094183;
   color: white;
 }
