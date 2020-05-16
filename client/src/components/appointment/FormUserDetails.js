@@ -23,6 +23,7 @@ export class FormUserDetails extends Component {
                         floatingLabelText = "First Name"
                         onChange = {handleChange('firstName')}
                         defaultValue = {values.firstName}
+                        style = {styles.textField}
                     />
                     <br/>
                     <TextField
@@ -30,6 +31,7 @@ export class FormUserDetails extends Component {
                         floatingLabelText = "Last Name"
                         onChange = {handleChange('lastName')}
                         defaultValue = {values.lastName}
+                        style = {styles.textField}
                     />
                     <br/>
                     <TextField
@@ -37,6 +39,7 @@ export class FormUserDetails extends Component {
                         floatingLabelText = "Email"
                         onChange = {handleChange('email')}
                         defaultValue = {values.email}
+                        style = {styles.textField}
                     />
                     <br/>
                     <TextField
@@ -44,6 +47,7 @@ export class FormUserDetails extends Component {
                         floatingLabelText = "Phone"
                         onChange = {handleChange('phone')}
                         defaultValue = {values.phone}
+                        style = {styles.textField}
                     />
                     <br/>
                     <TextField
@@ -51,6 +55,7 @@ export class FormUserDetails extends Component {
                         floatingLabelText = "Address"
                         onChange = {handleChange('address')}
                         defaultValue = {values.address}
+                        style = {styles.textField}
                     />
                     <br/>
                     <RaisedButton
@@ -68,6 +73,9 @@ export class FormUserDetails extends Component {
 const styles = {
     button: {
         margin: 15
+    },
+    textField:{
+        width : 500
     }
 }
 
