@@ -8,7 +8,7 @@ export class Confirm extends Component {
     continue = e => {
         e.preventDefault();
         const { values: { firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber } } = this.props;
-        var data1 = { patient_id: "5eb916ceafa0227c0f91ce16", hospital_id: "5e85bf5520c0af944747c294", date_time: "2012-03-19T07:22Z", cost: 123, vaccine_id: "5e859b72932597849c779076" }
+        var data1 = { patient_id: "5eb916ceafa0227c0f91ce16", hospital_id: hospital.id, date_time: datetime, cost: vaccine.cost, vaccine_id: vaccine.id }
         var url = 'http://localhost:5000/api/appointments'
         if (process.env.NODE_ENV === 'production') {
             url = '/api/appointments'
@@ -63,11 +63,11 @@ this.props.nextStep();
                         />
                         <ListItem
                             primaryText="Vaccine"
-                            secondaryText={vaccine}
+                            secondaryText={vaccine.name}
                         />
                         <ListItem
                             primaryText="Hospital"
-                            secondaryText={hospital}
+                            secondaryText={hospital.name}
                         />
                         <ListItem
                             primaryText="Appointment Time"

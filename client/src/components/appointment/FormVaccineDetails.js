@@ -27,7 +27,8 @@ export class FormVaccineDetails extends Component {
         this.state = { vaccines: [], hospitals: [], vaccine_hospital: [], isVacSelected: false }
         this.getHospForVacc = this.getHospForVacc.bind(this)
         this.fetchItem = this.fetchItem.bind(this)
-        this.getHospitalId = this.getHospitalId.bind(this)
+        this.getHospitalsByVac = this.getHospitalsByVac.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
@@ -60,26 +61,34 @@ export class FormVaccineDetails extends Component {
         fetch(`${url}`)
             .then(res => res.json()).catch(err => { console.log(err) })
             .then(result => {
-                console.log(result)
-                console.log(itemName)
                 this.setState({ [itemName]: result[itemName] })
                 if (itemName === "vaccines") { this.state.vaccines.map(vaccine => { this.getHospForVacc(vaccine.id) }) }
             }).catch(err => { console.log(err) })
     }
 
-    getHospitalId(vaccineID) {
-        this.state.vaccine_hospital.forEach(element => {
-            if (element.vacc == vaccineID) {
-                return element.hosps
+    getHospitalsByVac(vaccineID) {
+        for (var i = 0; i < this.state.vaccine_hospital.length; i++) {
+            if (this.state.vaccine_hospital[i].vacc === vaccineID) {
+                var match_hosp = []
+                for(var j = 0; j < this.state.vaccine_hospital[i].hosps.length; j++){
+                    for (var k = 0; k < this.state.hospitals.length; k++){
+                        if(this.state.vaccine_hospital[i].hosps[j] === this.state.hospitals[k].id){
+                            match_hosp.push(this.state.hospitals[k])
+                        }
+                    }
+                }
+                return match_hosp;
             }
-        });
-        return [1, 2]
+        }
+        return []
     }
+
+    getHospitalName
 
     onVacChange = e => {
         e.preventDefault();
-        this.props.handleChange('vaccine', e)
-        //this.setState({isVacSelelcted : !this.state.isVacSelelcted})
+        //this.handleChange('vaccine', e)
+        this.setState({isVacSelected : !this.state.isVacSelected})
     }
 
     continue = e => {
@@ -127,10 +136,10 @@ export class FormVaccineDetails extends Component {
                         labelId="vaccine-select-label"
                         id="vaccine-select"
                         value={values.vaccine}
-                        onChange={this.onVacChange}
+                        onChange={this.handleChange('vaccine')}
                         style={styles.select}
                     >
-                        {this.state.vaccines.map(item => (<MenuItem value={item.id} style={styles.select}>{item.name}</MenuItem>))}
+                        {this.state.vaccines.map(item => (<MenuItem value={item} style={styles.select}>{item.name}</MenuItem>))}
                     </Select>
                     <br />
                     <br />
@@ -142,7 +151,7 @@ export class FormVaccineDetails extends Component {
                         onChange={this.handleChange('hospital')}
                         style={styles.select}
                     >
-                        {this.getHospitalId(values.vaccine).map(item => (<MenuItem value={item} style={styles.select}>{item}</MenuItem>))}
+                        {this.getHospitalsByVac(values.vaccine.id).map(item => (<MenuItem value={item} style={styles.select}>{item.name}</MenuItem>))}
                         {/* <MenuItem value={"Hospital A"} style = {styles.select}>{values.vaccine}</MenuItem>
                     <MenuItem value={"Hospital B"}>Hospital B</MenuItem>
                     <MenuItem value={"Hospital C"}>Hospital C</MenuItem> */}
@@ -157,9 +166,9 @@ export class FormVaccineDetails extends Component {
                         onChange={this.handleChange('datetime')}
                         style={styles.select}
                     >
-                        <MenuItem value={"07 May 2020 11:00am"} style={styles.select}>07 May 2020 11:00am</MenuItem>
-                        <MenuItem value={"07 May 2020 12:00am"}>07 May 2020 12:00am</MenuItem>
-                        <MenuItem value={"07 May 2020 14:00pm"}>07 May 2020 14:00pm</MenuItem>
+                        <MenuItem value={"2012-03-19T07:22Z"} style={styles.select}>2012-03-19T07:22Z</MenuItem>
+                        <MenuItem value={"2012-03-19T10:30Z"}>2012-03-19T10:30Z</MenuItem>
+                        <MenuItem value={"2012-03-19T11:00Z"}>2012-03-19T11:00Z</MenuItem>
                     </Select>
                     <br />
                     <TextField
