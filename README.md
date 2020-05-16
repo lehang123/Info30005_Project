@@ -168,7 +168,7 @@ Client functions done so far:
 	The vaccines page display all the vaccines (in summary form) stored in our database. Each Vaccine will also have their individual pages.
 	
 	To access the vaccines' summary page, click Vaccines at the Navibar or go to "https://team-vaccine.herokuapp.com/vaccines" and there will be lists showing the summaries of each vaccine.
-	To access individual vaccine page, click the vaccine you are interested in on the summary page.
+	To access individual vaccine page, click the vaccine you are interested in on the summary page and you will see more details.
 
 	Account:
 
