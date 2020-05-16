@@ -21,7 +21,33 @@ class Signup extends React.Component{
     }
 
     sendData(){
-
+        let url = 'http://localhost:5000/api/users/signup';
+        if (process.env.NODE_ENV === 'production') {
+            url = '/api/users/signup'
+        }
+        let data = {
+            account_id: this.state.username,
+            username: this.state.username,
+            password: this.state.password,
+            first_name: this.state.firstname,
+            last_name: this.state.lastname,
+            location: this.state.address,
+            contact: this.state.contact,
+            gender: this.state.gender,
+            birthday: this.state.birthday,
+        }
+        fetch(url, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(JSON.stringify(data))
+        })
     }
 
     prev(){

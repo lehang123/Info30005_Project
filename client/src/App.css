@@ -177,7 +177,7 @@
   margin-top: 50px;
   left: 35%;
   width: 30%;
-  height: 600px;
+  height: 60vh;
   background: white;
   display: grid;
   grid-template-rows: 15% 10% 10% 10% 10% 10% 8%;
@@ -186,13 +186,12 @@
 }
 
 .signup div{
-  justify-self: start;
   margin-left: 50px;
+  justify-self: start;
 }
 
 .signup button{
   margin-top: 10px;
-  margin-left: 20px;
   margin-bottom: 0;
   font-size: 20px;
   height: 30px;
@@ -249,10 +248,9 @@
   width: 500px;
   font-size: 20px;
   justify-self: start;
-  margin-left: 125px;
+  margin-left: 0px;
   display: grid;
-  grid-column-gap: 5px;
-  grid-template-columns: 20% 20% 50%;
+  grid-template-columns: 25% 20% 50%;
   align-content: center;
 }
 
