@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Login extends React.Component{
 
@@ -7,15 +7,16 @@ class Login extends React.Component{
         super(props);
         this.state = {
             authorization :false,
-            patient_id : ""
+            patient : {}
         };
         this.collect_login = this.collect_login.bind(this);
-        const {values: {patient_id, isLoggedIn}, handleChange} = this.props;
-        this.handleChange = handleChange.bind(this)       
+        // const {values: {patient_id, isLoggedIn}, handleChange} = this.props;
+        // this.handleChange = handleChange.bind(this)
     }
 
     collect_login() {
         //this.setState({authorization: true})
+        
         const Username = document.getElementById('username').value;
         const Password = document.getElementById('password').value;
         let data = {
@@ -37,16 +38,16 @@ class Login extends React.Component{
         }).then(function (response) {
             return response.json();
         }).then((data) => {
-            //const {values: {patient_id, isLoggedIn}, handleChange} = this.props;
             console.log(this.props)
             if("_id" in data){
                 this.setState({authorization: true})
                 console.log(1)
-                this.setState({patient_id : data._id})
-                this.props.handleChange("patient_id", data._id)
-                // this.handleChange("isLoggedIn", true)
-                // let history = useHistory()
-                history.push("/")
+                this.setState({patient : data})
+                this.props.handleChange("patient", data)
+                this.props.handleChange("isLoggedIn", true)
+
+                const {history} = this.props
+                history.push('/')
             }
             console.log(JSON.stringify(data))
         }).catch(err=>{
@@ -56,7 +57,6 @@ class Login extends React.Component{
 
     render() {
         this.props.loginBackground();
-        let ConditionalLink = this.state.authorization ? Link : React.Fragment;
         return (
             <body className="login">
             <div>Sign In</div>
@@ -67,9 +67,7 @@ class Login extends React.Component{
                 <input type="text" id="password" placeholder="Password" required=""/>
             </div>
             <div id="btn-log">
-                <ConditionalLink className="button" to='/profileID/appointment'>
-                    <button onClick={this.collect_login}>Next</button>
-                </ConditionalLink>
+                <button onClick={this.collect_login}>Next</button>
             </div>
             <div id="login-link">
                 <Link className="sublink" to='/forgotPassword'>Forgot Password</Link> /

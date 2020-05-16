@@ -22,7 +22,7 @@ class App extends Component{
         super(props);
         this.state = {
             isBackground : 0,
-            patient_id: '',
+            patient: {},
             isLoggedIn: false
         };
         this.loginBackground = this.loginBackground.bind(this);
@@ -64,8 +64,8 @@ class App extends Component{
     }
 
     render(){
-        const {patient_id, isLoggedIn} = this.state
-        const values = {patient_id, isLoggedIn}
+        const {patient, isLoggedIn} = this.state
+        const values = {patient, isLoggedIn}
 
 
         let background = "DefaultApp";
@@ -96,11 +96,13 @@ class App extends Component{
                     <Switch>
                         <Route path="/" exact component=
                             {() => <Home defaultBackground={this.defaultBackground}/>}/>
-                        <Route path="/login" exact component=
-                            {() => <Login 
-                            loginBackground={this.loginBackground}
-                            values={values}
-                            handleChange = {this.handleChange}/>}/>
+                        <Route path="/login" exact render={props =>(
+                            <Login {...props}
+                             loginBackground={this.loginBackground} 
+                             values={values}
+                             handleChange = {this.handleChange}
+                             ></Login>
+                        )}/>}/>
                         <Route path="/signup" exact component=
                             {() => <Signup loginBackground={this.loginBackground}/>}/>
                         <Route path="/profileID/appointment" exact component=
