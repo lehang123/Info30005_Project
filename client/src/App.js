@@ -7,6 +7,7 @@ import DefaultHeader2 from "./components/defaultHeader2";
 import innerHeader from "./components/innerHeader";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
+import Forgot from "./components/login/forgot";
 import Home from "./components/home/Home";
 import Patients from "./components/patients/Patients";
 import Faculties from "./components/faculties/Faculties";
@@ -90,19 +91,17 @@ class App extends Component{
                         <Route path= '/aboutus' exact component={DefaultHeader2}/>
                         <Route path="/login" exact component={LoginHeader}/>
                         <Route path= '/signup' exact component={LoginHeader}/>
-                        <Route path= '/forgotPassword' exact component={LoginHeader}/>
+                        <Route path= '/forgot' exact component={LoginHeader}/>
                         <Route path= '/profileID/appointment' exact component={innerHeader}/>
                     </Switch>
                     <Switch>
                         <Route path="/" exact component=
                             {() => <Home defaultBackground={this.defaultBackground}/>}/>
-                        <Route path="/login" exact render={props =>(
-                            <Login {...props}
-                             loginBackground={this.loginBackground} 
-                             values={values}
-                             handleChange = {this.handleChange}
-                             ></Login>
+                        <Route path="/login" exact render={props =>( <Login {...props}
+                            loginBackground={this.loginBackground} values={values} handleChange = {this.handleChange}/>
                         )}/>}/>
+                        <Route path="/forgot" exact component=
+                            {() => <Forgot loginBackground={this.loginBackground}/>}/>
                         <Route path="/signup" exact component=
                             {() => <Signup loginBackground={this.loginBackground}/>}/>
                         <Route path="/profileID/appointment" exact component=
