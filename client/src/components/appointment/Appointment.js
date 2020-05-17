@@ -50,7 +50,7 @@ export class Appointment extends Component {
 
 
     render() {
-        this.props.appointmentBackground()
+        this.props.Background();
 
         const {step} = this.state
         const {patientID, firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber} = this.state
@@ -59,7 +59,7 @@ export class Appointment extends Component {
         switch(step){
             case 1:
                 return (
-                    <div className="white-container">
+                    <div className="white-container2">
                     <FormUserDetails
                         nextStep = {this.nextStep}
                         historyStep = {this.historyStep}
@@ -70,7 +70,7 @@ export class Appointment extends Component {
                 )
             case 2:
                 return (
-                    <div className="white-container">
+                    <div className="white-container2">
                     <FormVaccineDetails
                         nextStep = {this.nextStep}
                         prevStep = {this.prevStep}
@@ -81,7 +81,7 @@ export class Appointment extends Component {
                 )
             case 3:
                 return (
-                    <div className="white-container">
+                    <div className="white-container2">
                     <Confirm
                         nextStep = {this.nextStep}
                         prevStep = {this.prevStep}
@@ -91,7 +91,7 @@ export class Appointment extends Component {
                 )
             case 4:
                 return (
-                    <div className="white-container">
+                    <div className="white-container2">
                     <Success
                         originStep = {this.originStep}
                     />
@@ -99,7 +99,7 @@ export class Appointment extends Component {
                 )
             case 5:
                 return (
-                    <div className="white-container">
+                    <div className="white-container2">
                     <History
                         originStep = {this.originStep}
                         historyStep = {this.historyStep}

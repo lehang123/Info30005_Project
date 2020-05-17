@@ -63,7 +63,7 @@ class Login extends React.Component{
     }
 
     render() {
-        this.props.loginBackground();
+        this.props.Background();
         return (
             <body className="login">
             <div>Sign In</div>

@@ -4,7 +4,7 @@ import React from "react";
 
 class Forgot extends React.Component{
     render() {
-        this.props.loginBackground();
+        this.props.Background();
         return (
             <body className="login">
             <div>Forgot Your Password?</div>

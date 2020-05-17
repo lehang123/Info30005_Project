@@ -5,21 +5,30 @@
 .white-container{
   background: white;
   align-items: center;
-  /* margin: 'auto' */
+  padding-top: 50px;
+  padding-bottom: 100px;
 }
+
+.white-container2{
+  background: white;
+  align-items: center;
+}
+
 
 /* BACKGROUND TAGS */
 .DefaultApp{
+  zoom: 90%;
   position:relative;
   min-width:100%;
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
   background:linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),  url('images/forest.jpg') no-repeat;
-  background-size: 100% 60%;
+  background-size: 100% 29%;
 }
 
 .LoginApp {
+  zoom: 90%;
   position:absolute;
   overflow: auto;
   min-width:100%;
@@ -30,6 +39,7 @@
 }
 
 .AppointmentApp{
+  zoom: 90%;
   position: relative;
   overflow: auto;
   min-width:100%;
@@ -41,16 +51,39 @@
 }
 
 .VaccinesApp{
+  zoom: 90%;
   position:relative;
   min-width:100%;
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
   background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('images/Vaccines.jpg') no-repeat;
+  background-size: 100% 30%;
+}
+
+.PatientApp{
+  zoom: 90%;
+  position:relative;
+  min-width:100%;
+  min-height: 100%;
+  text-align: center;
+  font-family: 'Noto Serif', sans-serif;
+  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('images/glasses.png') no-repeat;
   background-size: 100% 50%;
 }
 
-/* NAVBAR TAGS */
+.FacultiesApp{
+  zoom: 90%;
+  position:relative;
+  min-width:100%;
+  min-height: 100%;
+  text-align: center;
+  font-family: 'Noto Serif', sans-serif;
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('images/buildings.jpg') no-repeat;
+  background-size: 100% 50%;
+}
+
+/* NAVBAR AND FOOTER TAGS */
 .navbar{
   height : 200px;
   margin-bottom: 50px;
@@ -86,12 +119,87 @@
   color: white;
 }
 
+footer{
+  height:100px;
+  font-size: 20px;
+  padding: 0 100px;
+  background-color: #094183;
+  display:grid;
+  grid-template-columns: 76% 24%;
+  grid-gap: 4em;
+  align-items: center;
+  color:white ;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer{
+  align-self:initial;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  background: #094183;
+}
+
 /* HOME PAGE TAGS */
 .home{
   background:white;
   padding-top: 100px;
   font-family: 'Roboto', sans-serif;
+  padding-bottom: 100px;
 }
+
+.home-article{
+  display: flex;
+  margin-top: 150px;
+  justify-content: space-evenly;
+
+}
+
+.home-container{
+  font-family: 'Noto Serif', sans-serif;
+  text-align: justify;
+  border-radius: 20px;
+  border: 2px solid black;
+  padding: 20px;
+  width: 400px;
+  height: 400px;
+}
+
+.home-background1{
+  color: whitesmoke;
+  border-radius: 20px;
+  opacity: 0.9;
+  background:  linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url("images/girl.png") center/cover no-repeat;
+}
+
+.home-background2{
+  border-radius: 20px;
+  opacity: 0.9;
+  background:  linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url("images/facilities.png") center/cover no-repeat;
+}
+
+.home-background3{
+  color: whitesmoke;
+  border-radius: 20px;
+  opacity: 0.9;
+  background:  linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url("images/bluevirus.png") center/cover no-repeat;
+}
+
+.home-links{
+  border-style: solid;
+  border-radius: 20px;
+  padding: 5px;
+  margin-left: 8.5vw;
+  font-size: 22px;
+  text-decoration: none;
+  color: whitesmoke;
+  text-shadow: 0 0 2px;
+}
+
+.home-links:Hover{
+  text-decoration: underline;
+}
+
 
 .collaboration{
   display:flex;
@@ -302,9 +410,9 @@
 
 /* VACCINES TAGS*/
 .itemTitle{
-  margin-top: 200px;
   background: white;
   align-items: center;
+  padding-bottom: 100px;
 }
 
 .content-table {

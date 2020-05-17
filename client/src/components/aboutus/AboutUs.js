@@ -1,6 +1,7 @@
 import React from 'react';
 
 function AboutUs(props){
+    props.Background();
     return (
         <div className="aboutUs">
             <h1> About Us </h1>

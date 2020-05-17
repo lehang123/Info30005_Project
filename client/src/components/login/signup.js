@@ -76,7 +76,7 @@ class Signup extends React.Component{
         this.setState({confirm: true})
     }
     render() {
-        this.props.loginBackground();
+        this.props.Background();
         if(this.state.confirm === false) {
             return (
                 <body className="signup">

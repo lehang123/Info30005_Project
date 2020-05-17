@@ -5,6 +5,7 @@ import LoginHeader from "./components/loginHeader";
 import DefaultHeader from "./components/defaultHeader";
 import DefaultHeader2 from "./components/defaultHeader2";
 import innerHeader from "./components/innerHeader";
+import Footer from "./components/footer";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
 import Forgot from "./components/login/forgot";
@@ -30,6 +31,8 @@ class App extends Component{
         this.defaultBackground = this.defaultBackground.bind(this);
         this.appointmentBackground = this.appointmentBackground.bind(this);
         this.vaccineBackground = this.vaccineBackground.bind(this);
+        this.patientBackground = this.patientBackground.bind(this);
+        this.facultiesBackground = this.facultiesBackground.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -57,6 +60,18 @@ class App extends Component{
         }
     }
 
+    patientBackground(){
+        if(this.state.isBackground !== 4){
+            this.setState({isBackground: 4})
+        }
+    }
+
+    facultiesBackground(){
+        if(this.state.isBackground !== 5){
+            this.setState({isBackground: 5})
+        }
+    }
+
     // Handle changes
     handleChange = (input,value) => {
         console.log(input)
@@ -78,6 +93,10 @@ class App extends Component{
             background = "AppointmentApp";
         if(this.state.isBackground === 3)
             background = "VaccinesApp";
+        if(this.state.isBackground === 4)
+            background = "PatientApp";
+        if(this.state.isBackground === 5)
+            background = "FacultiesApp";
         return (
             <Router>
                 <div className={background}>
@@ -96,26 +115,36 @@ class App extends Component{
                     </Switch>
                     <Switch>
                         <Route path="/" exact component=
-                            {() => <Home defaultBackground={this.defaultBackground}/>}/>
+                            {() => <Home Background={this.defaultBackground}/>}/>
                         <Route path="/login" exact render={props =>( <Login {...props}
-                            loginBackground={this.loginBackground} values={values} handleChange = {this.handleChange}/>
+                            Background={this.loginBackground} values={values} handleChange = {this.handleChange}/>
                         )}/>}/>
                         <Route path="/forgot" exact component=
-                            {() => <Forgot loginBackground={this.loginBackground}/>}/>
+                            {() => <Forgot Background={this.loginBackground}/>}/>
                         <Route path="/signup" exact component=
-                            {() => <Signup loginBackground={this.loginBackground}/>}/>
+                            {() => <Signup Background={this.loginBackground}/>}/>
                         <Route path="/profileID/appointment" exact component=
-                            {() => <Appointment appointmentBackground ={this.appointmentBackground}/>}/>
-                        <Route path='/aboutus' exact component={AboutUs}/>
+                            {() => <Appointment Background ={this.appointmentBackground}/>}/>
                         <Route path="/vaccines" exact component=
-                            {() => <Vaccines vaccineBackground = {this.vaccineBackground}/>}/>
+                            {() => <Vaccines Background = {this.vaccineBackground}/>}/>
                             <Route path="/vaccines/:id" component = {VaccinesID}/>
                         <Route path="/Faculties" exact component=
-                            {() => <Faculties defaultBackground = {this.defaultBackground}/>}/>
+                            {() => <Faculties Background = {this.facultiesBackground}/>}/>
                         <Route path="/Patients" exact component=
-                            {() => <Patients defaultBackground = {this.defaultBackground}/>}/>
+                            {() => <Patients Background = {this.patientBackground}/>}/>
                         <Route path="/appointment" exact component=
-                            {() => <Appointment patientInfo={this.state.patient} appointmentBackground ={this.appointmentBackground}/>}/>
+                            {() => <Appointment patientInfo={this.state.patient} Background ={this.appointmentBackground}/>}/>
+                        <Route path='/aboutus' exact component=
+                            {() => <AboutUs Background={this.defaultBackground}/>}/>
+                    </Switch>
+                    <Switch>
+                        <Route path="/" exact component={Footer}/>
+                        <Route path= '/patients' exact component={Footer}/>
+                        <Route path= '/faculties' exact component={Footer}/>
+                        <Route path= '/vaccines' exact component={Footer}/>
+                        <Route path="/vaccines/:id" component = {Footer}/>
+                        <Route path= '/aboutus' exact component={Footer}/>
+                        <Route path= '/profileID/appointment' exact component={Footer}/>
                     </Switch>
                 </div>
             </Router>
