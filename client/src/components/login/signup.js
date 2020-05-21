@@ -1,16 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Alert from "@material-ui/lab/Alert";
 
 
-function Alert(props) {
+function Message(props) {
     if (props.name === 0){
         return null
     }else if (props.name === 1){
-        return <div className="alert">Invalid Empty Input, Will Not Be Saved!</div>
+        return <div className="alert"><Alert severity="error">Invalid Empty Input!</Alert></div>
     }else if(props.name === 2) {
-        return <div className="alert">Invalid Date of Birth, Will Not Be Saved!</div>
+        return <div className="alert"><Alert severity="error">Invalid Date of Birth!</Alert></div>
     }else{
-        return <div className="alert">Invalid Input, Will Not Be Saved !</div>
+        return <div className="alert"><Alert severity="error">Invalid Input!</Alert></div>
     }
 }
 
@@ -93,8 +94,10 @@ class Signup extends React.Component{
 
         if(Username ==='' || Password ==='' || Firstname === '' || Lastname ==='' || Address==='' || Contact ===''
             || DoB ===''){
+            this.setState({confirm: false});
             this.setState({alert: 1});
         }else if (DoB.match(letters) || DoB.length !== 10 || DoB[4] !== '-' || DoB[7] !== '-'){
+            this.setState({confirm: false});
             this.setState({alert: 2})
         }else{
             this.setState({alert: 0});
@@ -105,7 +108,9 @@ class Signup extends React.Component{
         this.props.Background();
         if(this.state.confirm === false) {
             return (
-                <body className="signup">
+                <body>
+                <Message name={this.state.alert}/>
+                <div className="signup">
                 <h2>Create a New Account</h2>
                 <div className="input-container">
                     <input type="text" id="username" placeholder="Username or Email" required=""/>
@@ -140,13 +145,12 @@ class Signup extends React.Component{
                     <Link className="button" to='/login'> <button id="prev">Previous</button></Link>
                     <button onClick={this.collect_person}>Next</button>
                 </div>
+                </div>
                 </body>
             )
         }else{
             return(
-                <body>
-                <Alert name={this.state.alert}/>
-                <div className="confirm">
+                <body className="confirm">
                 <h2>Confirm Your Details</h2>
                 <div><b>User Name</b> : {this.state.username}</div>
                 <div><b>First Name</b> : {this.state.firstname}</div>
@@ -159,7 +163,6 @@ class Signup extends React.Component{
                 <div id="btn-sign">
                     <button id="prev" onClick={this.prev}>Back</button>
                     <Link className="button" to='/login'><button onClick={this.sendData}>Confirm</button></Link>
-                </div>
                 </div>
                 </body>
             )
