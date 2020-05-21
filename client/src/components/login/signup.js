@@ -9,7 +9,7 @@ function Message(props) {
     }else if (props.name === 1){
         return <div className="alert"><Alert severity="error">Invalid Empty Input!</Alert></div>
     }else if(props.name === 2) {
-        return <div className="alert"><Alert severity="error">Invalid Date of Birth!</Alert></div>
+        return <div className="alert"><Alert severity="error">Invalid Date of Birth! Please Enter Format : YYYY-MM-DD</Alert></div>
     }else{
         return <div className="alert"><Alert severity="error">Invalid Input!</Alert></div>
     }
