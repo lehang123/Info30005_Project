@@ -40,20 +40,12 @@ class Login extends React.Component{
         }).then((data) => {
             console.log(this.props)
             if("_id" in data){
-                // this.setState({authorization: true})
-                // console.log(1)
-                // this.setState({patient : data})
+                
                 this.props.handleChange("patient", data)
                 this.props.handleChange("isLoggedIn", true)
 
                 const {history} = this.props
                 history.push('/')
-
-                // this.setState({patient_id : data._id})
-                // this.props.handleChange("patient_id", data._id)
-                // // this.handleChange("isLoggedIn", true)
-                // // let history = useHistory()
-                // //history.push("/")
 
             }
             console.log(JSON.stringify(data))

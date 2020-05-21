@@ -1,8 +1,10 @@
+require('dotenv').config()
 const Patient = require('../models/patient');
 const mongoose = require('mongoose');
 /* bcrypt to protect users' password, 
   this is an async library */
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 /* get all the user listing on databse*/
 const getUsers = (req, res, next)=>{
@@ -83,6 +85,10 @@ const loginUser = (req, res, next)=>{
         if (result){
           try{
             if(await bcrypt.compare(req.body.password, result.password)){
+              // Authenticate user
+              // const user = {id: result._id}
+              
+              // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
               res.status(200).json(result)
             }else{
               res.send('login failed')
@@ -103,6 +109,7 @@ const loginUser = (req, res, next)=>{
         }
       })
 }
+
 
 module.exports = {
     signupUser,

@@ -18,15 +18,18 @@ import AboutUs from "./components/aboutus/AboutUs";
 import Appointment from "./components/appointment/Appointment";
 
 
+const InitialState = {
+    isBackground : 0,
+    patient: {},
+    isLoggedIn: false
+};
 class App extends Component{
 
     constructor(props){
         super(props);
-        this.state = {
-            isBackground : 0,
-            patient: {},
-            isLoggedIn: false
-        };
+
+        this.state = localStorage.getItem("appState") ? JSON.parse(localStorage.getItem("appState")) : InitialState;
+       
         this.loginBackground = this.loginBackground.bind(this);
         this.defaultBackground = this.defaultBackground.bind(this);
         this.appointmentBackground = this.appointmentBackground.bind(this);
@@ -34,6 +37,16 @@ class App extends Component{
         this.patientBackground = this.patientBackground.bind(this);
         this.facultiesBackground = this.facultiesBackground.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.componentCleanup = this.componentCleanup.bind(this);
+    }
+
+    componentCleanup() { // this will hold the cleanup code
+        console.log("app is unmounted")
+        localStorage.setItem('appState', JSON.stringify(this.state));
+    }
+
+    componentWillMount(){
+        window.addEventListener('beforeunload', this.componentCleanup);
     }
 
     defaultBackground(){
@@ -74,15 +87,18 @@ class App extends Component{
 
     // Handle changes
     handleChange = (input,value) => {
-        console.log(input)
-        // console.log(value)
         this.setState({[input]: value})
+    }
+
+    componentWillUnmount() {
+        // Remember state for the next mount
+        this.componentCleanup();
+        window.removeEventListener('beforeunload', this.componentCleanup); 
     }
 
     render(){
         const {patient, isLoggedIn} = this.state
         const values = {patient, isLoggedIn}
-
 
         let background = "DefaultApp";
         if(this.state.isBackground === 0)
@@ -101,7 +117,7 @@ class App extends Component{
             <Router>
                 <div className={background}>
                     <Switch>
-                        <Route path="/" exact component={DefaultHeader}/>
+                        <Route path="/" exact component={() => <DefaultHeader  values={values} handleChange = {this.handleChange} />}/>
                         <Route path= '/appointment' exact component={DefaultHeader2}/>
                         <Route path= '/patients' exact component={DefaultHeader2}/>
                         <Route path= '/faculties' exact component={DefaultHeader2}/>
