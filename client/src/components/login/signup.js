@@ -1,6 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+function Alert(props) {
+    if (props.name === 0){
+        return null
+    }else if (props.name === 1){
+        return <div className="alert">Invalid Empty Input, Will Not Be Saved!</div>
+    }
+    else{
+        return <div className="alert">Invalid Input, Will Not Be Saved !</div>
+    }
+}
+
 class Signup extends React.Component{
     constructor(props) {
         super(props);
@@ -13,7 +24,8 @@ class Signup extends React.Component{
             contact: "",
             gender: "",
             birthday: "",
-            confirm: false
+            confirm: false,
+            alert: 0,
         };
         this.collect_person = this.collect_person.bind(this);
         this.prev = this.prev.bind(this);
@@ -35,7 +47,7 @@ class Signup extends React.Component{
             contact: this.state.contact,
             gender: this.state.gender,
             birthday: this.state.birthday,
-        }
+        };
         fetch(url, {
             method: "POST",
             headers: {
@@ -73,7 +85,14 @@ class Signup extends React.Component{
         this.setState({gender: Gender});
         this.setState({birthday: DoB});
 
-        this.setState({confirm: true})
+        this.setState({confirm: true});
+
+        if(Username ==='' || Password ==='' || Firstname === '' || Lastname ==='' || Address==='' || Contact ===''
+            || DoB ===''){
+            this.setState({alert: 1});
+        }else{
+            this.setState({alert: 0});
+        }
     }
     render() {
         this.props.Background();
@@ -118,7 +137,9 @@ class Signup extends React.Component{
             )
         }else{
             return(
-                <body className="confirm">
+                <body>
+                <Alert name={this.state.alert}/>
+                <div className="confirm">
                 <h2>Confirm Your Details</h2>
                 <div><b>User Name</b> : {this.state.username}</div>
                 <div><b>First Name</b> : {this.state.firstname}</div>
@@ -131,6 +152,7 @@ class Signup extends React.Component{
                 <div id="btn-sign">
                     <button id="prev" onClick={this.prev}>Back</button>
                     <Link className="button" to='/login'><button onClick={this.sendData}>Confirm</button></Link>
+                </div>
                 </div>
                 </body>
             )

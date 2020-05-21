@@ -262,8 +262,8 @@ footer{
 }
 
 #btn-log{
-  margin-top: 0px;
-  margin-left: 0px;
+  margin-top: 0;
+  margin-left: 0;
 }
 
 .login button{
@@ -282,6 +282,15 @@ footer{
   color: white;
   text-decoration: none;
   cursor: context-menu;
+}
+
+.alert{
+  position:relative;
+  font-size: 20px;
+  width: 33.5vw;
+  left: 35%;
+  background: white;
+  color: red;
 }
 
 .signup{
@@ -321,7 +330,7 @@ footer{
  }
 
 #btn-sign{
-  margin-top: 0px;
+  margin-top: 0;
   margin-left: 20px;
 }
 
@@ -345,7 +354,7 @@ footer{
 }
 
 .confirm button{
-  margin-top: 0px;
+  margin-top: 0;
   margin-left: 20px;
   margin-bottom: 0;
   font-size: 20px;
@@ -372,7 +381,7 @@ footer{
 
 .selection div{
   font-weight: normal;
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .selection *{
