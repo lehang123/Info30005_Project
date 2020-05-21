@@ -1,13 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+
 function Alert(props) {
     if (props.name === 0){
         return null
     }else if (props.name === 1){
         return <div className="alert">Invalid Empty Input, Will Not Be Saved!</div>
-    }
-    else{
+    }else if(props.name === 2) {
+        return <div className="alert">Invalid Date of Birth, Will Not Be Saved!</div>
+    }else{
         return <div className="alert">Invalid Input, Will Not Be Saved !</div>
     }
 }
@@ -87,14 +89,19 @@ class Signup extends React.Component{
 
         this.setState({confirm: true});
 
+        const letters = /^[A-Za-z]+$/;
+
         if(Username ==='' || Password ==='' || Firstname === '' || Lastname ==='' || Address==='' || Contact ===''
             || DoB ===''){
             this.setState({alert: 1});
+        }else if (DoB.match(letters) || DoB.length !== 10 || DoB[4] !== '-' || DoB[7] !== '-'){
+            this.setState({alert: 2})
         }else{
             this.setState({alert: 0});
         }
     }
-    render() {
+
+    render(){
         this.props.Background();
         if(this.state.confirm === false) {
             return (
