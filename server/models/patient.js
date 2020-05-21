@@ -12,7 +12,6 @@ var mongoose = require('mongoose');
     birthday*: to identify the patients' age
     gender*: record a patient's gender
     contact*: the contact information(i.e. phone number)
-    emergency_contact: the emergency contact information
     heatlh_detail: history of health for the patient
     location: where the patient live (town)
     vaccine_history: vaccine history of patient
