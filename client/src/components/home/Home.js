@@ -18,7 +18,7 @@ function Home(props){
                 <div className="home-article">
                     <div className="home-background1">
                         <div className="home-container">
-                            <h1><u>Patients</u></h1><br/>
+                            <h1>Patients</h1><br/>
                             <h2>To see if your at risk of contracting an infectious disease
                             or know whether your insurance provider covers this service</h2><br/><br/>
                             <Link className="home-links" to= '/patients'>Read More</Link>
@@ -26,7 +26,7 @@ function Home(props){
                     </div>
                     <div className="home-background2">
                         <div className="home-container">
-                            <h1><u>Faculties</u></h1><br/>
+                            <h1>Faculties</h1><br/>
                             <h2>Browse our facilities and check whether there is an
                             available hospital nearby to book your immunization.</h2><br/><br/>
                             <Link style={{color: 'black'}} className="home-links" to= '/faculties'>Read More</Link>
@@ -34,7 +34,7 @@ function Home(props){
                     </div>
                     <div className="home-background3">
                         <div className="home-container">
-                            <h1><u>Vaccines</u></h1><br/>
+                            <h1>Vaccines</h1><br/>
                             <h2>Educate yourself with the list of available vaccines and diseases.
                             Protect yourself and your family from sickness.</h2><br/><br/>
                             <Link className="home-links" to= '/vaccines'>Read More</Link>
