@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import LoginHeader from "./components/loginHeader";
 import DefaultHeader from "./components/defaultHeader";
-import DefaultHeader2 from "./components/defaultHeader2";
 import innerHeader from "./components/innerHeader";
 import Footer from "./components/footer";
 import Login from "./components/login/login";
@@ -117,17 +116,11 @@ class App extends Component{
             <Router>
                 <div className={background}>
                     <Switch>
-                        <Route path="/" exact component={() => <DefaultHeader  values={values} handleChange = {this.handleChange} />}/>
-                        <Route path= '/appointment' exact component={DefaultHeader2}/>
-                        <Route path= '/patients' exact component={DefaultHeader2}/>
-                        <Route path= '/faculties' exact component={DefaultHeader2}/>
-                        <Route path= '/vaccines' exact component={DefaultHeader2}/>
-                        <Route path="/vaccines/:id" component = {DefaultHeader2}/>
-                        <Route path= '/aboutus' exact component={DefaultHeader2}/>
                         <Route path="/login" exact component={LoginHeader}/>
                         <Route path= '/signup' exact component={LoginHeader}/>
                         <Route path= '/forgot' exact component={LoginHeader}/>
                         <Route path= '/profileID/appointment' exact component={innerHeader}/>
+                        <Route path="/" render={props =>( <DefaultHeader {...props} values={values} handleChange = {this.handleChange}/>)}/>
                     </Switch>
                     <Switch>
                         <Route path="/" exact component=
