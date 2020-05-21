@@ -197,7 +197,10 @@ footer{
 }
 
 .home-links:Hover{
+  box-shadow: 5px 10px black;
   text-decoration: underline;
+  background: #094183;
+  color: black;
 }
 
 
