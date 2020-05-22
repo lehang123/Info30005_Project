@@ -15,6 +15,7 @@ import Vaccines from "./components/vaccines/Vaccines";
 import VaccinesID from "./components/vaccines/VaccinesID";
 import AboutUs from "./components/aboutus/AboutUs";
 import Appointment from "./components/appointment/Appointment";
+import Profile from "./components/profile/Profile"
 
 
 const InitialState = {
@@ -145,6 +146,8 @@ class App extends Component{
                             {() => <Appointment patientInfo={this.state.patient} Background ={this.appointmentBackground}/>}/>
                         <Route path='/aboutus'  component=
                             {() => <AboutUs Background={this.defaultBackground}/>}/>
+                        <Route path='/profile'  component=
+                        {() => <Profile Background={this.defaultBackground}/>}/>
                     </Switch>
                     <Switch>
                         <Route path="/"  component={Footer}/>
