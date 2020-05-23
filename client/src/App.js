@@ -115,16 +115,16 @@ class App extends Component{
         return (
             <Router>
                 <div className={background}>
-                    <Switch>
+                    {/* <Switch>
                         <Route path="/login"  component={LoginHeader}/>
                         <Route path= '/signup'  component={LoginHeader}/>
                         <Route path= '/forgot'  component={LoginHeader}/>
                         <Route path= '/profileID/appointment' exact component={innerHeader}/>
                         <Route path="/" render={props =>( <DefaultHeader {...props} values={values} handleChange = {this.handleChange}/>)}/>
-                    </Switch>
+                    </Switch> */}
                     <Switch>
-                        <Route path="/" exact component=
-                            {() => <Home Background={this.defaultBackground}/>}/>
+                        <Route path="/" render =
+                        {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>
                         <Route path="/login"  render={props =>( <Login {...props}
                             Background={this.loginBackground} values={values} handleChange = {this.handleChange}/>
                         )}/>}/>
@@ -146,15 +146,7 @@ class App extends Component{
                         <Route path='/aboutus'  component=
                             {() => <AboutUs Background={this.defaultBackground}/>}/>
                     </Switch>
-                    <Switch>
-                        <Route path="/"  component={Footer}/>
-                        {/* <Route path= '/patients' exact component={Footer}/>
-                        <Route path= '/faculties' exact component={Footer}/>
-                        <Route path= '/vaccines' exact component={Footer}/>
-                        <Route path="/vaccines/:id" component = {Footer}/>
-                        <Route path= '/aboutus' exact component={Footer}/>
-                        <Route path= '/profileID/appointment' exact component={Footer}/> */}
-                    </Switch>
+                    <Footer></Footer>
                 </div>
             </Router>
         );  

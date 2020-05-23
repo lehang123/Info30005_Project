@@ -39,8 +39,9 @@ function Vaccines(props) {
   const classes = useStyles()
 
   useEffect(() => {
-    console.log('')
+
     fetchItems();
+
   }, []);
 
 
