@@ -116,38 +116,42 @@ class App extends Component{
         return (
             <Router>
                 <div className={background}>
-                    {/* <Switch>
-                        <Route path="/login"  component={LoginHeader}/>
-                        <Route path= '/signup'  component={LoginHeader}/>
-                        <Route path= '/forgot'  component={LoginHeader}/>
-                        <Route path= '/profileID/appointment' exact component={innerHeader}/>
-                        <Route path="/" render={props =>( <DefaultHeader {...props} values={values} handleChange = {this.handleChange}/>)}/>
-                    </Switch> */}
                     <Switch>
-                        <Route path="/" render =
-                        {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>
-                        <Route path="/login"  render={props =>( <Login {...props}
+                        <Route path="/login"  component={props =>( <Login {...props}
                             Background={this.loginBackground} values={values} handleChange = {this.handleChange}/>
                         )}/>}/>
+
                         <Route path="/forgot"  component=
                             {() => <Forgot Background={this.loginBackground}/>}/>
+
                         <Route path="/signup"  component=
                             {() => <Signup Background={this.loginBackground}/>}/>
-                        <Route path="/profileID/appointment"  component=
-                            {() => <Appointment Background ={this.appointmentBackground}/>}/>
-                        <Route path="/vaccines"  component=
-                            {() => <Vaccines Background = {this.vaccineBackground}/>}/>
-                            <Route path="/vaccines/:id" component = {VaccinesID}/>
+
+                        {/* <Route path="/profileID/appointment"  component=
+                            {() => <Appointment Background ={this.appointmentBackground}/>}/> */}
+
+                        <Route path="/vaccines/:id" component = {VaccinesID}/>
+
+                        <Route path="/vaccines"  excat component=
+                            {() => <Vaccines values={values} Background = {this.vaccineBackground}/>}/>
+
                         <Route path="/Faculties"  component=
-                            {() => <Faculties Background = {this.facultiesBackground}/>}/>
+                            {() => <Faculties values={values} Background = {this.facultiesBackground}/>}/>
+
                         <Route path="/Patients"  component=
-                            {() => <Patients Background = {this.patientBackground}/>}/>
+                            {() => <Patients values={values} Background = {this.patientBackground}/>}/>
+
                         <Route path="/appointment"  component=
-                            {() => <Appointment patientInfo={this.state.patient} Background ={this.appointmentBackground}/>}/>
+                            {() => <Appointment values={values} Background ={this.appointmentBackground}/>}/>
+
                         <Route path='/aboutus'  component=
-                            {() => <AboutUs Background={this.defaultBackground}/>}/>
+                            {() => <AboutUs values={values} Background={this.defaultBackground}/>}/>
+
                         <Route path='/profile'  component=
-                        {() => <Profile Background={this.defaultBackground}/>}/>
+                        {() => <Profile values={values} Background={this.defaultBackground}/>}/>
+
+                        <Route path="/" component =
+                        {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>
                     </Switch>
                     <Footer></Footer>
                 </div>

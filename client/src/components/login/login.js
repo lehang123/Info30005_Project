@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import Header from "./Header";
 
 class Login extends React.Component{
 
@@ -40,7 +41,7 @@ class Login extends React.Component{
         }).then((data) => {
             console.log(this.props)
             if("_id" in data){
-                
+
                 this.props.handleChange("patient", data)
                 this.props.handleChange("isLoggedIn", true)
 
@@ -57,6 +58,8 @@ class Login extends React.Component{
     render() {
         this.props.Background();
         return (
+            <div>
+            <Header/>
             <body className="login">
             <div>Sign In</div>
             <div className="input-container">
@@ -73,6 +76,7 @@ class Login extends React.Component{
                 <Link className="sublink" to='/signup'>Sign Up</Link>
             </div>
             </body>
+            </div>
         )
     }
 }

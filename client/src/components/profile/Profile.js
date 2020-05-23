@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import './Profile.css'
+import Header from './Header'
 
 export class Profile extends Component {
     render() {
         this.props.Background();
         return (
             <div>
+            <Header {...this.props}/>
             <div class="container emp-profile">
             <form method="post">
                 <div class="row">

@@ -2,13 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Gavi from '../../images/Gavi.png'
 import OpenIdeo from '../../images/OpenIdeo.png'
-import DefaultHeader from '../defaultHeader';
+import Header from './Header';
 
 function Home(props){
     props.Background()
     return(
         <div>
-            <DefaultHeader {...props}/>
+            <Header {...props}/>
             <body className="home">
                 <h2> IN COLLABORATION WITH:</h2>
                 <div className="collaboration">

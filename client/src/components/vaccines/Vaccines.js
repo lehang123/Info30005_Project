@@ -13,6 +13,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Rating from '@material-ui/lab/Rating';
+import Header from './Header'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -59,51 +60,59 @@ function Vaccines(props) {
   }
 
   return (
-    <Container className="white-container" container maxWidth>
-        <Container maxWidth="lg">
-            <Grid container spacing={2}>
-                {items.map(item => ([0].map((value) => (
-                <Grid key={value} xs={4}  item>
-                    <Card className={classes.root}>
-                        <CardActionArea>
-                            <Link to={`/vaccines/${item.id}`} className = {classes.link}>
-                                <CardMedia
-                                className={classes.media}
-                                image={require("../../images/test_tube.png")}
-                                title="test_tube"
-                                />
-                                <CardContent>
-                                    <Grid container alignItems="center">
-                                        <Grid item xs>
-                                            <Typography gutterBottom variant="h5" color="textPrimary" align='left'>
-                                                {item.name}
-                                            </Typography>
+    <div>
+        <Header {...props}/>
+        <Container className="white-container" container maxWidth>
+            <Container maxWidth="lg">
+                <Grid container spacing={2}>
+                    {items.map(item => ([0].map((value) => (
+                    <Grid key={value} xs={4}  item>
+                        <Card className={classes.root}>
+                            <CardActionArea>
+                                <Link to={ {
+                                     pathname:`/vaccines/${item.id}`,
+                                     state: {
+                                                values : props.values
+                                            }
+                                        }} className = {classes.link} >
+                                    <CardMedia
+                                    className={classes.media}
+                                    image={require("../../images/test_tube.png")}
+                                    title="test_tube"
+                                    />
+                                    <CardContent>
+                                        <Grid container alignItems="center">
+                                            <Grid item xs>
+                                                <Typography gutterBottom variant="h5" color="textPrimary" align='left'>
+                                                    {item.name}
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item>
+                                                <Typography gutterBottom variant="h5" className = {classes.typography} align='right'>
+                                                    {item.cost.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                                                </Typography>
+                                            </Grid>
                                         </Grid>
-                                        <Grid item>
-                                            <Typography gutterBottom variant="h5" className = {classes.typography} align='right'>
-                                                {item.cost.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Prevent Disease : {item.prevent_disease}
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Allergies : {item.alleries}
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Recommend : 
-                                    </Typography>
-                                    <Rating name="read-only" value={item.recommend_star} readOnly />
-                                </CardContent>
-                            </Link>
-                        </CardActionArea>
-                    </Card>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Prevent Disease : {item.prevent_disease}
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Allergies : {item.alleries}
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Recommend : 
+                                        </Typography>
+                                        <Rating name="read-only" value={item.recommend_star} readOnly />
+                                    </CardContent>
+                                </Link>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    ))))}
                 </Grid>
-                ))))}
-            </Grid>
+            </Container>
         </Container>
-    </Container>
+    </div>
   );
 }
 
