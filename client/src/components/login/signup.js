@@ -1,5 +1,19 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Alert from "@material-ui/lab/Alert";
+
+
+function Message(props) {
+    if (props.name === 0){
+        return null
+    }else if (props.name === 1){
+        return <div className="alert"><Alert severity="error">Invalid Empty Input!</Alert></div>
+    }else if(props.name === 2) {
+        return <div className="alert"><Alert severity="error">Invalid Date of Birth! Please Enter Format : YYYY-MM-DD</Alert></div>
+    }else{
+        return <div className="alert"><Alert severity="error">Invalid Input!</Alert></div>
+    }
+}
 
 class Signup extends React.Component{
     constructor(props) {
@@ -13,7 +27,8 @@ class Signup extends React.Component{
             contact: "",
             gender: "",
             birthday: "",
-            confirm: false
+            confirm: false,
+            alert: 0,
         };
         this.collect_person = this.collect_person.bind(this);
         this.prev = this.prev.bind(this);
@@ -35,7 +50,7 @@ class Signup extends React.Component{
             contact: this.state.contact,
             gender: this.state.gender,
             birthday: this.state.birthday,
-        }
+        };
         fetch(url, {
             method: "POST",
             headers: {
@@ -73,13 +88,29 @@ class Signup extends React.Component{
         this.setState({gender: Gender});
         this.setState({birthday: DoB});
 
-        this.setState({confirm: true})
+        this.setState({confirm: true});
+
+        const letters = /^[A-Za-z]+$/;
+
+        if(Username ==='' || Password ==='' || Firstname === '' || Lastname ==='' || Address==='' || Contact ===''
+            || DoB ===''){
+            this.setState({confirm: false});
+            this.setState({alert: 1});
+        }else if (DoB.match(letters) || DoB.length !== 10 || DoB[4] !== '-' || DoB[7] !== '-'){
+            this.setState({confirm: false});
+            this.setState({alert: 2})
+        }else{
+            this.setState({alert: 0});
+        }
     }
-    render() {
+
+    render(){
         this.props.Background();
         if(this.state.confirm === false) {
             return (
-                <body className="signup">
+                <body>
+                <Message name={this.state.alert}/>
+                <div className="signup">
                 <h2>Create a New Account</h2>
                 <div className="input-container">
                     <input type="text" id="username" placeholder="Username or Email" required=""/>
@@ -113,6 +144,7 @@ class Signup extends React.Component{
                 <div id="btn-sign">
                     <Link className="button" to='/login'> <button id="prev">Previous</button></Link>
                     <button onClick={this.collect_person}>Next</button>
+                </div>
                 </div>
                 </body>
             )
