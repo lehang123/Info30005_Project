@@ -123,6 +123,7 @@ function Faculties(props) {
                 </Grid>
             </Container>
         </Container>
+        <Footer></Footer>
     </div>
   );
 }

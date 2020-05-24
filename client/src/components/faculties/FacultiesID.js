@@ -20,18 +20,23 @@ class FacultiesID extends Component{
             .then(res=>res.json())
             .then(hospital=> {
                 console.log(hospital)
-                this.setState({item : hospital})
+                this.setState({item : hospital.hospital})
             })
     }
 
     render() {
+        const {values} = this.props.location.state
         return (
-            <div className="white-container">
+            <div>
+                <Header values = {values}/>
+                <div className="white-container">
                 <h1>Hospital Detail</h1>
-                <h2>name: {this.state.item.name}</h2>
-                <h2>location: {this.state.item.location}</h2>
-                <h2>language: {this.state.item.language}</h2>
+                    <h2>name: {this.state.item.name}</h2>
+                    <h2>location: {this.state.item.location}</h2>
+                    <h2>language: {this.state.item.language}</h2>
+                </div>
             </div>
+            
         )
     }
 
