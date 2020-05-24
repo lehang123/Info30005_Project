@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header'
+import Footer from '../Footer'
 
 function Faculties(props){
     props.Background()
@@ -17,6 +18,7 @@ function Faculties(props){
             <h2>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2>
             <h2> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa</h2>
         </div>
+        <Footer></Footer>
         </div>
     )
 }

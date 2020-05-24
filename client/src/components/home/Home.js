@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import Gavi from '../../images/Gavi.png'
 import OpenIdeo from '../../images/OpenIdeo.png'
 import Header from './Header';
+import Footer from '../Footer';
 
 function Home(props){
     props.Background()
@@ -44,6 +45,7 @@ function Home(props){
                     </div>
                 </div>
             </body>
+            <Footer></Footer>
         </div>
     )
 }

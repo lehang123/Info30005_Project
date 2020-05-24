@@ -13,7 +13,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Rating from '@material-ui/lab/Rating';
-import Header from './Header'
+import Header from './Header';
+import Footer from '../Footer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -112,6 +113,7 @@ function Vaccines(props) {
                 </Grid>
             </Container>
         </Container>
+        <Footer></Footer>
     </div>
   );
 }

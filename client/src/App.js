@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
-import Footer from "./components/footer";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
 import Forgot from "./components/login/forgot";
@@ -12,7 +11,7 @@ import Vaccines from "./components/vaccines/Vaccines";
 import VaccinesID from "./components/vaccines/VaccinesID";
 import AboutUs from "./components/aboutus/AboutUs";
 import Appointment from "./components/appointment/Appointment";
-import Profile from "./components/profile/Profile"
+import Profile from "./components/profile/Profile";
 
 
 const InitialState = {
@@ -150,7 +149,6 @@ class App extends Component{
                         <Route path="/" component =
                         {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>
                     </Switch>
-                    <Footer></Footer>
                 </div>
             </Router>
         );  
