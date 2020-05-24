@@ -34,6 +34,38 @@ footer{
   align-items: center;
 }
 
+/* SPECIFIC ID TAGS*/
+#logo{
+  margin-left: 100px;
+  width : 150px;
+  height : 150px;
+}
+
+#login-link{
+  font-size: 20px;
+  font-weight: normal;
+}
+
+#login-link .sublink{
+  text-decoration: none;
+  color:black;
+  margin: 10px;
+}
+
+#login-link .sublink:hover{
+  text-decoration: underline;
+}
+
+#DoB{
+  width: 12.5vw;
+  height: 1.5vw;
+  border-radius: 0;
+}
+
+#prev{
+  background: slategray;
+}
+
 /* BACKGROUND TAGS */
 .DefaultApp{
   zoom: 90%;
@@ -403,39 +435,6 @@ footer{
   font-size: 18px;
 }
 
-/* SPECIFIC ID*/
-#logo{
-  margin-left: 100px;
-  width : 150px;
-  height : 150px;
-}
-
-#login-link{
-  font-size: 20px;
-  font-weight: normal;
-}
-
-#login-link .sublink{
-  text-decoration: none;
-  color:black;
-  margin: 10px;
-}
-
-#login-link .sublink:hover{
-  text-decoration: underline;
-}
-
-#DoB{
-  width: 12.5vw;
-  height: 1.5vw;
-  border-radius: 0;
-}
-
-#prev{
-  background: slategray;
-}
-
-
 /* VACCINES TAGS*/
 .itemTitle{
   background: white;
@@ -480,4 +479,18 @@ footer{
 .content-table tbody tr.colorful-row {
   font-weight: bold;
   color: #009879;
+}
+
+/* PATIENTS TAGS*/
+.patients-review{
+  display: grid;
+  grid-template-columns: 40% 60%;
+  height: 50vh;
+}
+
+.patients-review2{
+  display: grid;
+  grid-template-columns: 60% 40%;
+  height: 50vh;
+  background: deepskyblue;
 }
