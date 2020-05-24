@@ -1,14 +1,24 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import Alert from "@material-ui/lab/Alert";
+
+function Message(props) {
+    if (props.name){
+        return null
+    }else{
+        return <div className="alert"><Alert severity="error">Invalid Username or Password !</Alert></div>
+    }
+}
+
 
 class Login extends React.Component{
 
     constructor(props) {
         super(props);
-        // this.state = {
-        //     authorization :false,
-        //     patient : {}
-        // };
+        this.state = {
+             authorization :true,
+             patient : {}
+        };
         this.collect_login = this.collect_login.bind(this);
         // const {values: {patient_id, isLoggedIn}, handleChange} = this.props;
         // this.handleChange = handleChange.bind(this)
@@ -52,12 +62,15 @@ class Login extends React.Component{
         }).catch(err=>{
             console.log(err);
         })
+        this.setState({authorization: false})
     }
 
     render() {
         this.props.Background();
         return (
-            <body className="login">
+            <body>
+            <Message name={this.state.authorization}/>
+            <div className="login">
             <div>Sign In</div>
             <div className="input-container">
                 <input type="text" id="username" placeholder="Username or Email" required=""/>
@@ -71,6 +84,7 @@ class Login extends React.Component{
             <div id="login-link">
                 <Link className="sublink" to='/forgot'>Forgot Password</Link> /
                 <Link className="sublink" to='/signup'>Sign Up</Link>
+            </div>
             </div>
             </body>
         )
