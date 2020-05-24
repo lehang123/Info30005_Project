@@ -147,7 +147,7 @@ class App extends Component{
                             {() => <AboutUs values={values} Background={this.defaultBackground}/>}/>
 
                         <Route path='/profile'  component=
-                        {() => <Profile values={values} Background={this.defaultBackground}/>}/>
+                        {() => <Profile values={values} Background={this.loginBackground}/>}/>
 
                         <Route path="/" component =
                         {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>
