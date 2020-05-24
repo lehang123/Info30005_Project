@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Profile.css'
-import Header from './Header'
+import Header from '../Header'
 import {Link} from 'react-router-dom'
 
 export class Profile extends Component {

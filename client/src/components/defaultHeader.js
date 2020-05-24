@@ -3,8 +3,6 @@ import Logo from '../images/LogoDarkBlue.png'
 import {Link} from 'react-router-dom';
 
 class DefaultHeader extends Component{
-
-
     render(){
         return (
             <header>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Alert from "@material-ui/lab/Alert";
-import Header from './Header';
+import Header from "../loginHeader";
 
 
 function Message(props) {

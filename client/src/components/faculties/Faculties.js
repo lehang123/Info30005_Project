@@ -14,7 +14,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Rating from '@material-ui/lab/Rating';
 import Header from './Header'
-import Footer from '../Footer'
+import Footer from '../footer'
 
 const useStyles = makeStyles((theme) => ({
     root: {
