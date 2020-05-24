@@ -5,11 +5,21 @@ import OpenIdeo from '../../images/OpenIdeo.png'
 import Header from './Header';
 import Footer from '../Footer';
 
+
 function Home(props){
     props.Background()
     return(
         <div>
             <Header {...props}/>
+            <div>
+                <article className="message">
+                    <h3 style={{textDecoration: "underline"}}>
+                        ACCELERATING IMMUNISATION COVERAGE FOR RAPID URBANISATION CHALLENGE</h3>
+                    <h1>AFRAID OF THE CORONAVIRUS?</h1>
+                    <h1>NEED IMMUNIZATION?</h1>
+                    <h1>REGISTER NOW</h1>
+                </article>
+            </div>
             <body className="home">
                 <h2> IN COLLABORATION WITH:</h2>
                 <div className="collaboration">
