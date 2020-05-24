@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 
 /* GLOBAL TAGS*/
+body{
+  background-color: transparent;
+}
+
 .white-container{
   background: white;
   align-items: center;
@@ -106,6 +110,7 @@
 
 .links:Hover{
   box-shadow: 4px 4px #094183;
+  text-decoration: none;
   color:#094183;
 }
 
@@ -145,6 +150,7 @@ footer{
   padding-top: 100px;
   font-family: 'Roboto', sans-serif;
   padding-bottom: 100px;
+  text-align: center;
 }
 
 .home-article{
@@ -172,6 +178,7 @@ footer{
 }
 
 .home-background2{
+  color: black;
   border-radius: 20px;
   opacity: 0.9;
   background:  linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url("images/facilities.png") center/cover no-repeat;
@@ -188,7 +195,7 @@ footer{
   border-style: solid;
   border-radius: 20px;
   padding: 5px;
-  margin-left: 8.5vw;
+  margin-left: 7vw;
   font-size: 22px;
   text-decoration: none;
   color: whitesmoke;

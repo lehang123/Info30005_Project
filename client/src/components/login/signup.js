@@ -109,9 +109,8 @@ class Signup extends React.Component{
         this.props.Background();
         if(this.state.confirm === false) {
             return (
-                <div>
-                <Header/>
                 <body>
+                <Header/>
                 <Message name={this.state.alert}/>
                 <div className="signup">
                 <h2>Create a New Account</h2>
@@ -150,11 +149,12 @@ class Signup extends React.Component{
                 </div>
                 </div>
                 </body>
-                </div>
             )
         }else{
             return(
-                <body className="confirm">
+                <body>
+                <Header/>
+                <div className="confirm">
                 <h2>Confirm Your Details</h2>
                 <div><b>User Name</b> : {this.state.username}</div>
                 <div><b>First Name</b> : {this.state.firstname}</div>
@@ -167,6 +167,7 @@ class Signup extends React.Component{
                 <div id="btn-sign">
                     <button id="prev" onClick={this.prev}>Back</button>
                     <Link className="button" to='/login'><button onClick={this.sendData}>Confirm</button></Link>
+                </div>
                 </div>
                 </body>
             )

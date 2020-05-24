@@ -1,6 +1,7 @@
-body{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-}
+/* DO NOT EVER DECLARE GLOBAL TAGS FOR A SPECIFIC PAGE, IT WILL AFFECT THE WHOLE WEBSITE */
+/* USE CLASS OR ID*/
+
+
 .emp-profile{
     padding: 3%;
     margin-top: 3%;
