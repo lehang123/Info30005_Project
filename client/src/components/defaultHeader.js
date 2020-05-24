@@ -19,7 +19,7 @@ class DefaultHeader extends Component{
                         {this.props.values.isLoggedIn ? 
                                         (<Link className="links" to= '/profile'>Profile</Link>):
                                         (<Link className="links" to= '/login'>Login</Link>)}
-                        <Link className="links" to= '/profile'>Profile</Link>
+                        <Link className="links" to= '/login'>Login</Link>
                     </div>
                 </div>
                 {this.props.location.pathname !== '/' ? null:
