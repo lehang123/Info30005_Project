@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Header from './Header';
-import Footer from '../footer';
+import Footer from '../Footer';
 
 
 class FacultiesID extends Component{
