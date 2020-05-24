@@ -4,6 +4,22 @@
 /* GLOBAL TAGS*/
 body{
   background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+footer{
+  height:100px;
+  font-size: 20px;
+  padding: 0 100px;
+  background-color: #094183;
+  display:grid;
+  grid-template-columns: 76% 24%;
+  grid-gap: 4em;
+  align-items: center;
+  color:white ;
+  font-family: 'Roboto', sans-serif;
 }
 
 .white-container{
@@ -27,7 +43,7 @@ body{
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
   background:linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),  url('images/forest.jpg') no-repeat;
-  background-size: 100% 29%;
+  background-size: 100% 30%;
 }
 
 .LoginApp {
@@ -116,24 +132,11 @@ body{
 
 .message{
   font-size: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
   text-shadow: 0 0 1px;
   margin-left: 300px;
   text-align: start;
   color: white;
-}
-
-footer{
-  height:100px;
-  font-size: 20px;
-  padding: 0 100px;
-  background-color: #094183;
-  display:grid;
-  grid-template-columns: 76% 24%;
-  grid-gap: 4em;
-  align-items: center;
-  color:white ;
-  font-family: 'Roboto', sans-serif;
 }
 
 .footer{
@@ -293,6 +296,9 @@ footer{
 
 .alert{
   position:relative;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
   font-size: 20px;
   width: 33.5vw;
   left: 35%;
@@ -315,7 +321,7 @@ footer{
 }
 
 .signup div{
-  margin-left: 50px;
+  margin-left: 60px;
   justify-self: start;
 }
 
@@ -339,7 +345,7 @@ footer{
 
 #btn-sign{
   margin-top: 0;
-  margin-left: 20px;
+  margin-left: 2vw;
 }
 
 .confirm{
@@ -420,7 +426,9 @@ footer{
 }
 
 #DoB{
-  width: 12vw;
+  width: 12.5vw;
+  height: 1.5vw;
+  border-radius: 0;
 }
 
 #prev{

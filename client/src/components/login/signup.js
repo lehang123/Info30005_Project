@@ -113,7 +113,7 @@ class Signup extends React.Component{
                 <Header/>
                 <Message name={this.state.alert}/>
                 <div className="signup">
-                <h2>Create a New Account</h2>
+                <h2 style={{marginTop: '20px'}}>Create a New Account</h2>
                 <div className="input-container">
                     <input type="text" id="username" placeholder="Username or Email" required=""/>
                 </div>
@@ -155,7 +155,7 @@ class Signup extends React.Component{
                 <body>
                 <Header/>
                 <div className="confirm">
-                <h2>Confirm Your Details</h2>
+                <h2 style={{marginTop: '20px'}}>Confirm Your Details</h2>
                 <div><b>User Name</b> : {this.state.username}</div>
                 <div><b>First Name</b> : {this.state.firstname}</div>
                 <div><b>Last Name</b> : {this.state.lastname}</div>
