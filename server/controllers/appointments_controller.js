@@ -95,7 +95,13 @@ const getAppointmentsByPatientId = (req, res, next)=>{
                 const hospital = await Hospital.findOne({_id: appointment.hospital_id}).exec();
                 const vaccine = await Vaccine.findOne({_id: appointment.vaccine_id}).exec();
                 
-                news.push({patient: patient, hospital: hospital, vaccine: vaccine, date_time: appointment.date_time})
+                news.push({
+                     id: appointment._id,
+                     patient: patient,
+                     hospital: hospital,
+                     vaccine: vaccine,
+                     date_time: appointment.date_time,
+                     days_to_appoinment: countDaysToAppointment(appointment.date_time)})
             }))
             
             res.status(200).json(news)
@@ -105,8 +111,21 @@ const getAppointmentsByPatientId = (req, res, next)=>{
     })
 }
   
+// todo : update appointments
+const countDaysToAppointment = (appointmentDate)=>{
+    let today = new Date()
+    date = new Date(appointmentDate)
+    let elapsed = date.getTime() - today.getTime()
 
-// todo : update appointments, get appointments by a sepcific paitent
+    if (elapsed<0){
+        return "appoinment date passed"
+    }else{
+        let days_left = Math.floor(elapsed /(1000*60*60*24));
+
+        return days_left.toString() + " left"
+    }
+
+}
 
 module.exports = {
     postAppointments,

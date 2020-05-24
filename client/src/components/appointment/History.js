@@ -79,12 +79,14 @@ export class History extends Component {
             .then(result => {
                 this.setState({ appointments: result })
                 var rows = result.map(item => {
+                    var id = item.id
                     var patient = this.props.values.firstName
                     var vaccine = item.vaccine.name
                     var hospital = item.hospital.name
                     var hospitalLocation = item.hospital.location
                     var datetime = item.date_time
-                    return {patient, vaccine, hospital, hospitalLocation, datetime}});
+                    var days_to_appoinment = item.days_to_appoinment
+                    return {id, patient, vaccine, hospital, hospitalLocation, datetime, days_to_appoinment}});
                 this.setState({rows: rows})
             }).catch(err => { console.log(err) })
     }
@@ -126,11 +128,12 @@ export class History extends Component {
                                 <StyledTableCell align="right">Hospital</StyledTableCell>
                                 <StyledTableCell align="right">Hospital Location</StyledTableCell>
                                 <StyledTableCell align="right">Date Time</StyledTableCell>
+                                <StyledTableCell align="right">Days Left</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {this.state.rows.map((row) => (
-                                <StyledTableRow key={row.patient}>
+                                <StyledTableRow key={row.id}>
                                     <StyledTableCell component="th" scope="row">
                                         {row.patient}
                                     </StyledTableCell>
@@ -138,6 +141,7 @@ export class History extends Component {
                                     <StyledTableCell align="right">{row.hospital}</StyledTableCell>
                                     <StyledTableCell align="right">{row.hospitalLocation}</StyledTableCell>
                                     <StyledTableCell align="right">{row.datetime}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.days_to_appoinment}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>

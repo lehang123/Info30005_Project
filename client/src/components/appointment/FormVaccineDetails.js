@@ -32,8 +32,17 @@ export class FormVaccineDetails extends Component {
     }
 
     componentDidMount() {
-        this.fetchItem("vaccines");
-        this.fetchItem("hospitals");
+        this.mounted = true;
+
+        if (this.mounted){
+            this.fetchItem("vaccines");
+            this.fetchItem("hospitals");
+        }
+
+    }
+
+    componentWillUnmount(){
+        this.mounted = false;
     }
 
     getHospForVacc(vacc_id) {

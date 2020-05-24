@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Container, Grid, Typography, Divider} from '@material-ui/core';
+import Header from './Header';
+import Footer from '../Footer';
 
 class VaccinesID extends Component{
     constructor(props) {
@@ -111,27 +113,32 @@ class VaccinesID extends Component{
 //     }
 
     render() {
+        const {values} = this.props.location.state
         return (
-            <div className ="itemTitle">
-                <br/><br/><br/>
-                <h1> Vaccine Details </h1>
-                <br/>
-                <table class = "content-table">
-                    <thead>
-                        <tr>Summary Of this Vaccine</tr> 
-                    </thead>
-                    <tbody>
-                        <tr>Name : {this.state.item.name} </tr>
-                        <tr class = "colorful-row">Allergies : {this.state.item.alleries}</tr>
-                        <tr>Prevent Disease : {this.state.item.prevent_disease}</tr>
-                        <tr class = "colorful-row">Good For Groups:{this.state.item.good_for_groups}</tr>
-                        <tr>Available At :{this.state.item.available_at}</tr>
-                        <tr class = "colorful-row">Cost :{this.state.item.cost}</tr>
-                        <tr>Stocks :{this.state.item.stocks}</tr>
-                        <tr class = "colorful-row">Recommend Star :{this.state.item.recommend_star}</tr>
-                        <tr>Manufacturer :{this.state.item.manufacturer}</tr>
-                    </tbody>
-                </table>
+            <div>
+                <Header values = {values}/>
+                <div className ="itemTitle">
+                    <br/><br/><br/>
+                    <h1> Vaccine Details </h1>
+                    <br/>
+                    <table class = "content-table">
+                        <thead>
+                            <tr>Summary Of this Vaccine</tr> 
+                        </thead>
+                        <tbody>
+                            <tr>Name : {this.state.item.name} </tr>
+                            <tr class = "colorful-row">Allergies : {this.state.item.alleries}</tr>
+                            <tr>Prevent Disease : {this.state.item.prevent_disease}</tr>
+                            <tr class = "colorful-row">Good For Groups:{this.state.item.good_for_groups}</tr>
+                            <tr>Available At :{this.state.item.available_at}</tr>
+                            <tr class = "colorful-row">Cost :{this.state.item.cost}</tr>
+                            <tr>Stocks :{this.state.item.stocks}</tr>
+                            <tr class = "colorful-row">Recommend Star :{this.state.item.recommend_star}</tr>
+                            <tr>Manufacturer :{this.state.item.manufacturer}</tr>
+                        </tbody>
+                    </table>
+                </div>
+                <Footer></Footer>
             </div>
         )
     }

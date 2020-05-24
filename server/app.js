@@ -4,6 +4,7 @@ var pug = require('pug');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const regeneratorRuntime = require("regenerator-runtime");
 const cors = require('cors');
 
 // server url

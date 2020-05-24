@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Alert from "@material-ui/lab/Alert";
+import Header from './Header';
 
 
 function Message(props) {
@@ -108,6 +109,8 @@ class Signup extends React.Component{
         this.props.Background();
         if(this.state.confirm === false) {
             return (
+                <div>
+                <Header/>
                 <body>
                 <Message name={this.state.alert}/>
                 <div className="signup">
@@ -147,6 +150,7 @@ class Signup extends React.Component{
                 </div>
                 </div>
                 </body>
+                </div>
             )
         }else{
             return(
