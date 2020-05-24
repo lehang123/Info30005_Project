@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import Gavi from '../../images/Gavi.png'
 import OpenIdeo from '../../images/OpenIdeo.png'
 import Header from './Header';
+import Footer from '../Footer';
 
 function Home(props){
     props.Background()
@@ -10,13 +11,13 @@ function Home(props){
         <div>
             <Header {...props}/>
             <body className="home">
-                <h2> IN COLLABORATION WITH:</h2>
+                <h2><center> IN COLLABORATION WITH:</center></h2>
                 <div className="collaboration">
                     <img className="image" alt="Gavi Logo" src={Gavi}></img>
                     <img className="image" alt="OpenIdeo Logo" src={OpenIdeo}></img>
                 </div>
-                <h4>In response to the growing threat of pandemic disease</h4>
-                <h4>our team have take the challenge to provide solutions to those affected</h4>
+                <h4><center>In response to the growing threat of pandemic disease</center></h4>
+                <h4><center>our team have take the challenge to provide solutions to those affected</center></h4>
                 <div className="home-article">
                     <div className="home-background1">
                         <div className="home-container">
@@ -44,6 +45,7 @@ function Home(props){
                     </div>
                 </div>
             </body>
+            <Footer></Footer>
         </div>
     )
 }

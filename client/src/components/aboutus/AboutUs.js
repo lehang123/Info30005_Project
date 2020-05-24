@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import Footer from '../Footer'
 
 function AboutUs(props){
     props.Background();
@@ -26,6 +27,7 @@ function AboutUs(props){
                     <br/><br/>e-mail: teamVaccine@outlook.com
                 </h4>
             </div>
+            <Footer></Footer>
         </div>
     );
 }

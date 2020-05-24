@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
-import Footer from "./components/footer";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
 import Forgot from "./components/login/forgot";
@@ -10,9 +9,10 @@ import Patients from "./components/patients/Patients";
 import Faculties from "./components/faculties/Faculties";
 import Vaccines from "./components/vaccines/Vaccines";
 import VaccinesID from "./components/vaccines/VaccinesID";
+import FacultiesID from "./components/faculties/FacultiesID";
 import AboutUs from "./components/aboutus/AboutUs";
 import Appointment from "./components/appointment/Appointment";
-import Profile from "./components/profile/Profile"
+import Profile from "./components/profile/Profile";
 
 
 const InitialState = {
@@ -132,6 +132,8 @@ class App extends Component{
                         <Route path="/vaccines"  excat component=
                             {() => <Vaccines values={values} Background = {this.vaccineBackground}/>}/>
 
+                        <Route path="/hospitals/:id" component = {FacultiesID}/>
+
                         <Route path="/Faculties"  component=
                             {() => <Faculties values={values} Background = {this.facultiesBackground}/>}/>
 
@@ -150,7 +152,6 @@ class App extends Component{
                         <Route path="/" component =
                         {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>
                     </Switch>
-                    <Footer></Footer>
                 </div>
             </Router>
         );  
