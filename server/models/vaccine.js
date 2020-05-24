@@ -14,7 +14,6 @@ var mongoose = require('mongoose');
     recommend_star* : how recommended this vaccine to the public
     manufacturer* : manufacturer of the vaccine
     image_url : url that lead to the vaccine image
-
 */
 
 const vaccineSchema = mongoose.Schema({

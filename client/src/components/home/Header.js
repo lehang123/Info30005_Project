@@ -16,7 +16,7 @@ class Header extends Component{
                         <Link className="links" to= '/vaccines'>Vaccines</Link>
                         <Link className="links" to= '/aboutus'>About Us</Link>
                         {this.props.values.isLoggedIn ? 
-                                        (<Link className="links" to= '/login'>Profile</Link>):
+                                        (<Link className="links" to= '/login'>Login</Link>):
                                         (<Link className="links" to= '/login'>Login</Link>)}
                         <Link className="links" to= '/profile'>Profile</Link>
                     </div>

@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
-import LoginHeader from "./components/loginHeader";
-import DefaultHeader from "./components/defaultHeader";
-import innerHeader from "./components/innerHeader";
 import Footer from "./components/footer";
 import Login from "./components/login/login";
 import Signup from "./components/login/signup";
@@ -142,7 +139,7 @@ class App extends Component{
                             {() => <Patients values={values} Background = {this.patientBackground}/>}/>
 
                         <Route path="/appointment"  component=
-                            {() => <Appointment values={values} Background ={this.appointmentBackground}/>}/>
+                            {props => <Appointment {...props} values={values} Background ={this.appointmentBackground}/>}/>
 
                         <Route path='/aboutus'  component=
                             {() => <AboutUs values={values} Background={this.defaultBackground}/>}/>

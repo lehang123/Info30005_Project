@@ -7,21 +7,30 @@ import History from './History'
 import Header from './Header'
 
 export class Appointment extends Component {
-    state = {
-        step: 1,
-        patientID: this.props.values.patient._id,
-        firstName: this.props.values.patient.first_name,
-        lastName: this.props.values.patient.last_name,
-        email: this.props.values.patient.account_id,
-        phone: this.props.values.patient.contact,
-        address: this.props.values.patient.location,
-        vaccine: '',
-        hospital: '',
-        datetime: '',
-        allergy: this.props.values.patient.allergy,
-        emergencyContactName: this.props.values.patient.emergency_contact_name,
-        emergencyContactPhone: this.props.values.patient.emergency_contact_number,
-        medicareNumber: this.props.values.patient.medicare,
+    
+
+    constructor(props){
+        super(props);
+        if (props.location.state){
+            this.step = this.props.location.state.step
+        }
+
+        this.state = {
+            step: this.step ? this.step: 1,
+            patientID: this.props.values.patient._id,
+            firstName: this.props.values.patient.first_name,
+            lastName: this.props.values.patient.last_name,
+            email: this.props.values.patient.account_id,
+            phone: this.props.values.patient.contact,
+            address: this.props.values.patient.location,
+            vaccine: '',
+            hospital: '',
+            datetime: '',
+            allergy: this.props.values.patient.allergy,
+            emergencyContactName: this.props.values.patient.emergency_contact_name,
+            emergencyContactPhone: this.props.values.patient.emergency_contact_number,
+            medicareNumber: this.props.values.patient.medicare,
+        }
     }
 
     // proceed to next step

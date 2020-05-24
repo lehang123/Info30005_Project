@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
 import './Profile.css'
 import Header from './Header'
+import {Link} from 'react-router-dom'
 
 export class Profile extends Component {
+
+    constructor(props){
+        super(props);
+        this.parseDate = this.parseDate.bind(this)
+    }
+
+
+   parseDate = (iso_date) => {
+        const date = new Date(iso_date)
+        return date.toDateString()
+   }
+
     render() {
         this.props.Background();
         return (
@@ -23,12 +36,17 @@ export class Profile extends Component {
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        Lehan Gong
+                                        {this.props.values.patient.first_name + ' ' + this.props.values.patient.last_name}
                                     </h5>
                                     <h6>
                                         Some description ......
                                     </h6>
-                                    <p class="proile-rating"><a href="./appointment" class="proile-rating">See All Appointments</a><br/></p>
+                                    <p class="proile-rating"><Link class="proile-rating" to={ {
+                                     pathname:'/appointment',
+                                     state: {
+                                                step : 5
+                                            }
+                                        }} >See All Appointments</Link><br/></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Basic</a>
@@ -47,9 +65,9 @@ export class Profile extends Component {
                     <div class="col-md-4">
                         <div class="profile-work">
                             <label>ACCOUNT ID</label>
-                            <p>123456</p>
+                            <p>{this.props.values.patient.account_id}</p>
                             <label>USERNAME</label>
-                            <p>lehang@student.unimelb.edu.au</p><br/>
+                            <p>{this.props.values.patient.username}</p><br/>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -60,7 +78,7 @@ export class Profile extends Component {
                                                 <label>First Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Lehan</p>
+                                                <p>{this.props.values.patient.first_name}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -68,7 +86,7 @@ export class Profile extends Component {
                                                 <label>Last Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Gong</p>
+                                            <p>{this.props.values.patient.last_name}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -76,7 +94,7 @@ export class Profile extends Component {
                                                 <label>Gender</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Male</p>
+                                            <p>{this.props.values.patient.gender}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -84,7 +102,7 @@ export class Profile extends Component {
                                                 <label>Birthday</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>1990/01/01</p>
+                                                <p>{this.parseDate(this.props.values.patient.birthday)}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -92,7 +110,7 @@ export class Profile extends Component {
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                                <p>{this.props.values.patient.contact}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -100,7 +118,7 @@ export class Profile extends Component {
                                                 <label>Address</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>abc abc abc abc</p>
+                                                <p>{this.props.values.patient.location ? this.props.values.patient.location: 'Unapplicable'}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -108,7 +126,7 @@ export class Profile extends Component {
                                                 <label>Language</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>English</p>
+                                                <p>{this.props.values.patient.language ? this.props.values.patient.language: 'Unapplicable'}</p>
                                             </div>
                                         </div>
                             </div>
@@ -118,7 +136,8 @@ export class Profile extends Component {
                                                 <label>Medicare</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>12345678</p>
+                                                <p>{this.props.values.patient.medicare ? 
+                                                this.props.values.patient.medicare: 'Unapplicable'}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -126,7 +145,8 @@ export class Profile extends Component {
                                                 <label>Allergies</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>qwert</p>
+                                                <p>{this.props.values.patient.allergy ? 
+                                                this.props.values.patient.allergy: 'Unapplicable'}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,7 +154,8 @@ export class Profile extends Component {
                                                 <label>Emergency Contact Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Anthony</p>
+                                                <p>{this.props.values.patient.emergency_contact_name ? 
+                                                this.props.values.patient.emergency_contact_name: 'Unapplicable'}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -142,7 +163,8 @@ export class Profile extends Component {
                                                 <label>Emergency Contact Number</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>1234567890</p>
+                                                <p>{this.props.values.patient.emergency_contact_number ? 
+                                                this.props.values.patient.emergency_contact_number: 'Unapplicable'}</p>
                                             </div>
                                         </div>
                                         
