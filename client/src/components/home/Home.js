@@ -31,7 +31,7 @@ function Home(props){
                         <div className="home-container">
                             <h2>Faculties</h2><br/>
                             <h3>Browse our facilities and check whether there is an
-                            available hospital nearby to book your time with us.</h3><br/><br/>
+                            available hospital nearby to book your appointment with us.</h3><br/><br/>
                             <Link style={{color: 'black'}} className="home-links" to= '/faculties'>Read More</Link>
                         </div>
                     </div>

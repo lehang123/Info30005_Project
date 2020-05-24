@@ -192,10 +192,11 @@ footer{
 }
 
 .home-links{
+  position: relative;
+  left: 7vw;
   border-style: solid;
   border-radius: 20px;
   padding: 5px;
-  margin-left: 7vw;
   font-size: 22px;
   text-decoration: none;
   color: whitesmoke;
