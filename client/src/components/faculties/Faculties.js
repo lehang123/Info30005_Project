@@ -82,7 +82,6 @@ function Faculties(props) {
   return (
     <div>
         <Header {...props}/>
-<<<<<<< HEAD
         <Container className="white-container" container maxWidth>
             <Container maxWidth="lg">
                 <Grid container spacing={2}>
@@ -126,21 +125,5 @@ function Faculties(props) {
         </Container>
     </div>
   );
-=======
-        <div className="white-container">
-            <h2>Faculties</h2>
-            <h2>CONTENT WILL STRETCH BACKGROUND TO CORRECT SIZE</h2>
-            <h2>THIS IS A STATIC PAGE</h2>
-            <h2>DO NOT CHANGE</h2>
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-            <h2>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2>
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-            <h2>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2>
-            <h2> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa</h2>
-        </div>
-        <Footer></Footer>
-        </div>
-    )
->>>>>>> bfabd704e300f41163d39d864c844a3941712c45
 }
 export default Faculties
