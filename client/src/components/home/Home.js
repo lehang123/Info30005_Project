@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Gavi from '../../images/Gavi.png'
 import OpenIdeo from '../../images/OpenIdeo.png'
-import Header from '../defaultHeader';
+import Header from './Header';
 import Footer from '../footer';
 
 function Home(props){

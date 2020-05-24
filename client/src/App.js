@@ -124,9 +124,6 @@ class App extends Component{
                         <Route path="/signup"  component=
                             {() => <Signup Background={this.loginBackground}/>}/>
 
-                        {/* <Route path="/profileID/appointment"  component=
-                            {() => <Appointment Background ={this.appointmentBackground}/>}/> */}
-
                         <Route path="/vaccines/:id" component = {VaccinesID}/>
 
                         <Route path="/vaccines"  excat component=
@@ -148,6 +145,7 @@ class App extends Component{
 
                         <Route path='/profile'  component=
                         {() => <Profile values={values} Background={this.loginBackground}/>}/>
+                        
                         <Route path="/" component =
                         {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>
                     </Switch>

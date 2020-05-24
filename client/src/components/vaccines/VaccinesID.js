@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Container, Grid, Typography, Divider} from '@material-ui/core';
-import Header from '../Header';
+import Header from './Header';
 import Footer from '../footer';
 
 class VaccinesID extends Component{

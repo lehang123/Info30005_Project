@@ -4,7 +4,7 @@ import FormVaccineDetails from './FormVaccineDetails'
 import Confirm from './Confirm'
 import Success from './Success'
 import History from './History'
-import Header from '../Header'
+import Header from './Header'
 
 export class Appointment extends Component {
     

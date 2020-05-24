@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import React from "react";
-import Header from "../loginHeader";
+import Header from "./Header";
 
 
 class Forgot extends React.Component{
