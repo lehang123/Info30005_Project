@@ -10,15 +10,15 @@ function Patients(props){
             <div className="white-container2">
                 <article className="patients-review">
                     <div>img</div>
-                    <div>text</div>
+                    <div>"Loren Ipsum"</div>
                 </article>
                 <article className="patients-review2">
-                    <div>text</div>
+                    <div>"Loren Ipsum"</div>
                     <div>img</div>
                 </article>
                 <article className="patients-review">
                     <div>img</div>
-                    <div>text</div>
+                    <div>"Loren Ipsum"</div>
                 </article>
             </div>
             <Footer></Footer>

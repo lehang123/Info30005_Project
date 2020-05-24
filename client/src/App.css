@@ -486,6 +486,7 @@ footer{
   display: grid;
   grid-template-columns: 40% 60%;
   height: 50vh;
+  align-items: center;
 }
 
 .patients-review2{
@@ -493,4 +494,5 @@ footer{
   grid-template-columns: 60% 40%;
   height: 50vh;
   background: deepskyblue;
+  align-items: center;
 }
