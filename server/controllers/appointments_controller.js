@@ -88,7 +88,6 @@ const getAppointmentsByPatientId = (req, res, next)=>{
     .exec()
     .then(async doc =>{
         if (doc){
-
             var news = []
             await Promise.all(doc.map(async appointment => {
                 const patient = await Patient.findOne({_id: appointment.patient_id}).exec();
@@ -103,33 +102,51 @@ const getAppointmentsByPatientId = (req, res, next)=>{
                      date_time: appointment.date_time,
                      days_to_appoinment: countDaysToAppointment(appointment.date_time)})
             }))
-            
-            res.status(200).json(news)
+            if (news.length == 0){
+                res.status(404).json({ message: "No valid entry found for provided patientId" })
+            }else{
+                res.status(200).json(news)
+            }
+
           }else {
             res.status(404).json({ message: "No valid entry found for provided patientId" })
           }
+    }).catch(err=>{
+        const error_msg = 'Get Appointment by paitent ID Error : ' + err.message
+        console.log(error_msg)
+        res.status(500).json({
+            err_msg: error_msg
+        })
     })
 }
   
 // todo : update appointments
 const countDaysToAppointment = (appointmentDate)=>{
+
     let today = new Date()
     date = new Date(appointmentDate)
+    if (!isValidDate(date)){
+        throw new TypeError ("this is not vaild date")
+    }
     let elapsed = date.getTime() - today.getTime()
 
     if (elapsed<0){
         return "appoinment date passed"
     }else{
-        let days_left = Math.floor(elapsed /(1000*60*60*24));
+        let days_left = Math.ceil(elapsed /(1000*60*60*24));
 
-        return days_left.toString() + " left"
+        return days_left.toString() + " days left"
     }
-
 }
+
+function isValidDate(d) {
+    return d instanceof Date && !isNaN(d);
+  }
 
 module.exports = {
     postAppointments,
     deleteAppointments,
     getAppointments,
-    getAppointmentsByPatientId
+    getAppointmentsByPatientId,
+    countDaysToAppointment
 }

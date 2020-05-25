@@ -20,9 +20,9 @@ class FacultiesID extends Component{
         }
         fetch(`${url}/${this.props.match.params.id}`)
             .then(res=>res.json())
-            .then(hospital=> {
-                console.log(hospital)
-                this.setState({item : hospital.hospital})
+            .then(doc=> {
+                console.log(doc)
+                this.setState({item : doc.hospital})
             })
     }
 
