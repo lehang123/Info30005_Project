@@ -13,6 +13,7 @@ import FacultiesID from "./components/faculties/FacultiesID";
 import AboutUs from "./components/aboutus/AboutUs";
 import Appointment from "./components/appointment/Appointment";
 import Profile from "./components/profile/Profile";
+import Edit from "./components/profile/Edit";
 
 
 const InitialState = {
@@ -145,6 +146,9 @@ class App extends Component{
 
                         <Route path='/profile'  component=
                         {() => <Profile values={values} Background={this.loginBackground}/>}/>
+                        
+                        <Route path='/edit'  component=
+                            {props => <Edit {...props} values={values} Background ={this.loginBackground}/>}/>
                         
                         <Route path="/" component =
                         {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>
