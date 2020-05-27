@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Profile.css'
+import languages from './languages.json'
 import Header from './Header'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField'
@@ -15,6 +16,10 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
 
 // NEED TO LINK TO DATABASE
 
@@ -23,6 +28,8 @@ export class Edit extends Component {
     constructor(props){
         super(props);
         this.parseDate = this.parseDate.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
 
         this.state = {
             firstName: this.props.values.patient.first_name,
@@ -43,19 +50,39 @@ export class Edit extends Component {
         }
     }
 
-
     parseDate = (iso_date) => {
         const date = new Date(iso_date)
         return date.toDateString()
     }
     
     handleChange = input => e => {
-    this.setState({[input]: e.target.value})
+        if (input === "language"){
+            this.setState({language: [...this.state.language, e.target.value]})
+        } else {
+        this.setState({[input]: e.target.value})}
+    }
+
+    // handleDelete = (chipToDelete) => {
+    //     this.setState({language: this.state.language.filter(function(item){
+    //         return item !== chipToDelete
+    //     })})
+    // }
+
+    handleDelete = chipToDelete => {
+        var array = [...this.state.language]; 
+        var index = array.indexOf(chipToDelete)
+        if (index !== -1) {
+            array.splice(index, 1);
+            this.setState({language: array});
+        }
     }
 
     render() {
         this.props.Background();
         const headerValues = this.props.values
+        let languageList = []
+        Object.keys(languages).forEach(key => languageList.push({name: key, value: languages[key]}))
+
         return (
             <div>
             {/* <Header {...this.props}/> */}
@@ -157,16 +184,36 @@ export class Edit extends Component {
                             defaultValue={this.state.medicareNumber}
                             style={styles.textField}
                         />
-                        <TextField
-                            hintText="Change Your Language"
-                            floatingLabelText="Language"
+                        <br></br>
+                        <br></br>
+                        <InputLabel id="language-select-label">Add Language</InputLabel>
+                        <Select
+                            labelId="language-select-label"
+                            id="language-select"
+                            value={this.state.language}
                             onChange={this.handleChange('language')}
-                            defaultValue={this.state.language}
-                            style={styles.textField}
-                        />
+                            style={styles.select}
+                        >
+                            {languageList.map(item => (<MenuItem value={item.value.name} style={styles.select}>{item.value.name}</MenuItem>))}
+                        </Select>
+                        <br></br>
+                        <br></br>
+                        <InputLabel>Manage Language</InputLabel>
+                        {this.state.language.map((item) => (
+                            // <li key={item}>
+                                <Chip
+                                label={item}
+                                onDelete = {()=>{this.handleDelete(item)}}
+                                style={styles.chip}
+                                />
+                            // </li>
+                            )
+                        )}
                         <br></br>
                         <br></br>
                     </Paper>
+                    <br></br>
+                    <br></br>
                     <RaisedButton
                             label="Cancel"
                             primary={true}
@@ -212,6 +259,15 @@ const styles = {
     link: {
         textDecoration: "none",
         color: "white"
+    },
+    select: {
+        width: 500
+    },
+    chip: {
+        margin: 4,
+        color: "white",
+        backgroundColor: "#00BCD4"
+        
     }
 }
 
