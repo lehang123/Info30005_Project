@@ -43,7 +43,7 @@ class App extends Component{
         localStorage.setItem('appState', JSON.stringify(this.state));
     }
 
-    componentWillMount(){
+    componentDidMount(){
         window.addEventListener('beforeunload', this.componentCleanup);
     }
 
@@ -148,7 +148,7 @@ class App extends Component{
                         {() => <Profile values={values} Background={this.loginBackground}/>}/>
                         
                         <Route path='/edit'  component=
-                            {props => <Edit {...props} values={values} Background ={this.loginBackground}/>}/>
+                            {props => <Edit {...props} values={values} handleAppChange = {this.handleChange} Background ={this.loginBackground}/>}/>
                         
                         <Route path="/" component =
                         {props =>( <Home {...props} values={values} handleChange = {this.handleChange} Background={this.defaultBackground}/>)}/>

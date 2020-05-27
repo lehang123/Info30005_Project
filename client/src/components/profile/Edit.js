@@ -168,6 +168,12 @@ export class Edit extends Component {
                         <br></br>
                     </Paper>
                     <RaisedButton
+                            label="Cancel"
+                            primary={true}
+                            style={styles.button}
+                            onClick={this.continue}
+                    />
+                    <RaisedButton
                             label="Save"
                             primary={true}
                             style={styles.button}
