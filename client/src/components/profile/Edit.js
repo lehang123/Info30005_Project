@@ -30,23 +30,21 @@ export class Edit extends Component {
         this.parseDate = this.parseDate.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.updateToDb = this.updateToDb.bind(this)
 
         this.state = {
-            firstName: this.props.values.patient.first_name,
-            lastName: this.props.values.patient.last_name,
-            gender: this.props.values.patient.gender,
-            birthday: this.props.values.patient.birthday,
-            email: this.props.values.patient.account_id,
-            phone: this.props.values.patient.contact,
-            address: this.props.values.patient.location,
-            vaccine: '',
-            hospital: '',
-            datetime: '',
-            allergy: this.props.values.patient.allergy,
-            emergencyContactName: this.props.values.patient.emergency_contact_name,
-            emergencyContactPhone: this.props.values.patient.emergency_contact_number,
-            medicareNumber: this.props.values.patient.medicare,
-            language: this.props.values.patient.language
+            first_name: this.props.values.patient.first_name ? this.props.values.patient.first_name:'',
+            last_name: this.props.values.patient.last_name ? this.props.values.patient.last_name:'',
+            username: this.props.values.patient.username ? this.props.values.patient.username:'',
+            gender: this.props.values.patient.gender ? this.props.values.patient.gender:'',
+            birthday: this.props.values.patient.birthday ? this.props.values.patient.birthday:'',
+            contact: this.props.values.patient.contact ? this.props.values.patient.contact:'',
+            location: this.props.values.patient.location ? this.props.values.patient.location:'',
+            allergy: this.props.values.patient.allergy ? this.props.values.patient.allergy:'',
+            emergency_contact_name: this.props.values.patient.emergency_contact_name ? this.props.values.patient.emergency_contact_name:'',
+            emergency_contact_number: this.props.values.patient.emergency_contact_number ? this.props.values.patient.emergency_contact_number:'',
+            medicare: this.props.values.patient.medicare ? this.props.values.patient.medicare:'',
+            language: this.props.values.patient.language ? this.props.values.patient.language:[]
         }
     }
 
@@ -58,6 +56,8 @@ export class Edit extends Component {
     handleChange = input => e => {
         if (input === "language"){
             this.setState({language: [...this.state.language, e.target.value]})
+        } else if (input === 'birthday'){
+            this.setState({birthday: new Date(e.target.value)})
         } else {
         this.setState({[input]: e.target.value})}
     }
@@ -75,6 +75,37 @@ export class Edit extends Component {
             array.splice(index, 1);
             this.setState({language: array});
         }
+    }
+
+    updateToDb = ()=>{
+        // update all the current state to db
+        // and change the app.js's patient information and redirct
+        var url = 'http://localhost:5000/api/users/' + this.props.values.patient._id
+        if (process.env.NODE_ENV === 'production') {
+            url = '/api/users/' + this.props.values.patient._id
+        }
+        fetch(url, {
+            method: "PATCH",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.state)
+            }).then(async (response) => {
+                if (response.status == 200){
+                    // update successfully
+                    console.log('hi, we success')
+                    let doc = await response.json()
+                    this.props.handleAppChange('patient', doc)
+                    const {history} = this.props
+                    history.push('/')
+
+                }else {
+                    // not really
+                    console.log('hi, you fail')
+
+                }
+            })
     }
 
     render() {
@@ -108,15 +139,15 @@ export class Edit extends Component {
                         <TextField
                             hintText = "Change Your First Name"
                             floatingLabelText = "First Name"
-                            onChange = {this.handleChange('firstName')}
-                            defaultValue = {this.state.firstName}
+                            onChange = {this.handleChange('first_name')}
+                            defaultValue = {this.state.first_name}
                             style = {styles.textField}
                         />
                         <TextField
                             hintText = "Change Your Last Name"
                             floatingLabelText = "Last Name"
-                            onChange = {this.handleChange('lastName')}
-                            defaultValue = {this.state.lastName}
+                            onChange = {this.handleChange('last_name')}
+                            defaultValue = {this.state.last_name}
                             style = {styles.textField}
                         />
                         <br></br>
@@ -129,45 +160,45 @@ export class Edit extends Component {
                             </RadioGroup>
                         </FormControl>
                         <TextField
+                            hintText = "Change Your Username"
+                            floatingLabelText = "Username"
+                            onChange = {this.handleChange('username')}
+                            defaultValue = {this.state.username}
+                            style = {styles.textField}
+                        />
+                        <TextField
                             hintText = "Change Your Birthday"
                             floatingLabelText = "Birthday"
                             onChange = {this.handleChange('birthday')}
-                            defaultValue = {this.state.birthday}
+                            defaultValue = {this.parseDate(this.state.birthday)}
                             style = {styles.textField}
                         />
                         <TextField
                             hintText = "Change Your Phone"
                             floatingLabelText = "Phone"
-                            onChange = {this.handleChange('phone')}
-                            defaultValue = {this.state.phone}
-                            style = {styles.textField}
-                        />
-                        <TextField
-                            hintText = "Change Your Email"
-                            floatingLabelText = "Email"
-                            onChange = {this.handleChange('email')}
-                            defaultValue = {this.state.email}
+                            onChange = {this.handleChange('contact')}
+                            defaultValue = {this.state.contact}
                             style = {styles.textField}
                         />
                         <TextField
                             hintText = "Change Your Address"
                             floatingLabelText = "Address"
-                            onChange = {this.handleChange('address')}
-                            defaultValue = {this.state.address}
+                            onChange = {this.handleChange('location')}
+                            defaultValue = {this.state.location}
                             style = {styles.textField}
                         />
                         <TextField
                             hintText = "Change Your Emergency Contact (Name)"
                             floatingLabelText = "Emergency Contact (Name)"
-                            onChange = {this.handleChange('emergencyContactName')}
-                            defaultValue = {this.state.emergencyContactName}
+                            onChange = {this.handleChange('emergency_contact_name')}
+                            defaultValue = {this.state.emergency_contact_name}
                             style = {styles.textField}
                         />
                         <TextField
                             hintText = "Change Your Emergency Contact (Phone)"
                             floatingLabelText = "Emergency Contact (Phone)"
-                            onChange = {this.handleChange('emergencyContactPhone')}
-                            defaultValue = {this.state.emergencyContactPhone}
+                            onChange = {this.handleChange('emergency_contact_number')}
+                            defaultValue = {this.state.emergency_contact_number}
                             style = {styles.textField}
                         />
                         <TextField
@@ -180,8 +211,8 @@ export class Edit extends Component {
                         <TextField
                             hintText="Change Your Medicare Numer (If Any)"
                             floatingLabelText="Medicare Numer (If Any)"
-                            onChange={this.handleChange('medicareNumber')}
-                            defaultValue={this.state.medicareNumber}
+                            onChange={this.handleChange('medicare')}
+                            defaultValue={this.state.medicare}
                             style={styles.textField}
                         />
                         <br></br>
@@ -219,12 +250,13 @@ export class Edit extends Component {
                             primary={true}
                             style={styles.button}
                             onClick={this.continue}
+                            href="./profile"
                     />
                     <RaisedButton
                             label="Save"
                             primary={true}
                             style={styles.button}
-                            onClick={this.continue}
+                            onClick={this.updateToDb}
                     />
                     <br></br>
                     <br></br>

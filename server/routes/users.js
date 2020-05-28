@@ -17,4 +17,9 @@ router.post('/login', (req, res, next)=>{
   usersController.loginUser(req, res, next)
 })
 
+router.patch('/:Id', (req, res, next)=>{
+  // update a user's information by it's id
+  usersController.updateUser(req, res, next)
+})
+
 module.exports = router;

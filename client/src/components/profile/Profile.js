@@ -8,12 +8,20 @@ export class Profile extends Component {
     constructor(props){
         super(props);
         this.parseDate = this.parseDate.bind(this)
+        this.signOut = this.signOut.bind(this)
     }
 
 
    parseDate = (iso_date) => {
         const date = new Date(iso_date)
         return date.toDateString()
+   }
+
+   signOut =  () => {
+        this.props.handleAppChange('isLoggedIn', false)
+        this.props.handleAppChange('patient', {})
+        const {history} = this.props
+        history.push('/')
    }
 
     render() {
@@ -68,7 +76,11 @@ export class Profile extends Component {
                             <label>ACCOUNT ID</label>
                             <p>{this.props.values.patient.account_id}</p>
                             <label>USERNAME</label>
-                            <p>{this.props.values.patient.username}</p><br/>
+                            <p>{this.props.values.patient.username}</p><br/>  
+                        </div>
+                        <div>
+                                <button class="profile-edit-btn"
+                                onClick = {this.signOut}>Sign out</button>
                         </div>
                     </div>
                     <div class="col-md-8">
