@@ -81,13 +81,13 @@ export class Appointment extends Component {
             return (
                 <div>
                 <Header values = {headerValues}/>
-                <div className="white-container2">
-                <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
+                <div className="white-container">
+                    <Dialog
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
                     <DialogTitle id="alert-dialog-title">{"Please Log In First"}</DialogTitle>
                     <DialogContent>
                     <DialogContentText id="alert-dialog-description">
