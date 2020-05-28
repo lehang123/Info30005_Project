@@ -35,6 +35,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const styles = {
+    link: { textDecoration: "none"},
+    div: {
+        minHeight: '100%',
+        position: 'relative'}
+}
+
 function Vaccines(props) {
   props.Background()
   const [items, setItems] = useState([])
@@ -70,12 +77,12 @@ function Vaccines(props) {
                     <Grid key={value} xs={4}  item>
                         <Card className={classes.root}>
                             <CardActionArea>
-                                <Link to={ {
+                                <Link style={styles.link} to={{
                                      pathname:`/vaccines/${item.id}`,
                                      state: {
                                                 values : props.values
                                             }
-                                        }} className = {classes.link} >
+                                        }}>
                                     <CardMedia
                                     className={classes.media}
                                     image={require("../../images/test_tube.png")}

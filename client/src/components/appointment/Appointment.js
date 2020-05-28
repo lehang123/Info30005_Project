@@ -5,6 +5,12 @@ import Confirm from './Confirm'
 import Success from './Success'
 import History from './History'
 import Header from './Header'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';  
 
 export class Appointment extends Component {
     
@@ -17,6 +23,7 @@ export class Appointment extends Component {
 
         this.state = {
             step: this.step ? this.step: 1,
+            open: true,
             patientID: this.props.values.patient._id,
             firstName: this.props.values.patient.first_name,
             lastName: this.props.values.patient.last_name,
@@ -58,6 +65,9 @@ export class Appointment extends Component {
         this.setState({[input]: e.target.value})
     }
 
+    handleClose = () => {
+        this.setState({open: false})
+    };
 
     render() {
         this.props.Background();
@@ -66,6 +76,38 @@ export class Appointment extends Component {
         const {patientID, firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber} = this.state
         const values = {patientID, firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber}
         const headerValues = this.props.values
+
+        if (!headerValues.isLoggedIn){
+            return (
+                <div>
+                <Header values = {headerValues}/>
+                <div className="white-container2">
+                <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Please Log In First"}</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        For better tracking of your appoitment, please login or create an account to access appointment page.
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.handleClose} style={styles.dialogColor}>
+                        Later
+                    </Button>
+                    <Button onClick={this.handleClose} style={styles.dialogColor} href = "./login">
+                        Login / Sign Up
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+                </div>
+                </div>
+            )
+        }
+
         switch(step){
             case 1:
                 return (
@@ -140,6 +182,12 @@ export class Appointment extends Component {
                 
             </div>
         )
+    }
+}
+
+const styles = {
+    dialogColor: {
+        color: "#00BCD4"
     }
 }
 
