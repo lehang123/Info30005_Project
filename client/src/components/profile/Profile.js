@@ -59,7 +59,7 @@ export class Profile extends Component {
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <button class="profile-edit-btn"><Link to= '/edit'>Edit Profile</Link></button>
+                        <Link to= '/edit'><button class="profile-edit-btn">Edit Profile</button></Link>
                     </div>
                 </div>
                 <div class="row">
