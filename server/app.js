@@ -1,17 +1,17 @@
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var pug = require('pug');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const regeneratorRuntime = require("regenerator-runtime");
 const cors = require('cors');
 
 // server url
 
 // db
 var mongoose = require("mongoose")
-var mongooseUrl =  "mongodb+srv://lehang:ap7NCXjKcPzLt3Ap@cluster0-xmtxf.mongodb.net/test?retryWrites=true&w=majority"
+var mongooseUrl = process.env.DATABASE_SECRECT_URL
 
 var apiRouter = require('./routes/api');
 
