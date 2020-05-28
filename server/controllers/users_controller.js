@@ -91,7 +91,7 @@ const loginUser = (req, res, next)=>{
               // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
               res.status(200).json(result)
             }else{
-              res.send('login failed')
+              res.status(500).send('login failed')
             }
           }catch(e){
             res.status(500).send('something wrong : ' + e.message)
@@ -110,9 +110,42 @@ const loginUser = (req, res, next)=>{
       })
 }
 
+/* update user's info by Id */
+const updateUser = (req, res, next)=>{
+  const id = req.params.Id;
+  Patient.updateOne({_id: id}, {$set :req.body})
+  .exec()
+  .then(result => {
+    console.log(result)
+    Patient.findOne({_id: id}, (err, result)=>{
+        if (err) {
+          res.status(500).json({
+            message: err.message
+          })
+        }else{
+          if (result){
+            res.status(200).json(result)
+          }else{
+            res.status(500).json({
+              message: 'Account does not exist'
+            })
+          }
+        }
+    })
+  })
+  .catch(err=>{// type error goes here
+    const error_msg = 'Update user by Id Error : ' + err.message
+    console.log(error_msg)
+    res.status(500).json({
+      err_msg: error_msg
+    })
+  })
+}
+
 
 module.exports = {
     signupUser,
     loginUser,
-    getUsers
+    getUsers,
+    updateUser
 }

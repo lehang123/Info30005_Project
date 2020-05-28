@@ -84,7 +84,7 @@ class App extends Component{
     }
 
     // Handle changes
-    handleChange = (input,value) => {
+    handleChange = (input, value) => {
         this.setState({[input]: value})
     }
 
@@ -145,7 +145,7 @@ class App extends Component{
                             {() => <AboutUs values={values} Background={this.defaultBackground}/>}/>
 
                         <Route path='/profile'  component=
-                        {() => <Profile values={values} Background={this.loginBackground}/>}/>
+                        {props => <Profile {...props} values={values} handleAppChange = {this.handleChange} Background={this.loginBackground}/>}/>
                         
                         <Route path='/edit'  component=
                             {props => <Edit {...props} values={values} handleAppChange = {this.handleChange} Background ={this.loginBackground}/>}/>
