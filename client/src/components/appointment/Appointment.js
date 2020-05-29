@@ -80,30 +80,30 @@ export class Appointment extends Component {
         if (!headerValues.isLoggedIn){
             return (
                 <div>
-                <Header values = {headerValues}/>
-                <div className="white-container">
-                    <Dialog
-                        open={this.state.open}
-                        onClose={this.handleClose}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
-                    >
-                    <DialogTitle id="alert-dialog-title">{"Please Log In First"}</DialogTitle>
-                    <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        For better tracking of your appoitment, please login or create an account to access appointment page.
-                    </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={this.handleClose} style={styles.dialogColor}>
-                        Later
-                    </Button>
-                    <Button onClick={this.handleClose} style={styles.dialogColor} href = "./login">
-                        Login / Sign Up
-                    </Button>
-                    </DialogActions>
-                </Dialog>
-                </div>
+                    <Header values = {headerValues}/>
+                    <div className="white-container">
+                        <Dialog
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">{"Please Log In First"}</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                For better tracking of your appoitment, please login or create an account to access appointment page.
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={this.handleClose} style={styles.dialogColor} href = './'>
+                                Later
+                            </Button>
+                            <Button onClick={this.handleClose} style={styles.dialogColor} href = "./login">
+                                Login / Sign Up
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
                 </div>
             )
         }

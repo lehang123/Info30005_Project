@@ -62,16 +62,18 @@ const signupUser = async (req, res, next)=>{
         patient.save().then(result => {
           console.log('stored successfully: ' + result);
           res.status(201).json({
-            message: 'Handled POST request to /signup',
-            createdPatient: patient
+            message: 'SignUp successfully!'
           })
         }).catch(err=>{
-          console.log(' user create error : ' + err.message)
-          // handle for duplicated username
-          res.status(500).json({
-            message: 'Something went wrong',
-            error_msg: err.message
-          })
+          if (err.name === 'MongoError' && err.code === 11000) {
+            res.status(500).json({
+              message: 'account_id already exists',
+            })
+          }else{
+            res.status(500).json({
+              message: 'Something went wrong, might be internet problem'
+            })
+          }
         });
       }catch(err){
         res.status(500).send('something went wrong : ' + err.message)
