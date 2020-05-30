@@ -12,6 +12,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -45,7 +46,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 const styles = {
     table: {
-        maxWidth: 1000,
+        maxWidth: 1500,
         margin: 'auto'
     },
     button: {
@@ -86,7 +87,20 @@ export class History extends Component {
                     var hospitalLocation = item.hospital.location
                     var datetime = item.date_time
                     var days_to_appoinment = item.days_to_appoinment
-                    return {id, patient, vaccine, hospital, hospitalLocation, datetime, days_to_appoinment}});
+                    var change_time_button = 
+                    <RaisedButton 
+                        label="Change Time"
+                        primary={true}
+                        onClick={this.continue}>
+                    </RaisedButton>
+                    var cancel_button = 
+                    <RaisedButton 
+                        label="Cancel"
+                        labelColor="white"
+                        backgroundColor="#e91e63"
+                        onClick={this.continue}>
+                    </RaisedButton>
+                    return {id, patient, vaccine, hospital, hospitalLocation, datetime, days_to_appoinment,change_time_button,cancel_button}});
                 this.setState({rows: rows})
             }).catch(err => { console.log(err) })
     }
@@ -129,6 +143,8 @@ export class History extends Component {
                                 <StyledTableCell align="right">Hospital Location</StyledTableCell>
                                 <StyledTableCell align="right">Date Time</StyledTableCell>
                                 <StyledTableCell align="right">Days Left</StyledTableCell>
+                                <StyledTableCell align="right">Change Time</StyledTableCell>
+                                <StyledTableCell align="right">Cancel Appointment</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -142,6 +158,8 @@ export class History extends Component {
                                     <StyledTableCell align="right">{row.hospitalLocation}</StyledTableCell>
                                     <StyledTableCell align="right">{row.datetime}</StyledTableCell>
                                     <StyledTableCell align="right">{row.days_to_appoinment}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.change_time_button}</StyledTableCell>
+                                    <StyledTableCell align="right">{row.cancel_button}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>
