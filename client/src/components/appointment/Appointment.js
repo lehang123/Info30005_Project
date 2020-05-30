@@ -4,6 +4,7 @@ import FormVaccineDetails from './FormVaccineDetails'
 import Confirm from './Confirm'
 import Success from './Success'
 import History from './History'
+import ChangeTime from './ChangeTime'
 import Header from './Header'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -54,6 +55,10 @@ export class Appointment extends Component {
 
     historyStep = () =>{
         this.setState({step: 5})
+    }
+
+    changeTimeStep = () =>{
+        this.setState({step: 6})
     }
 
     originStep = () =>{
@@ -168,6 +173,19 @@ export class Appointment extends Component {
                         <div className="white-container2">
                         <History
                             originStep = {this.originStep}
+                            historyStep = {this.historyStep}
+                            changeTimeStep = {this.changeTimeStep}
+                            values = {values}
+                        />
+                        </div>
+                    </div>
+                )
+            case 6:
+                return (
+                    <div>
+                        <Header values = {headerValues}/>
+                        <div className="white-container2">
+                        <ChangeTime
                             historyStep = {this.historyStep}
                             values = {values}
                         />

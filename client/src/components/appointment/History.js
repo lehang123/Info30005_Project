@@ -54,7 +54,6 @@ const styles = {
     }
 };
 
-//   const classes = useStyles();
 
 export class History extends Component {
     constructor(props){
@@ -91,7 +90,7 @@ export class History extends Component {
                     <RaisedButton 
                         label="Change Time"
                         primary={true}
-                        onClick={this.continue}>
+                        onClick={this.changeTimeStep}>
                     </RaisedButton>
                     var cancel_button = 
                     <RaisedButton 
@@ -108,6 +107,11 @@ export class History extends Component {
     originStep = e => {
         e.preventDefault();
         this.props.originStep();
+    }
+
+    changeTimeStep = e => {
+        e.preventDefault();
+        this.props.changeTimeStep();
     }
 
     history = e => {
