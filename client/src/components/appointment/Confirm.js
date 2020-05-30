@@ -5,11 +5,25 @@ import { List, ListItem } from 'material-ui/List'
 import RaisedButton from 'material-ui/RaisedButton'
 import Paper from '@material-ui/core/Paper';
 import { Grid } from '@material-ui/core'
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 export class Confirm extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            appointmentFails : false
+        }
+    }
+
     continue = e => {
         e.preventDefault();
-        const { values: { patientID, firstName, lastName, email, phone, address, vaccine, hospital, datetime, allergy, emergencyContactName, emergencyContactPhone, medicareNumber } } = this.props;
+        const { values: { patientID, vaccine, hospital, datetime} } = this.props;
         var data1 = { patient_id: patientID, hospital_id: hospital.id, date_time: datetime, cost: vaccine.cost, vaccine_id: vaccine.id }
         var url = 'http://localhost:5000/api/appointments'
         if (process.env.NODE_ENV === 'production') {
@@ -22,17 +36,25 @@ export class Confirm extends Component {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data1)
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data1) {
-            console.log(JSON.stringify(data1))
-        })
-        this.props.nextStep();
+        }).then(response=> {
+            if (response.status === 201){
+                this.props.nextStep();
+            }else{
+                this.setState({appointmentFails: true});
             }
+        }).catch(err=>{
+            this.setState({appointmentFails: true});
+        })
+    }
 
     back = e => {
         e.preventDefault();
         this.props.prevStep();
+    }
+
+    redo = e =>{
+        e.preventDefault();
+        this.props.originStep();
     }
 
     render() {
@@ -40,6 +62,25 @@ export class Confirm extends Component {
 
         return (
             <MuiThemeProvider>
+                <div>
+                    <Dialog
+                        open={this.state.appointmentFails}
+                        onClose={this.redo}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">{"Book appointment fails"}</DialogTitle>
+                        <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Please try again later
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <Button onClick={this.redo} style={styles.dialogColor}>
+                            Ok.
+                        </Button>
+                        </DialogActions>
+                    </Dialog>
                     <AppBar title="Confirm Your Details" />
                     <br></br>
                     <Paper style={styles.paper} elevation={3}>
@@ -109,7 +150,7 @@ export class Confirm extends Component {
                         style={styles.button}
                         onClick={this.continue}
                     />
-
+            </div>
             </MuiThemeProvider>
         )
     }

@@ -13,6 +13,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -60,8 +65,11 @@ export class History extends Component {
         super(props);
         this.state = {
             appointments : [],
-            rows : []
+            rows : [],
+            deleteFails: false
         }
+        this.cancelAppointment = this.cancelAppointment.bind(this)
+        this.handleClose = this.handleClose.bind(this)
     }
 
     componentDidMount() {
@@ -70,7 +78,6 @@ export class History extends Component {
 
     fetchAppointments(){
         var url = 'http://localhost:5000/api/appointments/' + this.props.values.patientID
-        console.log(this.props.values.patientID)
         if (process.env.NODE_ENV === 'production') {
             url = '/api/appointments/' + this.props.values.patientID
         }
@@ -86,22 +93,59 @@ export class History extends Component {
                     var hospitalLocation = item.hospital.location
                     var datetime = item.date_time
                     var days_to_appoinment = item.days_to_appoinment
-                    var change_time_button = 
+
+                    let editting = {id: id, vaccine: vaccine, hospital: hospital, appoinment_time: datetime}
+
+                    var change_time_button = days_to_appoinment === 'appoinment date passed' ? 
+                    <RaisedButton 
+                        label="Change Time"
+                        labelColor="#FFFFFF"
+                        backgroundColor="#D3D3D3">
+                    </RaisedButton>:
                     <RaisedButton 
                         label="Change Time"
                         primary={true}
-                        onClick={this.changeTimeStep}>
+                        onClick={this.changeTimeStep(editting)}>
                     </RaisedButton>
-                    var cancel_button = 
+
+                    var cancel_button = days_to_appoinment === 'appoinment date passed' ? 
+                    <RaisedButton 
+                        label="Appointment Passed"
+                        labelColor="#FFFFFF"
+                        backgroundColor="#D3D3D3">
+                    </RaisedButton>:
                     <RaisedButton 
                         label="Cancel"
-                        labelColor="white"
+                        labelColor="#FFFFFF"
                         backgroundColor="#e91e63"
-                        onClick={this.continue}>
+                        onClick={this.cancelAppointment(id)}>
                     </RaisedButton>
                     return {id, patient, vaccine, hospital, hospitalLocation, datetime, days_to_appoinment,change_time_button,cancel_button}});
                 this.setState({rows: rows})
-            }).catch(err => { console.log(err) })
+            }).catch(err => {console.log(err)})
+    }
+
+    cancelAppointment = id => e =>{
+        e.preventDefault();
+        var url = 'http://localhost:5000/api/appointments/' + id
+        if (process.env.NODE_ENV === 'production') {
+            url = '/api/appointments/' + id
+        }
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+            }).then(async (response) => {
+                if (response.status === 200){
+                    // reload the appoinment
+                    this.fetchAppointments()
+                }else {
+                    // pop 
+                    this.setState({ deleteFails: true })
+                }
+            })
     }
 
     originStep = e => {
@@ -109,8 +153,9 @@ export class History extends Component {
         this.props.originStep();
     }
 
-    changeTimeStep = e => {
+    changeTimeStep = appointment => e => {
         e.preventDefault();
+        this.props.editAppointment(appointment)
         this.props.changeTimeStep();
     }
 
@@ -118,6 +163,10 @@ export class History extends Component {
         e.preventDefault();
         this.props.historyStep();
     }
+
+    handleClose = () => {
+        this.setState({deleteFails: false})
+    };
 
     // createData(patient, vaccine, hospital, hospitalLocation, datetime) {
     //     return { patient, vaccine, hospital, hospitalLocation, datetime };
@@ -177,6 +226,24 @@ export class History extends Component {
                     onClick={this.originStep}
                 />
                 </React.Fragment>
+                <Dialog
+                    open={this.state.deleteFails}
+                    onClose={this.handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Cancel appointment fails"}</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Please try again later
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.handleClose} style={styles.dialogColor}>
+                        Confirm
+                    </Button>
+                    </DialogActions>
+                </Dialog>
             </MuiThemeProvider>
         )
     }

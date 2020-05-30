@@ -70,15 +70,27 @@ const deleteAppointments = (req, res, next) =>{
     .exec()
     .then(result=>{
         res.status(200).json({
-            message: 'AppointmentId : ' + id + ' Deleted'
+            message: 'Appointment deleted'
         })
     })
     .catch(err=>{
         const error_msg = 'Delete Appointment by ID Error : ' + err.message
         console.log(error_msg)
         res.status(500).json({
-            err_msg: error_msg
+            message: 'Appointment delete fails'
         })
+    })
+}
+
+const updateAppointment = (req, res, next) =>{
+    const id = req.params.appointmentId;
+    Appointment.updateOne({_id: id}, {$set :req.body})
+    .exec()
+    .then(result => {
+      res.status(200).json(result)
+    })
+    .catch(err=>{
+      res.status(500).json(err)
     })
 }
 
@@ -94,19 +106,23 @@ const getAppointmentsByPatientId = (req, res, next)=>{
                 const hospital = await Hospital.findOne({_id: appointment.hospital_id}).exec();
                 const vaccine = await Vaccine.findOne({_id: appointment.vaccine_id}).exec();
                 
+                let date = new Date(appointment.date_time)
                 news.push({
                      id: appointment._id,
                      patient: patient,
                      hospital: hospital,
                      vaccine: vaccine,
-                     date_time: appointment.date_time,
+                     date_time: date.toString().split('GMT')[0],
                      days_to_appoinment: countDaysToAppointment(appointment.date_time)})
             }))
-            if (news.length == 0){
-                res.status(404).json({ message: "No valid entry found for provided patientId" })
-            }else{
-                res.status(200).json(news)
-            }
+
+            res.status(200).json(news)
+
+            // if (news.length == 0){
+            //     res.status(404).json({ message: "No valid entry found for provided patientId" })
+            // }else{
+            //     res.status(200).json(news)
+            // }
 
           }else {
             res.status(404).json({ message: "No valid entry found for provided patientId" })
@@ -148,5 +164,6 @@ module.exports = {
     deleteAppointments,
     getAppointments,
     getAppointmentsByPatientId,
-    countDaysToAppointment
+    countDaysToAppointment,
+    updateAppointment
 }

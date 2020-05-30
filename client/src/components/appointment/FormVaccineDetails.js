@@ -24,7 +24,10 @@ export class FormVaccineDetails extends Component {
         super(props);
         const { handleChange } = this.props;
         this.handleChange = handleChange
-        this.state = { vaccines: [], hospitals: [], vaccine_hospital: [], isVacSelected: false }
+        this.state = { vaccines: [],
+                       hospitals: [],
+                       vaccine_hospital: [],
+                       isVacSelected: false}
         this.getHospForVacc = this.getHospForVacc.bind(this)
         this.fetchItem = this.fetchItem.bind(this)
         this.getHospitalsByVac = this.getHospitalsByVac.bind(this)
@@ -92,11 +95,27 @@ export class FormVaccineDetails extends Component {
         return []
     }
 
-    onVacChange = e => {
-        e.preventDefault();
-        //this.handleChange('vaccine', e)
-        this.setState({ isVacSelected: !this.state.isVacSelected })
+    vacChange = e =>{
+        this.state.vaccines.forEach(vaccine => {
+            if (vaccine.id === e.target.value) {
+                this.props.storeAppointmentVaccine(vaccine)
+            }
+        });
     }
+
+    hospitalChange = e =>{
+        this.state.hospitals.forEach(hospital => {
+            if (hospital.id === e.target.value) {
+                this.props.storeAppointmentHospital(hospital)
+            }
+        });
+    }
+
+    // onVacChange = e => {
+    //     e.preventDefault();
+    //     //this.handleChange('vaccine', e)
+    //     this.setState({ isVacSelected: !this.state.isVacSelected })
+    // }
 
     continue = e => {
         e.preventDefault();
@@ -142,11 +161,11 @@ export class FormVaccineDetails extends Component {
                     <Select
                         labelId="vaccine-select-label"
                         id="vaccine-select"
-                        value={values.vaccine}
-                        onChange={this.handleChange('vaccine')}
+                        value={values.vaccine.id ? values.vaccine.id: ''}
+                        onChange={this.vacChange}
                         style={styles.select}
                     >
-                        {this.state.vaccines.map(item => (<MenuItem value={item} style={styles.select}>{item.name}</MenuItem>))}
+                        {this.state.vaccines.map(item => (<MenuItem key={item.id} value={item.id} style={styles.select}>{item.name}</MenuItem>))}
                     </Select>
                     <br />
                     <br />
@@ -154,11 +173,11 @@ export class FormVaccineDetails extends Component {
                     <Select
                         labelId="hospital-select-label"
                         id="hospital-select"
-                        value={values.hospital}
-                        onChange={this.handleChange('hospital')}
+                        value={values.hospital.id ? values.hospital.id: ''}
+                        onChange={this.hospitalChange}
                         style={styles.select}
                     >
-                        {this.getHospitalsByVac(values.vaccine.id).map(item => (<MenuItem value={item} style={styles.select}>{item.name}</MenuItem>))}
+                        {this.getHospitalsByVac(values.vaccine.id).map(item => (<MenuItem key={item.id} value={item.id} style={styles.select}>{item.name}</MenuItem>))}
                         {/* <MenuItem value={"Hospital A"} style = {styles.select}>{values.vaccine}</MenuItem>
                     <MenuItem value={"Hospital B"}>Hospital B</MenuItem>
                     <MenuItem value={"Hospital C"}>Hospital C</MenuItem> */}
@@ -173,9 +192,9 @@ export class FormVaccineDetails extends Component {
                         onChange={this.handleChange('datetime')}
                         style={styles.select}
                     >
-                        <MenuItem value={"2012-03-19T07:22Z"} style={styles.select}>2012-03-19T07:22Z</MenuItem>
-                        <MenuItem value={"2012-03-19T10:30Z"}>2012-03-19T10:30Z</MenuItem>
-                        <MenuItem value={"2012-03-19T11:00Z"}>2012-03-19T11:00Z</MenuItem>
+                        <MenuItem key={1} value={"2020-07-19T07:22Z"} style={styles.select}>2020-07-19 07:22am</MenuItem>
+                        <MenuItem key={2} value={"2012-03-19T10:30Z"}>2012-03-19 10:30am</MenuItem>
+                        <MenuItem key={3} value={"2022-12-19T11:00Z"}>2022-12-19 11:00am</MenuItem>
                     </Select>
                     <br />
                     <TextField

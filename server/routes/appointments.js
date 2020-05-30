@@ -22,4 +22,9 @@ router.get("/:patientId", (req, res, next)=>{
     appointmentController.getAppointmentsByPatientId(req, res, next)
 })
 
+/* UPDATE appointment by appointment id. */
+router.patch("/:appointmentId", (req, res, next)=>{
+    appointmentController.updateAppointment(req, res, next)
+})
+
 module.exports = router;

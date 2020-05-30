@@ -38,6 +38,8 @@ export class Appointment extends Component {
             emergencyContactName: this.props.values.patient.emergency_contact_name,
             emergencyContactPhone: this.props.values.patient.emergency_contact_number,
             medicareNumber: this.props.values.patient.medicare,
+
+            editingAppointment:{}
         }
     }
 
@@ -68,6 +70,18 @@ export class Appointment extends Component {
     // Handle changes
     handleChange = input => e => {
         this.setState({[input]: e.target.value})
+    }
+
+    editAppointment = appointment =>{
+        this.setState({editingAppointment: appointment})
+    }
+
+    storeAppointmentVaccine = vaccine =>{
+        this.setState({vaccine: vaccine})
+    }
+
+    storeAppointmentHospital = hospital =>{
+        this.setState({hospital: hospital})
     }
 
     handleClose = () => {
@@ -137,6 +151,8 @@ export class Appointment extends Component {
                             nextStep = {this.nextStep}
                             prevStep = {this.prevStep}
                             handleChange = {this.handleChange}
+                            storeAppointmentVaccine = {this.storeAppointmentVaccine}
+                            storeAppointmentHospital = {this.storeAppointmentHospital}
                             values = {values}
                         />
                         </div>
@@ -150,6 +166,7 @@ export class Appointment extends Component {
                         <Confirm
                             nextStep = {this.nextStep}
                             prevStep = {this.prevStep}
+                            originStep = {this.originStep}
                             values = {values}
                         />
                         </div>
@@ -175,6 +192,7 @@ export class Appointment extends Component {
                             originStep = {this.originStep}
                             historyStep = {this.historyStep}
                             changeTimeStep = {this.changeTimeStep}
+                            editAppointment = {this.editAppointment}
                             values = {values}
                         />
                         </div>
@@ -187,7 +205,7 @@ export class Appointment extends Component {
                         <div className="white-container2">
                         <ChangeTime
                             historyStep = {this.historyStep}
-                            values = {values}
+                            appointment = {this.state.editingAppointment}
                         />
                         </div>
                     </div>
