@@ -48,21 +48,21 @@ class Login extends React.Component{
         }).then(function (response) {
             return response.json();
         }).then((data) => {
-            console.log(this.props)
             if("_id" in data){
-
+                this.setState({authorization: true})
                 this.props.handleChange("patient", data)
                 this.props.handleChange("isLoggedIn", true)
 
                 const {history} = this.props
                 history.push('/')
 
+            }else{
+                this.setState({authorization: false})
             }
-            console.log(JSON.stringify(data))
         }).catch(err=>{
-            console.log(err);
+            this.setState({authorization: false})
         })
-        this.setState({authorization: false})
+
     }
 
     render() {
@@ -83,7 +83,7 @@ class Login extends React.Component{
                     <button onClick={this.collect_login}>Next</button>
                 </div>
                 <div id="login-link">
-                    <Link className="sublink" to='/forgot'>Forgot Password</Link> /
+                    {/* <Link className="sublink" to='/forgot'>Forgot Password</Link> / don't think we have time to do forgot */}
                     <Link className="sublink" to='/signup'>Sign Up</Link>
                 </div>
             </div>

@@ -139,7 +139,7 @@ export class Profile extends Component {
                                         <label>Language</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{this.props.values.patient.language ? this.props.values.patient.language: 'Unapplicable'}</p>
+                                        <p id='language'>{this.props.values.patient.language ? this.props.values.patient.language.join(', '): 'Unapplicable'}</p>
                                     </div>
                                 </div>
                             </div>

@@ -2,6 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Alert from "@material-ui/lab/Alert";
 import Header from "./Header";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+
 
 
 function Message(props) {
@@ -11,6 +18,9 @@ function Message(props) {
         return <div className="alert"><Alert severity="error">Invalid Empty Input!</Alert></div>
     }else if(props.name === 2) {
         return <div className="alert"><Alert severity="error">Invalid Date of Birth! Please Enter Format : YYYY-MM-DD</Alert></div>
+    }else if (props.name === 3){
+        return <div className="alert"><Alert severity="error">Password entered different! Please try again</Alert></div>
+
     }else{
         return <div className="alert"><Alert severity="error">Invalid Input!</Alert></div>
     }
@@ -30,10 +40,13 @@ class Signup extends React.Component{
             birthday: "",
             confirm: false,
             alert: 0,
+            successfulDiaglo: 0,
+            open: false
         };
         this.collect_person = this.collect_person.bind(this);
         this.prev = this.prev.bind(this);
         this.sendData = this.sendData.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     sendData(){
@@ -59,20 +72,37 @@ class Signup extends React.Component{
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(JSON.stringify(data))
+        }).then(async  (response)=> {
+            let res = await response.json();
+            this.setState({open: true})
+            if (res.message === 'account_id already exists'){
+                this.setState({successfulDiaglo: 0})
+            }else if (res.message === 'SignUp successfully!'){
+                this.setState({successfulDiaglo: 1})
+            }else{
+                this.setState({successfulDiaglo: -1})
+            }
+
+        }).catch(error=>{
+            this.setState({open: true})
+            this.setState({successfulDiaglo: -1})
         })
+
     }
 
+    handleClose = () => {
+        this.setState({open: false})
+    };    
+
     prev(){
+        this.setState({open: false})
         this.setState({confirm: false});
     }
 
     collect_person() {
         const Username = document.getElementById('username').value;
         const Password = document.getElementById('password').value;
+        const Confirm = document.getElementById('confirm').value;
         const Firstname = document.getElementById('firstname').value;
         const Lastname = document.getElementById('lastname').value;
         const Address = document.getElementById('address').value;
@@ -100,11 +130,14 @@ class Signup extends React.Component{
         }else if (DoB.match(letters) || DoB.length !== 10 || DoB[4] !== '-' || DoB[7] !== '-'){
             this.setState({confirm: false});
             this.setState({alert: 2})
+        }else if (Confirm.localeCompare(Password) !== 0){
+            this.setState({confirm: false});
+            this.setState({alert: 3})
         }else{
             this.setState({alert: 0});
         }
     }
-
+// todo: deafult input
     render(){
         this.props.Background();
         if(this.state.confirm === false) {
@@ -115,32 +148,35 @@ class Signup extends React.Component{
                 <div className="signup">
                 <h2 style={{marginTop: '20px'}}>Create a New Account</h2>
                 <div className="input-container">
-                    <input type="text" id="username" placeholder="Username or Email" required=""/>
+                    <input type="text" id="username" placeholder="Username or Email" required="" defaultValue = {this.state.username}/>
                 </div>
                 <div className="input-container">
                     <input type="password" id="password" placeholder="Password" required=""/>
                 </div>
                 <div className="input-container">
-                    <input type="text" id="firstname" placeholder="First Name" required=""/>
+                    <input type="password" id="confirm" placeholder="Confirm Password" required=""/>
                 </div>
                 <div className="input-container">
-                    <input type="text" id="lastname" placeholder="Last Name" required=""/>
+                    <input type="text" id="firstname" placeholder="First Name" required="" defaultValue = {this.state.firstname}/>
                 </div>
                 <div className="input-container">
-                    <input type="text" id="address" placeholder="Address" required=""/>
+                    <input type="text" id="lastname" placeholder="Last Name" required="" defaultValue = {this.state.lastname}/>
                 </div>
                 <div className="input-container">
-                    <input type="text" id="contact" placeholder="Contact" required=""/>
+                    <input type="text" id="address" placeholder="Address" required="" defaultValue = {this.state.address}/>
+                </div>
+                <div className="input-container">
+                    <input type="text" id="contact" placeholder="Contact" required="" defaultValue = {this.state.contact}/>
                 </div>
                 <div className="selection">
                     <div>Gender :</div>
-                    <div><select id="gender">
+                    <div><select id="gender" defaultValue = {this.state.gender}>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
                     </select></div>
                     <div>
-                        <input type="text" id="DoB" placeholder="Date of Birth(YYYY-MM-DD)" required=""/>
+                        <input type="text" id="DoB" placeholder="Date of Birth(YYYY-MM-DD)" required="" defaultValue = {this.state.birthday}/>
                     </div>
                 </div>
                 <div id="btn-sign">
@@ -153,25 +189,56 @@ class Signup extends React.Component{
         }else{
             return(
                 <body>
-                <Header/>
-                <div className="confirm">
-                <h2 style={{marginTop: '20px'}}>Confirm Your Details</h2>
-                <div><b>User Name</b> : {this.state.username}</div>
-                <div><b>First Name</b> : {this.state.firstname}</div>
-                <div><b>Last Name</b> : {this.state.lastname}</div>
-                <div><b>Password</b> : {this.state.password}</div>
-                <div><b>Address</b> : {this.state.address}</div>
-                <div><b>Contact</b> : {this.state.contact}</div>
-                <div><b>Gender</b> : {this.state.gender}</div>
-                <div><b>Date of Birth</b> : {this.state.birthday}</div>
-                <div id="btn-sign">
-                    <button id="prev" onClick={this.prev}>Back</button>
-                    <Link className="button" to='/login'><button onClick={this.sendData}>Confirm</button></Link>
-                </div>
-                </div>
+                    <Header/>
+                    <div className="confirm">
+                        <h2 style={{marginTop: '20px'}}>Confirm Your Details</h2>
+                        <div><b>User Name</b> : {this.state.username}</div>
+                        <div><b>First Name</b> : {this.state.firstname}</div>
+                        <div><b>Last Name</b> : {this.state.lastname}</div>
+                        <div><b>Address</b> : {this.state.address}</div>
+                        <div><b>Contact</b> : {this.state.contact}</div>
+                        <div><b>Gender</b> : {this.state.gender}</div>
+                        <div><b>Date of Birth</b> : {this.state.birthday}</div>
+                        <div id="btn-sign">
+                            <button id="prev" onClick={this.prev}>Back</button>
+                            <button onClick={this.sendData}>Confirm</button>
+                        </div>
+                    </div>
+                    <Dialog
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description" >
+                        <DialogTitle id="alert-dialog-title">{this.state.successfulDiaglo === 1 ? "Sign Up Successfully":"Sign Up Fail"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                    {this.state.successfulDiaglo === 1 ? 
+                                        "Welcome to teamVaccine, please enjoy our service":
+                                        (this.state.successfulDiaglo === 0 ?
+                                            "Account already exist, please try another username":
+                                            "Unknown error, please try again later")}
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        {
+                            this.state.successfulDiaglo === 1 ? <Button onClick={this.handleClose} style={styles.dialogColor} href = './login'>
+                                                                    Confirm
+                                                                </Button>:
+                                                                <Button onClick={this.prev} style={styles.dialogColor}>
+                                                                    Try again.
+                                                                </Button>
+                        }
+                        </DialogActions>
+                    </Dialog>
                 </body>
             )
         }
+    }
+}
+
+const styles = {
+    dialogColor: {
+        color: "#00BCD4"
     }
 }
 

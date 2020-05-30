@@ -92,7 +92,7 @@ export class Edit extends Component {
             },
             body: JSON.stringify(this.state)
             }).then(async (response) => {
-                if (response.status == 200){
+                if (response.status === 200){
                     // update successfully
                     console.log('hi, we success')
                     let doc = await response.json()
