@@ -110,7 +110,7 @@ function Vaccines(props) {
                                         <Typography variant="body2" color="textSecondary" component="p">
                                             Recommend : 
                                         </Typography>
-                                        <Rating name="read-only" value={item.recommend_star} readOnly />
+                                        <Rating name="read-only" value={item.recommend_star} readOnly/>
                                     </CardContent>
                                 </Link>
                             </CardActionArea>
