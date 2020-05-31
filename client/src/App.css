@@ -454,7 +454,7 @@ footer{
 
 .content-table thead tr {
   font-family: sans-serif;
-  background-color: #009879;
+  background-color: #094183;
   color: #ffffff;
   text-align: center;
   font-weight: bold;
@@ -473,12 +473,12 @@ footer{
 }
 
 .content-table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
+  border-bottom: 2px solid #094183;
 }
 
 .content-table tbody tr.colorful-row {
   font-weight: bold;
-  color: #009879;
+  color: #094183;
 }
 
 /* PATIENTS TAGS*/

@@ -18,11 +18,11 @@ import Footer from '../Footer'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 345,
+      maxWidth: 800,
       margin: 'auto'
     },
     media: {
-      height: 140,
+      height: 200,
     },
     section1: {
         margin: theme.spacing(3, 2),
@@ -84,9 +84,9 @@ function Faculties(props) {
         <Header {...props}/>
         <Container className="white-container" container maxWidth>
             <Container maxWidth="lg">
-                <Grid container spacing={2}>
+                <Grid container spacing={5}>
                     {items.map(item => ([0].map((value) => (
-                    <Grid key={value} xs={4}  item>
+                    <Grid key={value} xs={12}  item>
                         <Card className={classes.root}>
                             <CardActionArea>
                                 <Link to={ {
@@ -95,23 +95,23 @@ function Faculties(props) {
                                                 values : props.values
                                             }
                                         }} className = {classes.link} >
-                                    {/* <CardMedia
+                                    <CardMedia
                                     className={classes.media}
-                                    image={require("../../images/test_tube.png")}
-                                    title="test_tube"
-                                    /> */}
+                                    image={require("../../images/Hospital.jpg")}
+                                    title="hospital"
+                                    />
                                     <CardContent>
                                         <Grid container alignItems="center">
                                             <Grid item xs>
-                                                <Typography gutterBottom variant="h5" color="textPrimary" align='left'>
+                                                <Typography gutterBottom variant="h4" color="textPrimary" align='left'>
                                                     {item.name}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
-                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        <Typography variant="h5" color="textSecondary" component="p">
                                             Location : {item.location}
                                         </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        <Typography variant="h5" color="textSecondary" component="p">
                                             Language : {item.language}
                                         </Typography>
                                     </CardContent>
