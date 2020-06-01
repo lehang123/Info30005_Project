@@ -11,6 +11,7 @@ import { Container, Grid, Typography, Divider} from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import Header from './Header';
 import Footer from '../Footer';
+import Vaccinepic from '../../images/test_tube.png'
 
 
 class VaccinesID extends Component{
@@ -137,6 +138,7 @@ class VaccinesID extends Component{
                             {/* <tr>Stocks :{this.state.item.stocks}</tr> */}
                             <tr class = "colorful-row">Recommend Star :<Rating name="read-only" value={parseInt(this.state.item.recommend_star, 10)} readOnly /></tr>
                             <tr>Manufacturer :{this.state.item.manufacturer}</tr>
+                            <tr class = "colorful-row">Concept Photo :<img src = {Vaccinepic} alt="picture of vaccine" width="400" height="200"></img></tr>
                         </tbody>
                     </table>
                 </div>

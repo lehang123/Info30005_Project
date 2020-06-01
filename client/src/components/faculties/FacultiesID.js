@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Header from './Header';
 import Footer from '../Footer';
-
+import Hospitalpic from '../../images/Hospital.jpg'
 
 class FacultiesID extends Component{
     constructor(props) {
@@ -56,6 +56,7 @@ class FacultiesID extends Component{
                             <tr>Name : {this.state.item.name} </tr>
                             <tr class = "colorful-row">Location : {this.state.item.location}</tr>
                             <tr>Language : {this.state.item.language}</tr>
+                            <tr class = "colorful-row">Concept graph :<img src = {Hospitalpic} alt="picture of hospital" width="400" height="200"></img></tr>
                         </tbody>
                     </table>
                 </div>
