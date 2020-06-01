@@ -120,7 +120,7 @@ footer{
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
   background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('images/glasses.png') no-repeat;
-  background-size: 100% 50%;
+  background-size: 100% 30%;
 }
 
 .FacultiesApp{
@@ -344,10 +344,10 @@ footer{
   margin-top: 50px;
   left: 35%;
   width: 30%;
-  height: 60vh;
+  height: 65vh;
   background: white;
   display: grid;
-  grid-template-rows: 15% 10% 10% 10% 10% 10% 8%;
+  grid-template-rows: 15% 9% 9% 9% 9% 9% 9% 8%;
   justify-items: center;
   font-family: 'Roboto', sans-serif;
 }
@@ -485,14 +485,39 @@ footer{
 .patients-review{
   display: grid;
   grid-template-columns: 40% 60%;
-  height: 50vh;
+  height: 60vh;
   align-items: center;
 }
 
 .patients-review2{
+  background: url('images/pattern1.png')  center/cover no-repeat;
   display: grid;
   grid-template-columns: 60% 40%;
-  height: 50vh;
-  background: deepskyblue;
+  height: 60vh;
   align-items: center;
+}
+
+.patient-1{
+  background: url('images/patient1.png')  center/cover no-repeat;
+  width: 40vw;
+  height: 50vh;
+  margin: 50px;
+}
+
+.patient-2{
+  background: url('images/patient2.png')  center/cover no-repeat;
+  width: 40vw;
+  height: 50vh;
+  margin: 50px;
+}
+
+.patient-3{
+  background: url('images/patient3.png')  center/cover no-repeat;
+  width: 40vw;
+  height: 50vh;
+  margin: 50px;
+}
+.quote{
+  text-align: justify;
+  padding: 50px;
 }

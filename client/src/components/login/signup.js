@@ -19,7 +19,7 @@ function Message(props) {
     }else if(props.name === 2) {
         return <div className="alert"><Alert severity="error">Invalid Date of Birth! Please Enter Format : YYYY-MM-DD</Alert></div>
     }else if (props.name === 3){
-        return <div className="alert"><Alert severity="error">Password entered different! Please try again</Alert></div>
+        return <div className="alert"><Alert severity="error">Password entered differently! Please try again</Alert></div>
 
     }else{
         return <div className="alert"><Alert severity="error">Invalid Input!</Alert></div>
