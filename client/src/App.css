@@ -108,7 +108,7 @@ footer{
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('images/Vaccines.jpg') no-repeat;
+  background:#094183;
   background-size: 100% 30%;
 }
 
@@ -119,7 +119,7 @@ footer{
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('images/glasses.png') no-repeat;
+  background:#094183;
   background-size: 100% 30%;
 }
 
@@ -130,7 +130,7 @@ footer{
   min-height: 100%;
   text-align: center;
   font-family: 'Noto Serif', sans-serif;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('images/buildings.jpg') no-repeat;
+  background: #094183;
   background-size: 100% 50%;
 }
 
@@ -157,9 +157,9 @@ footer{
 }
 
 .links:Hover{
-  box-shadow: 4px 4px #094183;
+  box-shadow: 4px 4px white;
   text-decoration: none;
-  color:#094183;
+  color:white;
 }
 
 .message{
@@ -490,7 +490,7 @@ footer{
 }
 
 .patients-review2{
-  background: url('images/pattern1.png')  center/cover no-repeat;
+  background: url('images/pattern1.jpg')  center/cover no-repeat;
   display: grid;
   grid-template-columns: 60% 40%;
   height: 60vh;

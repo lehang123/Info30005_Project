@@ -83,7 +83,7 @@ class Login extends React.Component{
                     <button onClick={this.collect_login}>Next</button>
                 </div>
                 <div id="login-link">
-                    {/* <Link className="sublink" to='/forgot'>Forgot Password</Link> / don't think we have time to do forgot */}
+                    <Link className="sublink" to='/forgot'>Forgot Password</Link> /
                     <Link className="sublink" to='/signup'>Sign Up</Link>
                 </div>
             </div>
