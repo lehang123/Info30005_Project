@@ -418,8 +418,6 @@ footer{
 }
 
 .selection{
-  font-size: 20px;
-  justify-self: start;
   display: grid;
   grid-template-columns: 20% 35% 50%;
   align-content: center;
@@ -520,4 +518,10 @@ footer{
 .quote{
   text-align: justify;
   padding: 50px;
+}
+
+.datepicker{
+  margin-top: 15px;
+  position:relative;
+  right:120px;
 }
