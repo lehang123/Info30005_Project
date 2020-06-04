@@ -35,11 +35,20 @@ if (process.env.NODE_ENV === 'production'){
   app.set('view engine', 'pug')
 }
 
+// List of all the files that should be served as-is
+let protected = ['transformed.js', 'main.css', 'favicon.ico']
+
 app.get("*", (req, res) => {
-  let url = path.join(__dirname, '../client/build', 'index.html');
-  if (!url.startsWith('/app/')) // since we're on local windows
-    url = url.substring(1);
-  res.sendFile(url);
+
+  let path = req.params['0'].substring(1)
+
+  if (protected.includes(path)) {
+    // Return the actual file
+    res.sendFile(`${__dirname}/build/${path}`);
+  } else {
+    // Otherwise, redirect to /build/index.html
+    res.sendFile(`${__dirname}/build/index.html`);
+  }
 });
 
 
