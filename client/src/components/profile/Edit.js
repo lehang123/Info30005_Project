@@ -4,6 +4,7 @@ import languages from './languages.json'
 import Header from './Header'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField'
+import TextField2 from '@material-ui/core/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -166,12 +167,17 @@ export class Edit extends Component {
                             defaultValue = {this.state.username}
                             style = {styles.textField}
                         />
-                        <TextField
-                            hintText = "Change Your Birthday"
-                            floatingLabelText = "Birthday"
-                            onChange = {this.handleChange('birthday')}
-                            defaultValue = {this.parseDate(this.state.birthday)}
+                        <br></br>
+                        <br></br>
+                        <TextField2
+                            id="date"
+                            label="Birthday"
+                            type="date"
+                            defaultValue="2017-05-24"
                             style = {styles.textField}
+                            InputLabelProps={{
+                            shrink: true,
+                            }}
                         />
                         <TextField
                             hintText = "Change Your Phone"
