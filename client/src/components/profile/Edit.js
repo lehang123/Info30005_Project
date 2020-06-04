@@ -58,7 +58,7 @@ export class Edit extends Component {
         if (input === "language"){
             this.setState({language: [...this.state.language, e.target.value]})
         } else if (input === 'birthday'){
-            this.setState({birthday: new Date(e.target.value)})
+            this.setState({birthday: new Date(e.target.value).toString()})
         } else {
         this.setState({[input]: e.target.value})}
     }
@@ -173,7 +173,8 @@ export class Edit extends Component {
                             id="date"
                             label="Birthday"
                             type="date"
-                            defaultValue="2017-05-24"
+                            defaultValue={this.state.birthday.split('T')[0]}
+                            onChange = {this.handleChange('birthday')}
                             style = {styles.textField}
                             InputLabelProps={{
                             shrink: true,
