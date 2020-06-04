@@ -31,13 +31,14 @@ app.use(cors());
 
 if (process.env.NODE_ENV === 'production'){
   app.use(express.static('../client/build'))
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+  
 }else {
   app.set('view engine', 'pug')
 }
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
 
 app.use('/api', apiRouter);
 
