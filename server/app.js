@@ -29,6 +29,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
+if (process.env.NODE_ENV === 'production'){
+  app.use(express.static('../client/build'))
+}else {
+  app.set('view engine', 'pug')
+}
+
 app.get("*", (req, res) => {
   let url = path.join(__dirname, '../client/build', 'index.html');
   if (!url.startsWith('/app/')) // since we're on local windows
@@ -36,11 +42,6 @@ app.get("*", (req, res) => {
   res.sendFile(url);
 });
 
-if (process.env.NODE_ENV === 'production'){
-  app.use(express.static('../client/build'))
-}else {
-  app.set('view engine', 'pug')
-}
 
 
 // app.use(express.static(path.join(__dirname, 'public')));
