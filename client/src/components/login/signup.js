@@ -8,6 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -178,20 +179,40 @@ class Signup extends React.Component{
                     <input type="text" id="contact" placeholder="Contact" required="" defaultValue = {this.state.contact}/>
                 </div>
                 <div className="selection">
-                    <div>Gender :</div>
-                    <div><select id="gender" defaultValue = {this.state.gender}>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select></div>
+                    <h5>Gender</h5>
+                    <br></br>
                     <div>
-                        <input type="text" id="DoB" placeholder="Date of Birth(YYYY-MM-DD)" required="" defaultValue = {this.state.birthday}/>
+                        <select id="gender" defaultValue = {this.state.gender}>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                 </div>
-                    <div className="datepicker"><DatePicker
-                        selected={this.state.startDate}
-                        onChange={this.handleChange}
-                    /></div>
+                <div className="selection">
+                    <h5>Birthday</h5>
+                    <div>
+                        <TextField
+                            id="date"
+                            type="date"
+                            defaultValue="2017-05-24"
+                            style = {styles.textField}
+                            InputLabelProps={{
+                            shrink: true,
+                            }}
+                        />
+                        {/* <input type="text" id="DoB" placeholder="Date of Birth(YYYY-MM-DD)" required="" defaultValue = {this.state.birthday}/> */}
+                    </div>
+                </div>
+                    {/* <TextField
+                        id="date"
+                        type="date"
+                        defaultValue="2017-05-24"
+                        style = {styles.textField}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    /> */}
                 <div id="btn-sign">
                     <Link className="button" to='/login'> <button id="prev">Previous</button></Link>
                     <button onClick={this.collect_person}>Next</button>
@@ -252,6 +273,16 @@ class Signup extends React.Component{
 const styles = {
     dialogColor: {
         color: "#00BCD4"
+    },
+    textField: {
+        marginLeft: 25,
+        // marginRight: 15,
+        // width: 500,
+        // padding: '8px 0 5px 0'
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
     }
 }
 
