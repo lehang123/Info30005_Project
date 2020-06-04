@@ -38,6 +38,9 @@ if (process.env.NODE_ENV === 'production'){
 // List of all the files that should be served as-is
 let protected = ['transformed.js', 'main.css', 'favicon.ico']
 
+
+app.use('/api', apiRouter);
+
 app.get("*", (req, res) => {
 
   let path = req.params['0'].substring(1)
@@ -54,8 +57,6 @@ app.get("*", (req, res) => {
 
 
 // app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
