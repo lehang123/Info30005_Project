@@ -8,6 +8,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
@@ -41,7 +43,8 @@ class Signup extends React.Component{
             confirm: false,
             alert: 0,
             successfulDiaglo: 0,
-            open: false
+            open: false,
+            startDate: new Date()
         };
         this.collect_person = this.collect_person.bind(this);
         this.prev = this.prev.bind(this);
@@ -98,6 +101,12 @@ class Signup extends React.Component{
         this.setState({open: false})
         this.setState({confirm: false});
     }
+
+    handleChange = date => {
+        this.setState({
+            startDate: date
+        });
+    };
 
     collect_person() {
         const Username = document.getElementById('username').value;
@@ -179,6 +188,10 @@ class Signup extends React.Component{
                         <input type="text" id="DoB" placeholder="Date of Birth(YYYY-MM-DD)" required="" defaultValue = {this.state.birthday}/>
                     </div>
                 </div>
+                    <div className="datepicker"><DatePicker
+                        selected={this.state.startDate}
+                        onChange={this.handleChange}
+                    /></div>
                 <div id="btn-sign">
                     <Link className="button" to='/login'> <button id="prev">Previous</button></Link>
                     <button onClick={this.collect_person}>Next</button>

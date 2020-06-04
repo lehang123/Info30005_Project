@@ -13,6 +13,7 @@
     "heroku-postbuild": "npm run install-client && npm run install-server && npm run build"
   },
   "dependencies": {
-    "concurrently": "^5.2.0"
+    "concurrently": "^5.2.0",
+    "react": "^16.13.1"
   }
 }
