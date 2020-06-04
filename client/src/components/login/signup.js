@@ -193,9 +193,10 @@ class Signup extends React.Component{
                     <h5>Birthday</h5>
                     <div>
                         <TextField
-                            id="date"
+                            id="DoB"
                             type="date"
                             defaultValue="2017-05-24"
+                            // onChange={}
                             style = {styles.textField}
                             InputLabelProps={{
                             shrink: true,
