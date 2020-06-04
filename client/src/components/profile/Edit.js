@@ -99,7 +99,7 @@ export class Edit extends Component {
                     let doc = await response.json()
                     this.props.handleAppChange('patient', doc)
                     const {history} = this.props
-                    history.push('/')
+                    history.push('/profile')
 
                 }else {
                     // not really
