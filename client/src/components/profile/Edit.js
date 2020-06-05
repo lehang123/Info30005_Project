@@ -21,8 +21,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
+import {Link} from 'react-router-dom';
 
-// NEED TO LINK TO DATABASE
 
 export class Edit extends Component {
 
@@ -63,11 +63,6 @@ export class Edit extends Component {
         this.setState({[input]: e.target.value})}
     }
 
-    // handleDelete = (chipToDelete) => {
-    //     this.setState({language: this.state.language.filter(function(item){
-    //         return item !== chipToDelete
-    //     })})
-    // }
 
     handleDelete = chipToDelete => {
         var array = [...this.state.language]; 
@@ -79,8 +74,7 @@ export class Edit extends Component {
     }
 
     updateToDb = ()=>{
-        // update all the current state to db
-        // and change the app.js's patient information and redirct
+
         var url = 'http://localhost:5000/api/users/' + this.props.values.patient._id
         if (process.env.NODE_ENV === 'production') {
             url = '/api/users/' + this.props.values.patient._id
@@ -99,7 +93,7 @@ export class Edit extends Component {
                     let doc = await response.json()
                     this.props.handleAppChange('patient', doc)
                     const {history} = this.props
-                    history.push('/')
+                    history.push('/profile')
 
                 }else {
                     // not really
@@ -117,19 +111,17 @@ export class Edit extends Component {
 
         return (
             <div>
-            {/* <Header {...this.props}/> */}
-            {/* <div class="container emp-profile"> */}
             <Header values = {headerValues}/>
             <div className="white-container2">
             <MuiThemeProvider>
                 <React.Fragment>
                     <AppBar position="static" style={styles.appBar}>
                             <Toolbar>
-                            {/* <Link className = {styles.link} to= '/profile'> */}
-                            <IconButton edge="start" color="inherit" aria-label="back" href="./profile">
-                                <ArrowBackIcon />
-                            </IconButton>
-                            {/* </Link> */}
+                            <Link to= '/profile'>
+                                <IconButton edge="start" color="inherit" aria-label="back">
+                                    <ArrowBackIcon />
+                                </IconButton>
+                            </Link>
                             <Typography variant="h6" style={styles.title}>
                                 Edit Your Profile
                             </Typography>
@@ -252,13 +244,15 @@ export class Edit extends Component {
                     </Paper>
                     <br></br>
                     <br></br>
-                    <RaisedButton
-                            label="Cancel"
-                            primary={true}
-                            style={styles.button}
-                            onClick={this.continue}
-                            href="./profile"
-                    />
+                    <Link to="/profile">
+                        <RaisedButton
+                                label="Cancel"
+                                primary={true}
+                                style={styles.button}
+                                onClick={this.continue}
+                        />
+                    </Link>
+                    
                     <RaisedButton
                             label="Save"
                             primary={true}

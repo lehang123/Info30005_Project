@@ -12,6 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';  
+import {Link} from 'react-router-dom';
 
 export class Appointment extends Component {
     
@@ -114,12 +115,18 @@ export class Appointment extends Component {
                             </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                            <Button onClick={this.handleClose} style={styles.dialogColor} href = './'>
-                                Later
-                            </Button>
-                            <Button onClick={this.handleClose} style={styles.dialogColor} href = "./login">
-                                Login / Sign Up
-                            </Button>
+                                <Link to='/'>
+                                    <Button onClick={this.handleClose} style={styles.dialogColor}>
+                                    Later
+                                    </Button>
+                                </Link>
+                                <Link to='/login'>
+                                    <Button onClick={this.handleClose} style={styles.dialogColor}>
+                                        Login / Sign Up
+                                    </Button>
+                                </Link>
+                            
+                            
                             </DialogActions>
                         </Dialog>
                     </div>

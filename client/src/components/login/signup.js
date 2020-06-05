@@ -9,9 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 
 function Message(props) {
@@ -256,9 +254,12 @@ class Signup extends React.Component{
                         </DialogContent>
                         <DialogActions>
                         {
-                            this.state.successfulDiaglo === 1 ? <Button onClick={this.handleClose} style={styles.dialogColor} href = './login'>
+                            this.state.successfulDiaglo === 1 ? 
+                                                                <Link to='/login'>
+                                                                    <Button onClick={this.handleClose} style={styles.dialogColor}>
                                                                     Confirm
-                                                                </Button>:
+                                                                    </Button>
+                                                                </Link>:
                                                                 <Button onClick={this.prev} style={styles.dialogColor}>
                                                                     Try again.
                                                                 </Button>
