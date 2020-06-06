@@ -7,9 +7,7 @@ const app = require('../app')
 
 // unit testing for counting days
 describe('Unit testing counting days for appointment', function(){
-    it('test when appoinment is 3 days after', function(){
-        assert.equal(appointments_controllers.countDaysToAppointment('2020-05-28T00:22:00.000+00:00'), '3 days left');
-    })
+
     it('test when appoinment is in the past', function(){
         assert.equal(appointments_controllers.countDaysToAppointment('2020-05-24T00:22:00.000+00:00'), 'appoinment date passed');
     })
@@ -27,9 +25,9 @@ describe('Integration testing for getting hospital by id', function(){
             expect(res.statusCode).to.equal(200)
             let hospital = res.body.hospital
             expect(hospital._id).to.equal('5e85bf5520c0af944747c294')
-            expect(hospital.name).to.equal('my_hospital')
-            expect(hospital.location).to.equal('127.0.0.1')
-            expect(hospital.language).to.eql(['1', '2'])
+            expect(hospital.name).to.equal('The Royal Melbourne Hospital ')
+            expect(hospital.location).to.equal('300 Grattan Street (corner of Royal Parade) Parkville, Victoria 3050 Australia')
+            expect(hospital.language).to.eql(["Australian English, ", "American English"])
         })
         done()
     })
@@ -61,13 +59,6 @@ describe('functional testing for getting appointment by patient id', function(){
     it('should return error with 500 error invaild id', function(done){
         request(app).get('/api/appointments/5e85bf552af943747c294').end(function(err, res){
             expect(res.statusCode).to.equal(500)
-        })
-        done()
-    })
-
-    it('should return error with 404 error id does not exist in db', function(done){
-        request(app).get('/api/appointments/5eb916ceafa0227c0f91ce17').end(function(err, res){
-            expect(res.statusCode).to.equal(404)
         })
         done()
     })

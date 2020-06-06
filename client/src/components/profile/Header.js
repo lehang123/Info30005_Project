@@ -19,7 +19,7 @@ class Header extends Component{
                         {/* {this.props.values.isLoggedIn ? 
                                         (<Link className="links" to= '/profile'>Login</Link>):
                                         (<Link className="links" to= '/login'>Login</Link>)} */}
-                        {/* <Link className="links" to= '/profile'>Profile</Link> */}
+                        <Link className="links" to= '/profile'>Profile</Link>
                     </div>
                 </div>
             </header>

@@ -189,6 +189,11 @@ Client functions done so far:
 	To view appointment history, click Appointment at the Navi bar or go to "https://team-vaccine.herokuapp.com/appointment" then click History button on the right hand side of the application bar. All the history 		appointment summary will be displayed in a table.
 
 
+    For testing:
+        we implentment testing for get appoinment history for patient id, 
+        how to run, go to server folder, and 'npm test'
+
+
 
 
 

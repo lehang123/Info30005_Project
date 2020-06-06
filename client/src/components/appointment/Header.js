@@ -11,7 +11,7 @@ class Header extends Component{
                     <img id="logo" src={Logo} alt={"logo"}/>
                     <div>
                         <Link className="links" to= '/'>Home</Link>
-                        {/* <Link className="links" to= '/appointment'>Appointment</Link> */}
+                        <Link className="links" to= '/appointment'>Appointment</Link>
                         <Link className="links" to= '/patients'>Patients</Link>
                         <Link className="links" to= '/faculties'>Faculties</Link>
                         <Link className="links" to= '/vaccines'>Vaccines</Link>

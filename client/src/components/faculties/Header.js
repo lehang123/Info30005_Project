@@ -13,7 +13,7 @@ class Header extends Component{
                         <Link className="links" to= '/'>Home</Link>
                         <Link className="links" to= '/appointment'>Appointment</Link>
                         <Link className="links" to= '/patients'>Patients</Link>
-                        {/* <Link className="links" to= '/faculties'>Faculties</Link> */}
+                        <Link className="links" to= '/faculties'>Faculties</Link>
                         <Link className="links" to= '/vaccines'>Vaccines</Link>
                         <Link className="links" to= '/aboutus'>About Us</Link>
                         {this.props.values.isLoggedIn ? 
