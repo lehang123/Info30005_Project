@@ -129,12 +129,12 @@ class VaccinesID extends Component{
                             <tr>Summary Of this Vaccine</tr> 
                         </thead>
                         <tbody>
-                            <tr>Name : {this.state.item.name} </tr>
+                            <tr>Name : {this.state.item.name}</tr>
                             <tr class = "colorful-row">Allergies : {this.state.item.alleries}</tr>
                             <tr>Prevent Disease : {this.state.item.prevent_disease}</tr>
                             <tr class = "colorful-row">Good For Groups:{this.state.item.good_for_groups}</tr>
                             {/* <tr>Available At :{this.state.item.available_at}</tr> */}
-                            <tr>Cost :{this.state.item.cost}</tr>
+                            <tr>Cost :{this.state.item.cost} $</tr>
                             {/* <tr>Stocks :{this.state.item.stocks}</tr> */}
                             <tr class = "colorful-row">Recommend Star :<Rating name="read-only" value={parseInt(this.state.item.recommend_star, 10)} readOnly /></tr>
                             <tr>Manufacturer :{this.state.item.manufacturer}</tr>

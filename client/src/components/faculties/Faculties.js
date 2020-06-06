@@ -108,10 +108,11 @@ function Faculties(props) {
                                                 </Typography>
                                             </Grid>
                                         </Grid>
-                                        <Typography variant="h5" color="textSecondary" component="p">
+                                        <Typography variant="h5" color="textSecondary" component="p" align='left'>
                                             Location : {item.location}
                                         </Typography>
-                                        <Typography variant="h5" color="textSecondary" component="p">
+                                        <br/>
+                                        <Typography variant="h5" color="textSecondary" component="p" align='left'>
                                             Language : {item.language}
                                         </Typography>
                                     </CardContent>

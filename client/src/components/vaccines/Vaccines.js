@@ -101,13 +101,14 @@ function Vaccines(props) {
                                                 </Typography>
                                             </Grid>
                                         </Grid>
-                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        <Typography variant="body2" color="textSecondary" component="p" align='left'>
                                             Prevent Disease : {item.prevent_disease}
                                         </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        <Typography variant="body2" color="textSecondary" component="p" align='left'>
                                             Allergies : {item.alleries}
                                         </Typography>
-                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        <br/>
+                                        <Typography variant="h5" color="textSecondary" component="p">
                                             Recommend : 
                                         </Typography>
                                         <Rating name="read-only" value={item.recommend_star} readOnly/>
