@@ -51,7 +51,6 @@ const StyledTableRow = withStyles((theme) => ({
 
 const styles = {
     table: {
-        maxWidth: 1500,
         margin: 'auto'
     },
     button: {
