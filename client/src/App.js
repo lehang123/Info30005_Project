@@ -142,7 +142,7 @@ class App extends Component{
                             {props => <Appointment {...props} values={values} Background ={this.appointmentBackground}/>}/>
 
                         <Route path='/aboutus'  component=
-                            {() => <AboutUs values={values} Background={this.defaultBackground}/>}/>
+                            {() => <AboutUs values={values} Background={this.vaccineBackground}/>}/>
 
                         <Route path='/profile'  component=
                         {props => <Profile {...props} values={values} handleAppChange = {this.handleChange} Background={this.loginBackground}/>}/>
