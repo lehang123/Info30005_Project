@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const styles = {
+    link: { textDecoration: "none"}
+}
+
 // function Faculties(props){
 //     props.Background()
     // return(
@@ -94,7 +98,7 @@ function Faculties(props) {
                                      state: {
                                                 values : props.values
                                             }
-                                        }} className = {classes.link} >
+                                        }} style = {styles.link} >
                                     <CardMedia
                                     className={classes.media}
                                     image={require("../../images/Hospital.jpg")}
