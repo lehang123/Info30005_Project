@@ -1,3 +1,5 @@
+// edited based on https://bootsnipp.com/snippets/K0ZmK
+
 import React, { Component } from 'react'
 import './Profile.css'
 import Header from './Header'
